@@ -22,9 +22,9 @@ export default function TopBar({ currentPage, totalPages, scrollToPage }: TopBar
   }, [currentPage, totalPages, scrollToPage])
 
   return (
-    <>
-      {/* Navigation Dots */}
-      <div className="fixed top-4 sm:top-6 md:top-8 left-1/2 -translate-x-1/2 z-[60] flex gap-2">
+    <div className="absolute top-0 left-0 right-0 z-[60] py-4 sm:py-6 md:py-8">
+      {/* Navigation Dots - centered at top */}
+      <div className="flex justify-center gap-2">
         {[...Array(totalPages)].map((_, i) => (
           <button
             key={i}
@@ -37,28 +37,32 @@ export default function TopBar({ currentPage, totalPages, scrollToPage }: TopBar
         ))}
       </div>
 
-      {/* Navigation Arrows */}
-      {currentPage > 0 && (
-        <button
-          onClick={() => scrollToPage(currentPage - 1)}
-          className="fixed left-2 sm:left-3 md:left-4 top-1/2 -translate-y-1/2 z-[60] p-2 sm:p-2.5 md:p-3 rounded-full bg-surface/80 backdrop-blur-sm border border-border hover:bg-primary hover:border-primary transition-all group"
-        >
-          <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-      )}
+      {/* Navigation Arrows - positioned at sides */}
+      <div className="absolute inset-y-0 left-0 right-0 pointer-events-none">
+        {currentPage > 0 && (
+          <button
+            onClick={() => scrollToPage(currentPage - 1)}
+            className="absolute left-2 sm:left-3 md:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-2.5 md:p-3 rounded-full bg-surface/80 backdrop-blur-sm hover:bg-primary transition-all group pointer-events-auto"
+            aria-label="Previous page"
+          >
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+        )}
 
-      {currentPage < totalPages - 1 && (
-        <button
-          onClick={() => scrollToPage(currentPage + 1)}
-          className="fixed right-2 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 z-[60] p-2 sm:p-2.5 md:p-3 rounded-full bg-surface/80 backdrop-blur-sm border border-border hover:bg-primary hover:border-primary transition-all group"
-        >
-          <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      )}
-    </>
+        {currentPage < totalPages - 1 && (
+          <button
+            onClick={() => scrollToPage(currentPage + 1)}
+            className="absolute right-2 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-2.5 md:p-3 rounded-full bg-surface/80 backdrop-blur-sm hover:bg-primary transition-all group pointer-events-auto"
+            aria-label="Next page"
+          >
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        )}
+      </div>
+    </div>
   )
 }
