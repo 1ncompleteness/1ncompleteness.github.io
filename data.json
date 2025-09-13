@@ -3,15 +3,15 @@
     "name": {
       "full": "Behrouz Barati B",
       "first": "Behrouz",
-      "middle": "Barati",
-      "last": "B",
+      "middle": "",
+      "last": "Barati B",
       "display": "Behrouz Barati B"
     },
     "identity": {
-      "pronouns": "he/him",
-      "title": "Computer Science Researcher & Entrepreneur",
-      "tagline": "Bridging Theory and Practice in AI/ML",
-      "philosophy": "Exploring the intersection of mathematics, computation, and intelligence"
+      "pronouns": "",
+      "title": "Computer Science, Mathematics, and Computer Software Engineering Student",
+      "tagline": "CSUN Class of 2026",
+      "philosophy": "If I have seen further, it is by standing on the shoulders of giants."
     },
     "contact": {
       "social": {
@@ -49,15 +49,15 @@
       "major": {
         "primary": "Computer Science",
         "focus_areas": {
-          "theoretical": ["Algorithms", "Complexity Theory", "Formal Systems"],
+          "theoretical": ["Algorithms", "Data Structures", "Combinatorics", "Formal Systems"],
           "applied": ["Machine Learning", "Natural Language Processing", "Software Engineering"]
         }
       },
       "minor": {
         "field": "Mathematics",
         "areas": {
-          "pure": ["Complex Analysis", "Number Theory", "Modular Arithmetic"],
-          "applied": ["Linear Algebra", "Optimization", "Statistics"]
+          "pure": [ "Calculus", "Number Theory", "Discrete Mathematics", "Game Theory", "Complex Analysis"],
+          "applied": ["Linear Algebra", "Statistics", "Optimization"]
         }
       }
     },
