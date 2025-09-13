@@ -22,7 +22,7 @@ export default function TopBar({ currentPage, totalPages, scrollToPage }: TopBar
   }, [currentPage, totalPages, scrollToPage])
 
   return (
-    <div className="relative w-full py-4 sm:py-6 md:py-8 bg-transparent">
+    <div className="relative w-full py-4 sm:py-6 md:py-8">
       {/* Navigation Dots - centered at top */}
       <div className="flex justify-center gap-2">
         {[...Array(totalPages)].map((_, i) => (
