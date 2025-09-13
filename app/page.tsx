@@ -184,7 +184,7 @@ export default function Home() {
                   Education
                 </h3>
                 <p className="text-sm">B.S. Computer Science (Math Minor) 2026 Class</p>
-                <p className="text-xs text-primary mt-1">Associate in Software Engineering</p>
+                <p className="text-xs text-primary mt-1">Associate's Degree in Software Engineering</p>
               </div>
 
               <div className="bg-surface/80 backdrop-blur-sm p-4 rounded-xl border border-primary">
