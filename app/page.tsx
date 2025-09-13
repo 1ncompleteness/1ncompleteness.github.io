@@ -208,7 +208,6 @@ export default function Home() {
         <section className="min-w-full h-full snap-start flex items-center justify-center px-4">
           <div className="max-w-6xl w-full">
             <h2 className="text-4xl font-bold mb-8 text-gradient text-center">Skills & Experience</h2>
-i
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="bg-surface p-6 rounded-xl border-2 border-primary">
                 <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
