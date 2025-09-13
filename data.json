@@ -484,7 +484,7 @@
   },
   "research": {
     "interests": {
-      "primary": ["Applied Machine Learning", "Natural Language Processing", "Concave/Convex Optimization", "Knowledge Graphs", "Knowledge Base Systems", "Game Theory"],
+      "primary": ["Applied Machine Learning", "Natural Language Processing", "Robust Optimization", "Knowledge Graphs", "Knowledge Base Systems", "Game Theory"],
       "detailed": {
         "machine_learning": {
           "subfields": {
@@ -663,7 +663,7 @@
     "Diagonal Arguments", "Number Theory", "Calculus", "Vector Analysis", "Vector Fields",
     "Cardinal and Ordinal Sets", "Infinities", "Divergence Series", "Complex Analysis",
     "Analytic Continuation", "Abstract Algebra", "Algebraic Geometry", "Differentiable Manifolds",
-    "Tensor Calculus", "Convex/Concave Optimizations", "Nash Equilibria", "Saddle Points",
+    "Tensor Calculus", "Robust Optimization", "Nash Equilibria", "Saddle Points",
     "Robustness", "Fairness", "Ethics", "Morality", "Literature", "Education", "Philosophy",
     "Sociology", "Epistemology", "Cosmology", "Astrophysics", "Lagrangian", "Hamiltonian",
     "General Relativity", "Spacetime Singularities", "Standard Model", "Higgs Field", "Symmetries",
