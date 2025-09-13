@@ -60,9 +60,7 @@ export default function Home() {
   return (
     <main className="flex flex-col h-screen overflow-hidden bg-background">
       {/* TopBar Navigation Component - Takes its own space */}
-      <div className="relative flex-shrink-0">
-        <TopBar currentPage={currentPage} totalPages={totalPages} scrollToPage={scrollToPage} />
-      </div>
+      <TopBar currentPage={currentPage} totalPages={totalPages} scrollToPage={scrollToPage} />
 
       {/* Horizontal Scrolling Container - Fills remaining space */}
       <div

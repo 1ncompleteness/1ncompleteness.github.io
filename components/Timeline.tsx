@@ -169,16 +169,33 @@ export default function Timeline() {
       const ctx = canvas.getContext('2d')
       if (!ctx) return
 
-      // Clear canvas and fill with black background only in the graph area
+      // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Fill the area between axes with black
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.95)'
-      ctx.fillRect(40, 20, canvas.width - 60, canvas.height - 60)
+      // Draw grid pattern in the graph area (similar to bg-grid class)
+      const gridSize = 20 // Size of each grid square
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)' // Low opacity white lines
+      ctx.lineWidth = 0.5
 
-      // Set axis color
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
-      ctx.lineWidth = 1
+      // Draw vertical grid lines
+      for (let x = 40; x < canvas.width - 20; x += gridSize) {
+        ctx.beginPath()
+        ctx.moveTo(x, 20)
+        ctx.lineTo(x, canvas.height - 40)
+        ctx.stroke()
+      }
+
+      // Draw horizontal grid lines
+      for (let y = 20; y < canvas.height - 40; y += gridSize) {
+        ctx.beginPath()
+        ctx.moveTo(40, y)
+        ctx.lineTo(canvas.width - 20, y)
+        ctx.stroke()
+      }
+
+      // Set axis color (make them more prominent)
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'
+      ctx.lineWidth = 2
 
       // Draw X-axis (time)
       ctx.beginPath()
@@ -191,6 +208,9 @@ export default function Timeline() {
       ctx.moveTo(40, 20)
       ctx.lineTo(40, canvas.height - 40)
       ctx.stroke()
+
+      // Reset line width for other elements
+      ctx.lineWidth = 1
 
       // Draw axis labels
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
@@ -209,11 +229,12 @@ export default function Timeline() {
         ctx.stroke()
       })
 
-      // Draw grid lines
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'
-      ctx.setLineDash([2, 4])
+      // Draw major grid lines for years (overlaid on the background grid)
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)'
+      ctx.setLineDash([4, 8])
+      ctx.lineWidth = 1
 
-      // Vertical grid lines
+      // Vertical grid lines for years
       years.forEach(year => {
         const x = 40 + ((year - minYear) / yearRange) * (canvas.width - 60)
         ctx.beginPath()
@@ -222,7 +243,7 @@ export default function Timeline() {
         ctx.stroke()
       })
 
-      // Horizontal grid lines
+      // Horizontal grid lines for giant rows
       const numRows = rows.length
       for (let i = 0; i <= numRows; i++) {
         const y = 40 + (i / numRows) * (canvas.height - 80)
@@ -233,6 +254,7 @@ export default function Timeline() {
       }
 
       ctx.setLineDash([])
+      ctx.lineWidth = 1
 
       // Axis labels
       ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
@@ -261,7 +283,7 @@ export default function Timeline() {
       />
 
       {/* Timeline content */}
-      <div className="relative z-10 p-8 h-full overflow-auto">
+      <div className="relative z-10 p-8 h-full overflow-auto bg-transparent">
         <h3 className="text-2xl font-bold mb-8 text-white text-center">
           Standing on the Shoulders of Giants
         </h3>
