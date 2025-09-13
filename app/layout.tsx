@@ -5,13 +5,13 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Behrouz Barati B - AI/ML Researcher & Entrepreneur',
-  description: 'Computer Science researcher and entrepreneur specializing in machine learning, natural language processing, and geometric deep learning.',
+  title: 'Behrouz Barati B - Computer Science, Mathematics, and Software Engineering',
+  description: 'Computer Science, Math Minor, Software Engineering student and co-founder. Interested in Applied Machine Learning, NLP, Game Theory, Robust Optimization, Knowledge Graphs, Game Theory, Algebric Geometry. Exploring geometric deep learning.',
   authors: [{ name: 'Behrouz Barati B' }],
   keywords: ['AI', 'Machine Learning', 'NLP', 'Research', 'Entrepreneur', 'Computer Science'],
   openGraph: {
     title: 'Behrouz Barati B',
-    description: 'AI/ML Researcher & Entrepreneur',
+    description: 'Student of Math, CS, and Software Engineering. Co-founder of Entelligent.',
     url: 'https://1ncompleteness.github.io',
     siteName: 'Behrouz Barati B Portfolio',
     type: 'website',
