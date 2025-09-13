@@ -193,7 +193,7 @@ export default function Home() {
                   Entelligent
                 </h3>
                 <p className="text-sm">Co-Founder</p>
-                <a href={profileData.entrepreneurship.company.deployments.production[0].url}
+                <a href={profileData.entrepreneurship.company.deployments.production[1].url}
                    target="_blank"
                    rel="noopener noreferrer"
                    className="text-xs text-primary hover:underline">
