@@ -7,7 +7,7 @@
     --primary: #3c6e71;
     --secondary: #ffffff;
     --accent: #3c6e71;
-    --background: transparent;
+    --background: #1a1a1a;
     --surface: #2d2d2d;
     --foreground: #ffffff;
     --text-light: #ffffff;
@@ -32,14 +32,13 @@
   }
 
   body {
-    @apply text-foreground;
+    @apply bg-background text-foreground;
     overflow-x: hidden;
-    background: linear-gradient(135deg, #3c6e71, #284b63 50%, #353535);
   }
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: #3c6e71 transparent;
+    scrollbar-color: #3c6e71 #1a1a1a;
   }
 
   *::-webkit-scrollbar {
@@ -48,7 +47,7 @@
   }
 
   *::-webkit-scrollbar-track {
-    background: rgba(40, 75, 99, 0.2);
+    background: #1a1a1a;
   }
 
   *::-webkit-scrollbar-thumb {
@@ -60,6 +59,13 @@
 @layer utilities {
   .text-gradient {
     background: var(--entelligent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h2.text-gradient {
+    background: linear-gradient(135deg, #2a5558, #1e3a4f 50%, #242424);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
