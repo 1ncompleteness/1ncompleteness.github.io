@@ -1,11 +1,12 @@
 [
-	{
+  {
     "name": "Isaac Newton",
     "birth_year": 1642,
     "death_year": 1727,
     "fields": ["physics", "mathematics", "astronomy"],
     "contributions": ["classical mechanics", "calculus", "universal gravitation", "optics"],
-    "works": ["Philosophiæ Naturalis Principia Mathematica", "Opticks"]
+    "works": ["Philosophiæ Naturalis Principia Mathematica", "Opticks"],
+    "wikipedia": "Isaac_Newton"
   },
   {
     "name": "Pierre-Simon Laplace",
@@ -13,7 +14,8 @@
     "death_year": 1827,
     "fields": ["mathematics", "astronomy", "physics"],
     "contributions": ["celestial mechanics", "Bayesian probability", "Laplace transform"],
-    "works": ["Mécanique Céleste", "Théorie Analytique des Probabilités"]
+    "works": ["Mécanique Céleste", "Théorie Analytique des Probabilités"],
+    "wikipedia": "Pierre-Simon_Laplace"
   },
   {
     "name": "Jean-Baptiste Joseph Fourier",
@@ -21,7 +23,8 @@
     "death_year": 1830,
     "fields": ["mathematics", "physics"],
     "contributions": ["Fourier series and transform", "heat equation"],
-    "works": ["Théorie analytique de la chaleur"]
+    "works": ["Théorie analytique de la chaleur"],
+    "wikipedia": "Joseph_Fourier"
   },
   {
     "name": "Ada Lovelace",
@@ -29,7 +32,8 @@
     "death_year": 1852,
     "fields": ["mathematics", "computing"],
     "contributions": ["first computer algorithm", "vision of general-purpose computing"],
-    "works": ["Notes on the Analytical Engine"]
+    "works": ["Notes on the Analytical Engine"],
+    "wikipedia": "Ada_Lovelace"
   },
   {
     "name": "Bernhard Riemann",
@@ -37,7 +41,8 @@
     "death_year": 1866,
     "fields": ["mathematics"],
     "contributions": ["Riemannian geometry", "Riemann hypothesis", "complex analysis", "Riemann integral"],
-    "works": ["Über die Hypothesen, welche der Geometrie zu Grunde liegen", "Über die Anzahl der Primzahlen unter einer gegebenen Grösse"]
+    "works": ["Über die Hypothesen, welche der Geometrie zu Grunde liegen"],
+    "wikipedia": "Bernhard_Riemann"
   },
   {
     "name": "James Clerk Maxwell",
@@ -45,7 +50,8 @@
     "death_year": 1879,
     "fields": ["physics"],
     "contributions": ["electromagnetism (Maxwell's equations)", "kinetic theory", "Maxwell–Boltzmann distribution"],
-    "works": ["A Treatise on Electricity and Magnetism"]
+    "works": ["A Treatise on Electricity and Magnetism"],
+    "wikipedia": "James_Clerk_Maxwell"
   },
   {
     "name": "Fyodor Dostoevsky",
@@ -53,7 +59,8 @@
     "death_year": 1881,
     "fields": ["literature", "philosophy"],
     "contributions": ["psychological novel", "existential themes"],
-    "works": ["Crime and Punishment", "The Brothers Karamazov", "Notes from Underground"]
+    "works": ["Crime and Punishment", "The Brothers Karamazov", "Notes from Underground"],
+    "wikipedia": "Fyodor_Dostoevsky"
   },
   {
     "name": "Friedrich Nietzsche",
@@ -61,7 +68,8 @@
     "death_year": 1900,
     "fields": ["philosophy", "philology"],
     "contributions": ["genealogy of morality", "perspectivism", "will to power", "Übermensch"],
-    "works": ["Thus Spoke Zarathustra", "Beyond Good and Evil", "On the Genealogy of Morality"]
+    "works": ["Thus Spoke Zarathustra", "Beyond Good and Evil", "On the Genealogy of Morality"],
+    "wikipedia": "Friedrich_Nietzsche"
   },
   {
     "name": "Ludwig Boltzmann",
@@ -69,7 +77,8 @@
     "death_year": 1906,
     "fields": ["physics"],
     "contributions": ["statistical mechanics", "Boltzmann entropy (S = k ln W)"],
-    "works": ["Vorlesungen über Gastheorie"]
+    "works": ["Vorlesungen über Gastheorie"],
+    "wikipedia": "Ludwig_Boltzmann"
   },
   {
     "name": "Hermann Minkowski",
@@ -77,7 +86,8 @@
     "death_year": 1909,
     "fields": ["mathematics", "physics"],
     "contributions": ["Minkowski spacetime", "geometry of numbers", "number theory"],
-    "works": ["Raum und Zeit", "Geometrie der Zahlen"]
+    "works": ["Raum und Zeit", "Geometrie der Zahlen"],
+    "wikipedia": "Hermann_Minkowski"
   },
   {
     "name": "Henri Poincaré",
@@ -85,7 +95,8 @@
     "death_year": 1912,
     "fields": ["mathematics", "physics", "philosophy of science"],
     "contributions": ["topology", "dynamical systems and chaos", "celestial mechanics", "foundations of special relativity"],
-    "works": ["Science and Hypothesis", "New Methods of Celestial Mechanics"]
+    "works": ["Science and Hypothesis", "New Methods of Celestial Mechanics"],
+    "wikipedia": "Henri_Poincaré"
   },
   {
     "name": "Georg Cantor",
@@ -93,7 +104,8 @@
     "death_year": 1918,
     "fields": ["mathematics"],
     "contributions": ["set theory", "cardinal and ordinal infinities", "diagonal argument"],
-    "works": ["Contributions to the Founding of the Theory of Transfinite Numbers"]
+    "works": ["Contributions to the Founding of the Theory of Transfinite Numbers"],
+    "wikipedia": "Georg_Cantor"
   },
   {
     "name": "Srinivasa Ramanujan",
@@ -101,7 +113,8 @@
     "death_year": 1920,
     "fields": ["mathematics"],
     "contributions": ["number theory", "partitions", "modular forms", "mock theta functions"],
-    "works": ["Collected Papers of Srinivasa Ramanujan", "Ramanujan's Notebooks"]
+    "works": ["Collected Papers of Srinivasa Ramanujan", "Ramanujan's Notebooks"],
+    "wikipedia": "Srinivasa_Ramanujan"
   },
   {
     "name": "Emmy Noether",
@@ -109,7 +122,8 @@
     "death_year": 1935,
     "fields": ["mathematics", "physics"],
     "contributions": ["Noether's theorem (symmetry and conservation laws)", "abstract algebra (Noetherian rings)"],
-    "works": ["Invariante Variationsprobleme"]
+    "works": ["Invariante Variationsprobleme"],
+    "wikipedia": "Emmy_Noether"
   },
   {
     "name": "Ivan Pavlov",
@@ -117,7 +131,8 @@
     "death_year": 1936,
     "fields": ["physiology", "psychology"],
     "contributions": ["classical conditioning", "conditioned reflexes"],
-    "works": ["Conditioned Reflexes"]
+    "works": ["Conditioned Reflexes"],
+    "wikipedia": "Ivan_Pavlov"
   },
   {
     "name": "Alfred Adler",
@@ -125,7 +140,8 @@
     "death_year": 1937,
     "fields": ["psychology", "psychotherapy"],
     "contributions": ["individual psychology", "inferiority complex", "social interest"],
-    "works": ["Understanding Human Nature", "The Neurotic Character"]
+    "works": ["Understanding Human Nature", "The Neurotic Character"],
+    "wikipedia": "Alfred_Adler"
   },
   {
     "name": "Sigmund Freud",
@@ -133,7 +149,8 @@
     "death_year": 1939,
     "fields": ["psychoanalysis"],
     "contributions": ["unconscious mind", "dream analysis", "psychosexual development"],
-    "works": ["The Interpretation of Dreams", "Three Essays on the Theory of Sexuality"]
+    "works": ["The Interpretation of Dreams", "Three Essays on the Theory of Sexuality"],
+    "wikipedia": "Sigmund_Freud"
   },
   {
     "name": "David Hilbert",
@@ -141,7 +158,8 @@
     "death_year": 1943,
     "fields": ["mathematics"],
     "contributions": ["Hilbert space", "foundations of mathematics", "Hilbert's problems", "formalism"],
-    "works": ["Grundlagen der Geometrie", "Über das Unendliche"]
+    "works": ["Grundlagen der Geometrie", "Über das Unendliche"],
+    "wikipedia": "David_Hilbert"
   },
   {
     "name": "Ernst Zermelo",
@@ -149,7 +167,8 @@
     "death_year": 1953,
     "fields": ["mathematics", "logic"],
     "contributions": ["axiom of choice", "well-ordering theorem", "Zermelo set theory (basis of ZFC)"],
-    "works": ["Untersuchungen über die Grundlagen der Mengenlehre"]
+    "works": ["Untersuchungen über die Grundlagen der Mengenlehre"],
+    "wikipedia": "Ernst_Zermelo"
   },
   {
     "name": "Alan Turing",
@@ -157,7 +176,8 @@
     "death_year": 1954,
     "fields": ["computer science", "mathematics", "cryptanalysis"],
     "contributions": ["Turing machine", "computability theory", "codebreaking (Bletchley Park)"],
-    "works": ["On Computable Numbers, with an Application to the Entscheidungsproblem"]
+    "works": ["On Computable Numbers, with an Application to the Entscheidungsproblem"],
+    "wikipedia": "Alan_Turing"
   },
   {
     "name": "Albert Einstein",
@@ -165,7 +185,8 @@
     "death_year": 1955,
     "fields": ["physics"],
     "contributions": ["special relativity", "general relativity", "photoelectric effect", "mass–energy equivalence"],
-    "works": ["Annus Mirabilis papers (1905)", "Relativity: The Special and the General Theory"]
+    "works": ["Annus Mirabilis papers (1905)", "Relativity: The Special and the General Theory"],
+    "wikipedia": "Albert_Einstein"
   },
   {
     "name": "John von Neumann",
@@ -173,7 +194,8 @@
     "death_year": 1957,
     "fields": ["mathematics", "computer science", "physics"],
     "contributions": ["game theory (minimax theorem)", "von Neumann architecture", "foundations of quantum mechanics", "set theory"],
-    "works": ["Theory of Games and Economic Behavior", "Mathematical Foundations of Quantum Mechanics"]
+    "works": ["Theory of Games and Economic Behavior", "Mathematical Foundations of Quantum Mechanics"],
+    "wikipedia": "John_von_Neumann"
   },
   {
     "name": "Carl Gustav Jung",
@@ -181,7 +203,8 @@
     "death_year": 1961,
     "fields": ["psychology", "psychiatry"],
     "contributions": ["analytical psychology", "archetypes", "collective unconscious", "individuation"],
-    "works": ["Psychological Types", "Symbols of Transformation"]
+    "works": ["Psychological Types", "Symbols of Transformation"],
+    "wikipedia": "Carl_Jung"
   },
   {
     "name": "Martin Heidegger",
@@ -189,7 +212,8 @@
     "death_year": 1976,
     "fields": ["philosophy"],
     "contributions": ["fundamental ontology", "phenomenology", "hermeneutics"],
-    "works": ["Being and Time"]
+    "works": ["Being and Time"],
+    "wikipedia": "Martin_Heidegger"
   },
   {
     "name": "Kurt Gödel",
@@ -197,7 +221,8 @@
     "death_year": 1978,
     "fields": ["mathematics", "logic"],
     "contributions": ["incompleteness theorems", "constructible universe (L)"],
-    "works": ["On Formally Undecidable Propositions of Principia Mathematica and Related Systems"]
+    "works": ["On Formally Undecidable Propositions of Principia Mathematica and Related Systems"],
+    "wikipedia": "Kurt_Gödel"
   },
   {
     "name": "Jean Piaget",
@@ -205,7 +230,8 @@
     "death_year": 1980,
     "fields": ["psychology", "epistemology", "education"],
     "contributions": ["genetic epistemology", "stages of cognitive development", "constructivism"],
-    "works": ["The Origins of Intelligence in Children", "The Language and Thought of the Child"]
+    "works": ["The Origins of Intelligence in Children", "The Language and Thought of the Child"],
+    "wikipedia": "Jean_Piaget"
   },
   {
     "name": "Alfred Tarski",
@@ -213,7 +239,8 @@
     "death_year": 1983,
     "fields": ["logic", "mathematics", "philosophy of language"],
     "contributions": ["model theory", "semantic theory of truth", "undefinability theorem"],
-    "works": ["The Concept of Truth in Formalized Languages"]
+    "works": ["The Concept of Truth in Formalized Languages"],
+    "wikipedia": "Alfred_Tarski"
   },
   {
     "name": "B. F. Skinner",
@@ -221,7 +248,8 @@
     "death_year": 1990,
     "fields": ["psychology", "behaviorism"],
     "contributions": ["operant conditioning", "reinforcement schedules", "Skinner box"],
-    "works": ["The Behavior of Organisms", "Science and Human Behavior", "Schedules of Reinforcement"]
+    "works": ["The Behavior of Organisms", "Science and Human Behavior", "Schedules of Reinforcement"],
+    "wikipedia": "B._F._Skinner"
   },
   {
     "name": "Alonzo Church",
@@ -229,7 +257,8 @@
     "death_year": 1995,
     "fields": ["logic", "mathematics", "computer science"],
     "contributions": ["lambda calculus", "Church–Turing thesis"],
-    "works": ["A Set of Postulates for the Foundation of Logic", "An Unsolvable Problem of Elementary Number Theory"]
+    "works": ["A Set of Postulates for the Foundation of Logic", "An Unsolvable Problem of Elementary Number Theory"],
+    "wikipedia": "Alonzo_Church"
   },
   {
     "name": "Claude Shannon",
@@ -237,7 +266,8 @@
     "death_year": 2001,
     "fields": ["mathematics", "electrical engineering", "computer science"],
     "contributions": ["information theory", "digital circuit design with Boolean logic"],
-    "works": ["A Mathematical Theory of Communication"]
+    "works": ["A Mathematical Theory of Communication"],
+    "wikipedia": "Claude_Shannon"
   },
   {
     "name": "John McCarthy",
@@ -245,7 +275,8 @@
     "death_year": 2011,
     "fields": ["computer science", "artificial intelligence"],
     "contributions": ["coined 'artificial intelligence'", "Lisp programming language", "time-sharing"],
-    "works": ["Programs with Common Sense"]
+    "works": ["Programs with Common Sense"],
+    "wikipedia": "John_McCarthy_(computer_scientist)"
   },
   {
     "name": "John Nash",
@@ -253,31 +284,8 @@
     "death_year": 2015,
     "fields": ["mathematics", "economics"],
     "contributions": ["Nash equilibrium", "bargaining theory", "Nash embedding theorem"],
-    "works": ["Non-Cooperative Games", "The Bargaining Problem"]
-  },
-  {
-    "name": "Roger Penrose",
-    "birth_year": 1931,
-    "death_year": null,
-    "fields": ["physics", "mathematics"],
-    "contributions": ["Penrose–Hawking singularity theorems", "twistor theory", "aperiodic tilings (Penrose tiling)", "orchestrated objective reduction"],
-    "works": ["The Emperor's New Mind", "Shadows of the Mind"]
-  },
-  {
-    "name": "Stephen Cook",
-    "birth_year": 1939,
-    "death_year": null,
-    "fields": ["computer science", "mathematics"],
-    "contributions": ["NP-completeness (Cook–Levin theorem)", "complexity theory (P vs NP)"],
-    "works": ["The Complexity of Theorem-Proving Procedures"]
-  },
-  {
-    "name": "Patricia Churchland",
-    "birth_year": 1943,
-    "death_year": null,
-    "fields": ["neuroscience", "philosophy"],
-    "contributions": ["neurophilosophy", "eliminative materialism"],
-    "works": ["Neurophilosophy", "Touching a Nerve"]
+    "works": ["Non-Cooperative Games", "The Bargaining Problem"],
+    "wikipedia": "John_Forbes_Nash_Jr."
   },
   {
     "name": "Noam Chomsky",
@@ -285,7 +293,35 @@
     "death_year": null,
     "fields": ["linguistics", "cognitive science"],
     "contributions": ["generative grammar", "Chomsky hierarchy", "universal grammar"],
-    "works": ["Syntactic Structures"]
+    "works": ["Syntactic Structures"],
+    "wikipedia": "Noam_Chomsky"
+  },
+  {
+    "name": "Roger Penrose",
+    "birth_year": 1931,
+    "death_year": null,
+    "fields": ["physics", "mathematics"],
+    "contributions": ["Penrose–Hawking singularity theorems", "twistor theory", "aperiodic tilings (Penrose tiling)", "orchestrated objective reduction"],
+    "works": ["The Emperor's New Mind", "Shadows of the Mind"],
+    "wikipedia": "Roger_Penrose"
+  },
+  {
+    "name": "Stephen Cook",
+    "birth_year": 1939,
+    "death_year": null,
+    "fields": ["computer science", "mathematics"],
+    "contributions": ["NP-completeness (Cook–Levin theorem)", "complexity theory (P vs NP)"],
+    "works": ["The Complexity of Theorem-Proving Procedures"],
+    "wikipedia": "Stephen_Cook"
+  },
+  {
+    "name": "Patricia Churchland",
+    "birth_year": 1943,
+    "death_year": null,
+    "fields": ["neuroscience", "philosophy"],
+    "contributions": ["neurophilosophy", "eliminative materialism"],
+    "works": ["Neurophilosophy", "Touching a Nerve"],
+    "wikipedia": "Patricia_Churchland"
   },
   {
     "name": "Geoffrey Hinton",
@@ -293,7 +329,8 @@
     "death_year": null,
     "fields": ["computer science", "artificial intelligence"],
     "contributions": ["deep learning", "backpropagation for neural networks", "representation learning"],
-    "works": ["Learning Representations by Back-Propagating Errors"]
+    "works": ["Learning Representations by Back-Propagating Errors"],
+    "wikipedia": "Geoffrey_Hinton"
   },
   {
     "name": "Giulio Tononi",
@@ -301,7 +338,8 @@
     "death_year": null,
     "fields": ["neuroscience", "psychiatry"],
     "contributions": ["integrated information theory (IIT)", "sleep and consciousness research"],
-    "works": ["Phi: A Voyage from the Brain to the Soul"]
+    "works": ["Phi: A Voyage from the Brain to the Soul"],
+    "wikipedia": "Giulio_Tononi"
   },
   {
     "name": "David Chalmers",
@@ -309,7 +347,8 @@
     "death_year": null,
     "fields": ["philosophy of mind", "cognitive science"],
     "contributions": ["hard problem of consciousness", "philosophical zombies", "simulation hypothesis"],
-    "works": ["The Conscious Mind", "Facing Up to the Problem of Consciousness"]
+    "works": ["The Conscious Mind", "Facing Up to the Problem of Consciousness"],
+    "wikipedia": "David_Chalmers"
   },
   {
     "name": "Timnit Gebru",
@@ -317,127 +356,7 @@
     "death_year": null,
     "fields": ["computer science", "ai ethics"],
     "contributions": ["algorithmic bias in AI", "ethical AI advocacy", "datasheets for datasets"],
-    "works": ["On the Dangers of Stochastic Parrots"]
-  },
-  {
-    "name": "Isaac Newton",
-    "birth_year": 1642,
-    "death_year": 1727,
-    "fields": ["physics", "mathematics", "astronomy"],
-    "contributions": ["classical mechanics", "calculus", "universal gravitation", "optics"],
-    "works": ["Philosophiæ Naturalis Principia Mathematica", "Opticks"]
-  },
-  {
-    "name": "Pierre-Simon Laplace",
-    "birth_year": 1749,
-    "death_year": 1827,
-    "fields": ["mathematics", "astronomy", "physics"],
-    "contributions": ["celestial mechanics", "Bayesian probability", "Laplace transform"],
-    "works": ["Mécanique Céleste", "Théorie Analytique des Probabilités"]
-  },
-  {
-    "name": "Jean-Baptiste Joseph Fourier",
-    "birth_year": 1768,
-    "death_year": 1830,
-    "fields": ["mathematics", "physics"],
-    "contributions": ["Fourier series and transform", "heat equation"],
-    "works": ["Théorie analytique de la chaleur"]
-  },
-  {
-    "name": "James Clerk Maxwell",
-    "birth_year": 1831,
-    "death_year": 1879,
-    "fields": ["physics"],
-    "contributions": ["electromagnetism (Maxwell's equations)", "kinetic theory", "Maxwell–Boltzmann distribution"],
-    "works": ["A Treatise on Electricity and Magnetism"]
-  },
-  {
-    "name": "Ludwig Boltzmann",
-    "birth_year": 1844,
-    "death_year": 1906,
-    "fields": ["physics"],
-    "contributions": ["statistical mechanics", "Boltzmann entropy (S = k ln W)"],
-    "works": ["Vorlesungen über Gastheorie"]
-  },
-  {
-    "name": "Fyodor Dostoevsky",
-    "birth_year": 1821,
-    "death_year": 1881,
-    "fields": ["literature", "philosophy"],
-    "contributions": ["psychological novel", "existential themes"],
-    "works": ["Crime and Punishment", "The Brothers Karamazov", "Notes from Underground"]
-  },
-  {
-    "name": "Martin Heidegger",
-    "birth_year": 1889,
-    "death_year": 1976,
-    "fields": ["philosophy"],
-    "contributions": ["fundamental ontology", "phenomenology", "hermeneutics"],
-    "works": ["Being and Time"]
-  },
-  {
-    "name": "Friedrich Nietzsche",
-    "birth_year": 1844,
-    "death_year": 1900,
-    "fields": ["philosophy", "philology"],
-    "contributions": ["genealogy of morality", "perspectivism", "will to power", "Übermensch"],
-    "works": ["Thus Spoke Zarathustra", "Beyond Good and Evil", "On the Genealogy of Morality"]
-  },
-  {
-    "name": "Sigmund Freud",
-    "birth_year": 1856,
-    "death_year": 1939,
-    "fields": ["psychoanalysis"],
-    "contributions": ["unconscious mind", "dream analysis", "psychosexual development"],
-    "works": ["The Interpretation of Dreams", "Three Essays on the Theory of Sexuality"]
-  },
-  {
-    "name": "Alfred Adler",
-    "birth_year": 1870,
-    "death_year": 1937,
-    "fields": ["psychology", "psychotherapy"],
-    "contributions": ["individual psychology", "inferiority complex", "social interest"],
-    "works": ["Understanding Human Nature", "The Neurotic Character"]
-  },
-  {
-    "name": "Carl Gustav Jung",
-    "birth_year": 1875,
-    "death_year": 1961,
-    "fields": ["psychology", "psychiatry"],
-    "contributions": ["analytical psychology", "archetypes", "collective unconscious", "individuation"],
-    "works": ["Psychological Types", "Symbols of Transformation"]
-  },
-  {
-    "name": "Kurt Gödel",
-    "birth_year": 1906,
-    "death_year": 1978,
-    "fields": ["mathematics", "logic"],
-    "contributions": ["incompleteness theorems", "constructible universe (L)"],
-    "works": ["On Formally Undecidable Propositions of Principia Mathematica and Related Systems"]
-  },
-  {
-    "name": "Alfred Tarski",
-    "birth_year": 1901,
-    "death_year": 1983,
-    "fields": ["logic", "mathematics", "philosophy of language"],
-    "contributions": ["model theory", "semantic theory of truth", "undefinability theorem"],
-    "works": ["The Concept of Truth in Formalized Languages"]
-  },
-  {
-    "name": "Alan Turing",
-    "birth_year": 1912,
-    "death_year": 1954,
-    "fields": ["computer science", "mathematics", "cryptanalysis"],
-    "contributions": ["Turing machine", "computability theory", "codebreaking (Bletchley Park)"],
-    "works": ["On Computable Numbers, with an Application to the Entscheidungsproblem"]
-  },
-  {
-    "name": "Alonzo Church",
-    "birth_year": 1903,
-    "death_year": 1995,
-    "fields": ["logic", "mathematics", "computer science"],
-    "contributions": ["lambda calculus", "Church–Turing thesis"],
-    "works": ["A Set of Postulates for the Foundation of Logic", "An Unsolvable Problem of Elementary Number Theory"]
+    "works": ["On the Dangers of Stochastic Parrots"],
+    "wikipedia": "Timnit_Gebru"
   }
 ]
-
