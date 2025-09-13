@@ -565,6 +565,11 @@
             "url": "https://www.entelligent.ai/",
             "stack": "Production Stack B",
             "status": "active"
+          },
+	  {
+            "url": "http://64.23.243.69/",
+            "stack": "Development Stack Blog",
+            "status": "active"
           }
         ]
       },
