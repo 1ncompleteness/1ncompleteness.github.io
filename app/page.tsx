@@ -58,7 +58,7 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex flex-col h-screen overflow-hidden bg-background">
+    <main className="flex flex-col h-screen overflow-hidden">
       {/* TopBar Navigation Component - Takes its own space */}
       <TopBar currentPage={currentPage} totalPages={totalPages} scrollToPage={scrollToPage} />
 
@@ -69,9 +69,7 @@ export default function Home() {
         className="flex flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory no-scrollbar"
       >
         {/* Page 1: Hero & About */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto bg-background">
-          <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
-          <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
+        <section className="min-w-full h-full snap-start relative overflow-y-auto">
 
           <div className="relative z-10 min-h-full flex items-center justify-center py-16 sm:py-20">
             <div className="text-center px-4 sm:px-6 md:px-8 max-w-4xl">
@@ -166,9 +164,7 @@ export default function Home() {
         </section>
 
         {/* Page 2: Skills & Experience */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto bg-background">
-          <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
-          <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
+        <section className="min-w-full h-full snap-start relative overflow-y-auto">
           <div className="relative z-10 min-h-full py-16 sm:py-20">
             <div className="px-4 max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-gradient text-center">Skills & Experience</h2>
@@ -271,9 +267,7 @@ export default function Home() {
         </section>
 
         {/* Page 3: Interests & Contact */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto bg-background">
-          <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
-          <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
+        <section className="min-w-full h-full snap-start relative overflow-y-auto">
           <div className="relative z-10 min-h-full py-16 sm:py-20">
             <div className="px-4 max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-gradient text-center">Interests & Passions</h2>
@@ -357,9 +351,7 @@ export default function Home() {
         </section>
 
         {/* Page 4: Shoulders of Giants Timeline */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto bg-background">
-          <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
-          <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
+        <section className="min-w-full h-full snap-start relative overflow-y-auto">
           <div className="relative z-10 min-h-full">
             <Timeline />
           </div>
