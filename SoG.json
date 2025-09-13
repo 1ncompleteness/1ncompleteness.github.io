@@ -349,14 +349,5 @@
     "contributions": ["hard problem of consciousness", "philosophical zombies", "simulation hypothesis"],
     "works": ["The Conscious Mind", "Facing Up to the Problem of Consciousness"],
     "wikipedia": "David_Chalmers"
-  },
-  {
-    "name": "Timnit Gebru",
-    "birth_year": 1983,
-    "death_year": null,
-    "fields": ["computer science", "ai ethics"],
-    "contributions": ["algorithmic bias in AI", "ethical AI advocacy", "datasheets for datasets"],
-    "works": ["On the Dangers of Stochastic Parrots"],
-    "wikipedia": "Timnit_Gebru"
   }
 ]

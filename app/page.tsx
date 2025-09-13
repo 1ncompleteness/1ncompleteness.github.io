@@ -69,7 +69,7 @@ export default function Home() {
         className="flex flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory no-scrollbar"
       >
         {/* Page 1: Hero & About */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto">
+        <section className="min-w-full h-full snap-start relative overflow-y-auto bg-background">
           <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
 
@@ -166,7 +166,7 @@ export default function Home() {
         </section>
 
         {/* Page 2: Skills & Experience */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto">
+        <section className="min-w-full h-full snap-start relative overflow-y-auto bg-background">
           <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 min-h-full py-16 sm:py-20">
@@ -271,7 +271,7 @@ export default function Home() {
         </section>
 
         {/* Page 3: Interests & Contact */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto">
+        <section className="min-w-full h-full snap-start relative overflow-y-auto bg-background">
           <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 min-h-full py-16 sm:py-20">
@@ -357,7 +357,7 @@ export default function Home() {
         </section>
 
         {/* Page 4: Shoulders of Giants Timeline */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto">
+        <section className="min-w-full h-full snap-start relative overflow-y-auto bg-background">
           <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 min-h-full">

@@ -355,7 +355,7 @@ export default function Timeline() {
           </div>
 
           {/* Legend with all unique fields */}
-          <div className="absolute bottom-0 left-12 right-12 flex flex-wrap gap-3 text-xs text-white/70">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-wrap gap-3 text-xs text-white/70 justify-center">
             {Object.entries(fieldColors).slice(0, 8).map(([field, color]) => (
               <div key={field} className="flex items-center gap-2">
                 <div className="w-8 h-1" style={{ backgroundColor: color }}></div>
