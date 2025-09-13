@@ -1,8 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, Mail, BookOpen, Code, Briefcase, Brain, Sparkles, Zap } from 'lucide-react'
-import { Linkedin } from 'lucide-react'
+import { Github, Linkedin, Mail, BookOpen, Code, Briefcase, Brain, Sparkles, Zap } from 'lucide-react'
 import profileData from '@/data.json'
 import { useEffect, useRef, useState } from 'react'
 
@@ -111,16 +110,16 @@ export default function Home() {
         className="flex h-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory no-scrollbar"
       >
         {/* Page 1: Hero & About */}
-        <section className="min-w-full h-full snap-start flex items-center justify-center relative overflow-hidden">
+        <section className="min-w-full h-full snap-start flex items-center justify-center relative">
           <div className="absolute inset-0 bg-grid opacity-20"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30"></div>
 
-          <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl w-full">
+          <div className="relative z-10 text-center px-4 max-w-4xl">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 font-sf-pro"
+              className="text-5xl md:text-7xl font-bold mb-4 font-sf-pro"
             >
               <span className="text-gradient">{profileData.personal.name.display}</span>
             </motion.h1>
@@ -129,7 +128,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-base sm:text-xl md:text-2xl mb-2"
+              className="text-xl md:text-2xl mb-2"
             >
               {profileData.personal.identity.title}
             </motion.p>
@@ -138,7 +137,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-sm sm:text-lg mb-8 italic text-primary"
+              className="text-lg mb-8 italic text-primary"
             >
               "{profileData.personal.identity.philosophy}"
             </motion.p>
@@ -177,24 +176,23 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left max-w-2xl mx-auto"
+              className="grid md:grid-cols-2 gap-4 text-left"
             >
-              <div className="bg-surface/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-primary">
-                <h3 className="text-base sm:text-lg font-semibold mb-2 flex items-center gap-2">
+              <div className="bg-surface/80 backdrop-blur-sm p-4 rounded-xl border border-primary">
+                <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" />
                   Education
                 </h3>
-                <p className="text-xs sm:text-sm">B.S. Computer Science (Math Minor)</p>
-                <p className="text-xs sm:text-sm">CSUN 2026 Class</p>
+                <p className="text-sm">B.S. Computer Science (Math Minor) 2026 Class</p>
                 <p className="text-xs text-primary mt-1">Associate in Software Engineering</p>
               </div>
 
-              <div className="bg-surface/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-primary">
-                <h3 className="text-base sm:text-lg font-semibold mb-2 flex items-center gap-2">
+              <div className="bg-surface/80 backdrop-blur-sm p-4 rounded-xl border border-primary">
+                <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
                   <Briefcase className="w-4 h-4 text-primary" />
                   Entelligent
                 </h3>
-                <p className="text-xs sm:text-sm">Co-Founder</p>
+                <p className="text-sm">Co-Founder</p>
                 <a href={profileData.entrepreneurship.company.deployments.production[1].url}
                    target="_blank"
                    rel="noopener noreferrer"
@@ -207,12 +205,12 @@ export default function Home() {
         </section>
 
         {/* Page 2: Skills & Experience */}
-        <section className="min-w-full h-full snap-start flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 overflow-y-auto">
+        <section className="min-w-full h-full snap-start flex items-center justify-center px-4">
           <div className="max-w-6xl w-full">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-gradient text-center">Skills & Experience</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-              <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center gap-2">
+            <h2 className="text-4xl font-bold mb-8 text-gradient text-center">Skills & Experience</h2>
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-surface p-6 rounded-xl border-2 border-primary">
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                   <Code className="w-5 h-5 text-primary" />
                   Languages
                 </h3>
@@ -225,8 +223,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">ML/AI Stack</h3>
+              <div className="bg-surface p-6 rounded-xl border-2 border-primary">
+                <h3 className="text-xl font-semibold mb-4">ML/AI Stack</h3>
                 <div className="flex flex-wrap gap-2">
                   {profileData.technical_skills.frameworks.ml_dl.core.slice(0, 5).map((fw: string) => (
                     <span key={fw} className="px-3 py-1 bg-primary/20 rounded-full text-sm">
@@ -236,10 +234,10 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Databases</h3>
+              <div className="bg-surface p-6 rounded-xl border-2 border-primary">
+                <h3 className="text-xl font-semibold mb-4">Databases</h3>
                 <div className="flex flex-wrap gap-2">
-                  {[...profileData.technical_skills.frameworks.databases.relational.slice(0, 2), ...profileData.technical_skills.frameworks.databases.graph.slice(0, 2), ...profileData.technical_skills.frameworks.databases.vector.slice(0, 1)].map((db: string) => (
+                  {profileData.technical_skills.frameworks.databases.graph.map((db: string) => (
                     <span key={db} className="px-3 py-1 bg-primary/20 rounded-full text-sm">
                       {db}
                     </span>
@@ -248,40 +246,32 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">
+            <div className="bg-surface p-6 rounded-xl border-2 border-primary mb-6">
+              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <Briefcase className="w-5 h-5" />
                 Professional Experience
               </h3>
-              <div className="space-y-2 sm:space-y-3">
+              <div className="space-y-3">
                 <div>
-                  <p className="text-sm sm:text-base font-semibold">Research and Development (R&D)</p>
-                  <p className="text-xs sm:text-sm text-primary">Multi-Agent Geometric Learning • Medical AI Diagnostics</p>
+                  <p className="font-semibold">Research and Development (R&D)</p>
+                  <p className="text-sm text-primary">Multi-Agent Geometric Learning • Medical AI Diagnostics</p>
                 </div>
                 <div>
-                  <p className="text-sm sm:text-base font-semibold">Software as a Service (SaaS)</p>
-                  <p className="text-xs sm:text-sm text-primary">Entelligent Co-Founder • Knowledge Base Systems</p>
+                  <p className="font-semibold">Software as a Service (SaaS)</p>
+                  <p className="text-sm text-primary">Entelligent Co-Founder • Knowledge Base Systems</p>
                 </div>
                 <div>
-                  <p className="text-sm sm:text-base font-semibold">Applied Machine Learning</p>
-                  <p className="text-xs sm:text-sm text-primary">NLP • Computer Vision • Reinforcement Learning</p>
-                </div>
-                <div>
-                  <p className="text-sm sm:text-base font-semibold">Knowledge Graphs & Base Systems</p>
-                  <p className="text-xs sm:text-sm text-primary">Graph Neural Networks • RAG Systems • Vector Databases</p>
-                </div>
-                <div>
-                  <p className="text-sm sm:text-base font-semibold">Former Network & Security Administrator</p>
-                  <p className="text-xs sm:text-sm text-primary">Infrastructure Management • Security Maintenance</p>
+                  <p className="font-semibold">Network & Security Systems Administrator</p>
+                  <p className="text-sm text-primary">Infrastructure Management • Network and Security Maintenance</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Full Stack Development & DevOps</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            <div className="bg-surface p-6 rounded-xl border-2 border-primary">
+              <h3 className="text-lg font-semibold mb-4">Full Stack Development & DevOps</h3>
+              <div className="grid md:grid-cols-3 gap-4">
                 <div>
-                  <p className="text-xs sm:text-sm font-medium mb-2">Frontend</p>
+                  <p className="text-sm font-medium mb-2">Frontend</p>
                   <div className="flex flex-wrap gap-2">
                     {profileData.technical_skills.frameworks.web.frontend.frameworks.map((fw: string) => (
                       <span key={fw} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
@@ -291,7 +281,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm font-medium mb-2">Backend</p>
+                  <p className="text-sm font-medium mb-2">Backend</p>
                   <div className="flex flex-wrap gap-2">
                     {profileData.technical_skills.frameworks.web.backend.apis.map((api: string) => (
                       <span key={api} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
@@ -301,7 +291,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm font-medium mb-2">DevOps</p>
+                  <p className="text-sm font-medium mb-2">DevOps</p>
                   <div className="flex flex-wrap gap-2">
                     {profileData.technical_skills.tools.deployment.map((tool: string) => (
                       <span key={tool} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
@@ -316,14 +306,14 @@ export default function Home() {
         </section>
 
         {/* Page 3: Interests & Contact */}
-        <section className="min-w-full h-full snap-start flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 overflow-y-auto">
+        <section className="min-w-full h-full snap-start flex items-center justify-center px-4">
           <div className="max-w-6xl w-full">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-gradient text-center">Interests & Passions</h2>
+            <h2 className="text-4xl font-bold mb-8 text-gradient text-center">Interests & Passions</h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
               {interestCategories.map((category, idx) => (
-                <div key={idx} className="bg-surface p-3 sm:p-4 rounded-xl border-2 border-primary">
-                  <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 flex items-center gap-2">
+                <div key={idx} className="bg-surface p-4 rounded-xl border-2 border-primary">
+                  <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
                     {category.icon}
                     {category.title}
                   </h3>
@@ -341,12 +331,12 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary mb-6 sm:mb-8">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-center">Visions of the Future Past</h3>
+            <div className="bg-surface p-6 rounded-xl border-2 border-primary mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-center">Visions of the Future Past</h3>
               <p className="text-center mb-4">
                 <span className="text-gradient" style={{ textDecoration: 'line-through', textDecorationColor: '#3c6e71', textDecorationThickness: '2px' }}>Small</span> Talk Only About:
               </p>
-              <div className="flex flex-wrap gap-1 sm:gap-2 justify-center max-h-64 sm:max-h-96 overflow-y-auto p-2 sm:p-4">
+              <div className="flex flex-wrap gap-2 justify-center max-h-96 overflow-y-auto p-4">
                 {profileData.passionate_interests.map((interest: string, idx: number) => {
                   const angle = (idx * 10) % 360;
                   const colors = [
@@ -360,7 +350,7 @@ export default function Home() {
                   return (
                     <span
                       key={idx}
-                      className="px-2 sm:px-3 py-1 text-[10px] sm:text-xs rounded-full transition-all hover:scale-105"
+                      className="px-3 py-1 text-xs rounded-full transition-all hover:scale-105"
                       style={{
                         background: colors[idx % colors.length],
                         color: 'white'
@@ -377,7 +367,7 @@ export default function Home() {
               <div className="flex justify-center gap-4 mb-6">
                 <a
                   href="mailto:b3h@me.com"
-                  className="px-4 sm:px-6 py-2 sm:py-3 bg-entelligent text-white rounded-lg hover:scale-105 transition-all flex items-center gap-2 text-sm sm:text-base"
+                  className="px-6 py-3 bg-entelligent text-white rounded-lg hover:scale-105 transition-all flex items-center gap-2"
                 >
                   <Mail className="w-5 h-5" />
                   Email Me
@@ -386,13 +376,13 @@ export default function Home() {
                   href={profileData.personal.contact.social.linkedin.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 sm:px-6 py-2 sm:py-3 bg-surface border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2 text-sm sm:text-base"
+                  className="px-6 py-3 bg-surface border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2"
                 >
                   <Linkedin className="w-5 h-5" />
                   Connect
                 </a>
               </div>
-              <p className="text-xs sm:text-sm">© 2025 {profileData.personal.name.display}</p>
+              <p className="text-sm">© 2025 {profileData.personal.name.display}</p>
             </div>
           </div>
         </section>
