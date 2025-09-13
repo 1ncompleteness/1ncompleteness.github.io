@@ -9,8 +9,8 @@
     },
     "identity": {
       "pronouns": "",
-      "title": "Computer Science, Mathematics, and Computer Software Engineering Student",
-      "tagline": "CSUN Class of 2026",
+      "title": "Computer Science, Mathematics, and Software Engineering",
+      "tagline": "CSUN 2026",
       "philosophy": "If I have seen further, it is by standing on the shoulders of giants."
     },
     "contact": {
@@ -62,64 +62,398 @@
       }
     },
     "courses_taken": {
-      "computer_science": [
+      "current_enrollment": [
         {
           "code": "COMP 542",
-          "name": "Advanced Machine Learning",
-          "type": "graduate",
-          "topics": ["Deep Learning", "Reinforcement Learning", "Statistical Learning Theory"]
+          "name": "Machine Learning",
+          "credits": 3,
+          "status": "In Progress",
+          "term": "25FA"
         },
         {
-          "code": "CS 301",
-          "name": "Data Structures & Algorithms",
-          "type": "core",
-          "topics": ["Graph Algorithms", "Dynamic Programming", "Complexity Analysis"]
+          "code": "COMP 541",
+          "name": "Data Mining",
+          "credits": 3,
+          "status": "In Progress",
+          "term": "25FA"
         },
         {
-          "code": "CS 401",
-          "name": "Operating Systems",
-          "type": "core",
-          "topics": ["Process Management", "Memory Management", "File Systems"]
+          "code": "COMP 490",
+          "name": "Senior Project I",
+          "credits": 2,
+          "status": "In Progress",
+          "term": "25FA"
         },
         {
-          "code": "CS 450",
-          "name": "Natural Language Processing",
-          "type": "elective",
-          "topics": ["Transformers", "Language Models", "Semantic Analysis"]
+          "code": "COMP 490L",
+          "name": "Senior Project Lab I",
+          "credits": 1,
+          "status": "In Progress",
+          "term": "25FA"
+        },
+        {
+          "code": "MATH 326",
+          "name": "Discrete Mathematics",
+          "credits": 3,
+          "status": "In Progress",
+          "term": "25FA"
+        },
+        {
+          "code": "MATH 482",
+          "name": "Combinatorial Algorithms",
+          "credits": 3,
+          "status": "In Progress",
+          "term": "25FA"
+        },
+        {
+          "code": "PHYS 220B",
+          "name": "Electricity and Magnetism",
+          "credits": 0,
+          "status": "In Progress (Retake)",
+          "term": "25FA"
+        }
+      ],
+      "computer_science": [
+        {
+          "code": "COMP 442",
+          "name": "Machine Learning",
+          "grade": "A-",
+          "credits": 3,
+          "term": "25SU",
+          "topics": ["Supervised Learning", "Unsupervised Learning", "Neural Networks", "Deep Learning"]
+        },
+        {
+          "code": "COMP 380",
+          "name": "Introduction to Software Engineering",
+          "grade": "A",
+          "credits": 2,
+          "term": "25SP",
+          "topics": ["Software Design", "Project Management", "Agile Development"]
+        },
+        {
+          "code": "COMP 380L",
+          "name": "Software Engineering Lab",
+          "grade": "A",
+          "credits": 1,
+          "term": "25SP"
+        },
+        {
+          "code": "COMP 310",
+          "name": "Automata, Languages and Computation",
+          "grade": "B",
+          "credits": 3,
+          "term": "25SP",
+          "topics": ["Finite Automata", "Regular Languages", "Context-Free Grammars", "Turing Machines"]
+        },
+        {
+          "code": "COMP 282",
+          "name": "Advanced Data Structures",
+          "grade": "A-",
+          "credits": 3,
+          "term": "24SU",
+          "topics": ["B-Trees", "Red-Black Trees", "Hash Tables", "Graph Algorithms"]
+        },
+        {
+          "code": "COMP 322",
+          "name": "Introduction to Operating Systems",
+          "grade": "A",
+          "credits": 3,
+          "term": "24SP",
+          "topics": ["Process Management", "Memory Management", "File Systems", "Concurrency"]
+        },
+        {
+          "code": "COMP 322L",
+          "name": "Operating Systems Lab",
+          "grade": "A",
+          "credits": 1,
+          "term": "24SP"
+        },
+        {
+          "code": "COMP 182",
+          "name": "Data Structures and Program Design",
+          "grade": "A",
+          "credits": 3,
+          "term": "23SU",
+          "topics": ["Arrays", "Linked Lists", "Trees", "Sorting Algorithms"]
+        },
+        {
+          "code": "COMP 182L",
+          "name": "Data Structures Lab",
+          "grade": "A",
+          "credits": 1,
+          "term": "23SU"
+        },
+        {
+          "code": "COMP 122",
+          "name": "Computer Architecture and Assembly Language",
+          "grade": "A",
+          "credits": 1,
+          "term": "23SU",
+          "topics": ["CPU Architecture", "Assembly Programming", "Memory Hierarchy"]
+        },
+        {
+          "code": "COMP 122L",
+          "name": "Computer Architecture Lab",
+          "grade": "A",
+          "credits": 1,
+          "term": "23SU"
+        },
+        {
+          "code": "COMP TR",
+          "name": "Principles of Computer Programming",
+          "grade": "A",
+          "credits": 4,
+          "term": "Transfer",
+          "topics": ["Programming Fundamentals", "Object-Oriented Design", "Software Development"]
+        },
+        {
+          "code": "COMP TR",
+          "name": "Computer Networks Lab",
+          "grade": "A",
+          "credits": 1,
+          "term": "Transfer"
+        },
+        {
+          "code": "COMP TR",
+          "name": "Principles of Database Design",
+          "grade": "B",
+          "credits": 3,
+          "term": "Transfer",
+          "topics": ["Relational Databases", "SQL", "Database Normalization", "Transaction Management"]
+        },
+        {
+          "code": "COMP TR",
+          "name": "Database Design Lab",
+          "grade": "A",
+          "credits": 1,
+          "term": "Transfer"
         }
       ],
       "mathematics": [
         {
-          "code": "MATH 301",
-          "name": "Linear Algebra",
-          "type": "core",
-          "topics": ["Vector Spaces", "Eigenvalues", "Matrix Decomposition"]
+          "code": "MATH 250",
+          "name": "Calculus III",
+          "grade": "A-",
+          "credits": 3,
+          "term": "25SU",
+          "topics": ["Multivariable Calculus", "Partial Derivatives", "Multiple Integrals", "Vector Calculus"]
         },
         {
-          "code": "MATH 320",
-          "name": "Complex Analysis",
-          "type": "elective",
-          "topics": ["Analytic Functions", "Contour Integration", "Residue Theory"]
+          "code": "ENGR TR",
+          "name": "Engineering Statistics",
+          "grade": "A",
+          "credits": 3,
+          "term": "Transfer",
+          "topics": ["Probability Theory", "Statistical Analysis", "Design of Experiments"]
         },
         {
-          "code": "MATH 410",
-          "name": "Optimization Theory",
-          "type": "elective",
-          "topics": ["Convex Optimization", "Gradient Methods", "Lagrangian Duality"]
+          "code": "MATH TR",
+          "name": "Mathematics I",
+          "grade": "B",
+          "credits": 3,
+          "term": "Transfer",
+          "topics": ["Advanced Algebra", "Functions", "Mathematical Modeling"]
+        },
+        {
+          "code": "MATH 262",
+          "name": "Introduction to Linear Algebra",
+          "grade": "A",
+          "credits": 3,
+          "term": "25SP",
+          "topics": ["Vector Spaces", "Matrices", "Eigenvalues", "Linear Transformations"]
+        },
+        {
+          "code": "MATH 150B",
+          "name": "Calculus II",
+          "grade": "A",
+          "credits": 5,
+          "term": "24SP",
+          "topics": ["Integration Techniques", "Series", "Sequences", "Parametric Equations"]
+        },
+        {
+          "code": "MATH 150A",
+          "name": "Calculus I",
+          "grade": "A",
+          "credits": 5,
+          "term": "23FA",
+          "topics": ["Limits", "Derivatives", "Integration", "Applications"]
+        },
+        {
+          "code": "MATH 105",
+          "name": "Pre-Calculus II",
+          "grade": "A",
+          "credits": 5,
+          "term": "23SU",
+          "topics": ["Trigonometry", "Conic Sections", "Polar Coordinates"]
+        },
+        {
+          "code": "MATH 102",
+          "name": "Pre-Calculus I",
+          "grade": "A",
+          "credits": 3,
+          "term": "22FA",
+          "topics": ["Functions", "Polynomials", "Exponentials", "Logarithms"]
         }
       ],
-      "interdisciplinary": [
+      "physics": [
         {
-          "code": "PHYS 201",
-          "name": "Classical Mechanics",
-          "type": "elective",
-          "topics": ["Newtonian Mechanics", "Lagrangian Formulation", "Hamiltonian Systems"]
+          "code": "PHYS 220A",
+          "name": "Mechanics",
+          "grade": "A",
+          "credits": 3,
+          "term": "24SP",
+          "topics": ["Newtonian Mechanics", "Energy", "Momentum", "Rotational Motion"]
         },
         {
-          "code": "NEURO 101",
-          "name": "Introduction to Neuroscience",
-          "type": "elective",
-          "topics": ["Neural Networks", "Cognitive Functions", "Brain-Computer Interfaces"]
+          "code": "PHYS 220AL",
+          "name": "Mechanics Lab",
+          "grade": "A-",
+          "credits": 1,
+          "term": "24SP"
+        },
+        {
+          "code": "PHYS TR",
+          "name": "General Physics Lab I",
+          "grade": "A",
+          "credits": 1,
+          "term": "Transfer"
+        },
+        {
+          "code": "ENGR TR",
+          "name": "Electric Circuits I",
+          "grade": "B",
+          "credits": 3,
+          "term": "Transfer",
+          "topics": ["Circuit Analysis", "Kirchhoff's Laws", "Thevenin/Norton", "AC/DC Circuits"]
+        },
+        {
+          "code": "ENGR TR",
+          "name": "Electric Circuits I Lab",
+          "grade": "A",
+          "credits": 1,
+          "term": "Transfer"
+        },
+        {
+          "code": "ENGR TR",
+          "name": "Logic Circuits Lab",
+          "grade": "A",
+          "credits": 1,
+          "term": "Transfer"
+        }
+      ],
+      "general_education": [
+        {
+          "code": "AAS 100",
+          "name": "Introduction to Asian American Studies",
+          "grade": "B+",
+          "credits": 3,
+          "term": "25SU"
+        },
+        {
+          "code": "ART 305",
+          "name": "Art and Mass Culture",
+          "grade": "A",
+          "credits": 3,
+          "term": "24SP"
+        },
+        {
+          "code": "POLS 155",
+          "name": "American Political Institutions",
+          "grade": "B+",
+          "credits": 3,
+          "term": "23FA"
+        },
+        {
+          "code": "PHIL 317",
+          "name": "History of American Philosophy",
+          "grade": "A",
+          "credits": 3,
+          "term": "23FA"
+        },
+        {
+          "code": "PHIL 305",
+          "name": "Ethics and Policy",
+          "grade": "A",
+          "credits": 3,
+          "term": "23FA"
+        },
+        {
+          "code": "PHIL 230",
+          "name": "Introduction to Formal Logic",
+          "grade": "A-",
+          "credits": 3,
+          "term": "23FA",
+          "topics": ["Propositional Logic", "Predicate Logic", "Proof Theory"]
+        },
+        {
+          "code": "PSY 150",
+          "name": "Introduction to Psychology",
+          "grade": "A",
+          "credits": 3,
+          "term": "23SP"
+        },
+        {
+          "code": "MUS 107",
+          "name": "Music Today",
+          "grade": "A",
+          "credits": 3,
+          "term": "23SP"
+        },
+        {
+          "code": "MUS 105",
+          "name": "Understanding Music",
+          "grade": "A",
+          "credits": 3,
+          "term": "22FA"
+        },
+        {
+          "code": "COMS 151",
+          "name": "Fundamentals of Public Speaking",
+          "grade": "B",
+          "credits": 3,
+          "term": "23SP"
+        },
+        {
+          "code": "ENGL 113B",
+          "name": "Approaches to University Writing B",
+          "grade": "A",
+          "credits": 3,
+          "term": "23SP"
+        },
+        {
+          "code": "GEOL 101",
+          "name": "Geology of Planet Earth",
+          "grade": "B",
+          "credits": 3,
+          "term": "22FA"
+        },
+        {
+          "code": "GEOL 102",
+          "name": "Geology of Planet Earth Lab",
+          "grade": "A",
+          "credits": 1,
+          "term": "22FA"
+        },
+        {
+          "code": "KIN TR",
+          "name": "Basketball",
+          "grade": "A",
+          "credits": 1,
+          "term": "Transfer"
+        },
+        {
+          "code": "KIN TR",
+          "name": "Karate",
+          "grade": "A",
+          "credits": 1,
+          "term": "Transfer"
+        },
+        {
+          "code": "TRAN TR",
+          "name": "I.R.I Constitution",
+          "grade": "A",
+          "credits": 2,
+          "term": "Transfer"
         }
       ]
     },
