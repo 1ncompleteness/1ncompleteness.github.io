@@ -183,7 +183,7 @@ export default function Home() {
                   <BookOpen className="w-4 h-4 text-primary" />
                   Education
                 </h3>
-                <p className="text-sm">B.S. Computer Science (Math Minor)</p>
+                <p className="text-sm">B.S. Computer Science (Math Minor) 2026 Class</p>
                 <p className="text-xs text-primary mt-1">Associate in Software Engineering</p>
               </div>
 
@@ -197,7 +197,7 @@ export default function Home() {
                    target="_blank"
                    rel="noopener noreferrer"
                    className="text-xs text-primary hover:underline">
-                  Visit entelligent.ai →
+                  Visit Entelligent →
                 </a>
               </div>
             </motion.div>
@@ -208,7 +208,7 @@ export default function Home() {
         <section className="min-w-full h-full snap-start flex items-center justify-center px-4">
           <div className="max-w-6xl w-full">
             <h2 className="text-4xl font-bold mb-8 text-gradient text-center">Skills & Experience</h2>
-
+i
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="bg-surface p-6 rounded-xl border-2 border-primary">
                 <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
@@ -263,7 +263,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="font-semibold">Network & Security Systems Administrator</p>
-                  <p className="text-sm text-primary">Infrastructure Management • Security Implementation</p>
+                  <p className="text-sm text-primary">Infrastructure Management • Network and Security Maintenance</p>
                 </div>
               </div>
             </div>
