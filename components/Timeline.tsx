@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ExternalLink } from 'lucide-react'
 import giantsData from '@/SoG.json'
 
@@ -17,6 +17,8 @@ interface Giant {
 export default function Timeline() {
   const [hoveredGiant, setHoveredGiant] = useState<Giant | null>(null)
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   // Calculate timeline range
   const minYear = Math.min(...giantsData.map(g => g.birth_year))
@@ -32,8 +34,6 @@ export default function Timeline() {
     for (let i = 0; i < rows.length; i++) {
       const row = rows[i]
       const canPlace = !row.some(g => {
-        const gEnd = g.death_year || maxYear
-        const giantEnd = giant.death_year || maxYear
         return !(giant.death_year && giant.death_year < g.birth_year ||
                  g.death_year && g.death_year < giant.birth_year)
       })
@@ -73,83 +73,176 @@ export default function Timeline() {
 
   // Color mapping for different fields
   const getFieldColor = (fields: string[]) => {
-    if (fields.includes('physics')) return '#3c6e71'
-    if (fields.includes('mathematics')) return '#284b63'
-    if (fields.includes('computer science')) return '#353535'
-    if (fields.includes('philosophy')) return '#3c6e71'
-    if (fields.includes('psychology') || fields.includes('psychiatry')) return '#284b63'
-    if (fields.includes('literature')) return '#353535'
-    return '#3c6e71'
+    if (fields.includes('physics')) return 'rgba(60, 110, 113, 0.8)'
+    if (fields.includes('mathematics')) return 'rgba(40, 75, 99, 0.8)'
+    if (fields.includes('computer science')) return 'rgba(53, 53, 53, 0.8)'
+    if (fields.includes('philosophy')) return 'rgba(60, 110, 113, 0.8)'
+    if (fields.includes('psychology') || fields.includes('psychiatry')) return 'rgba(40, 75, 99, 0.8)'
+    if (fields.includes('literature')) return 'rgba(53, 53, 53, 0.8)'
+    return 'rgba(60, 110, 113, 0.8)'
   }
 
+  // Draw Euclidean axes
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const container = containerRef.current
+    if (!canvas || !container) return
+
+    const resizeCanvas = () => {
+      const rect = container.getBoundingClientRect()
+      canvas.width = rect.width
+      canvas.height = rect.height
+
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return
+
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      // Set axis color
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
+      ctx.lineWidth = 1
+
+      // Draw X-axis (time)
+      ctx.beginPath()
+      ctx.moveTo(40, canvas.height - 40)
+      ctx.lineTo(canvas.width - 20, canvas.height - 40)
+      ctx.stroke()
+
+      // Draw Y-axis
+      ctx.beginPath()
+      ctx.moveTo(40, 20)
+      ctx.lineTo(40, canvas.height - 40)
+      ctx.stroke()
+
+      // Draw axis labels
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
+      ctx.font = '10px monospace'
+
+      // X-axis labels (years)
+      const years = [1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2024]
+      years.forEach(year => {
+        const x = 40 + ((year - minYear) / yearRange) * (canvas.width - 60)
+        ctx.fillText(year.toString(), x - 15, canvas.height - 25)
+
+        // Draw tick marks
+        ctx.beginPath()
+        ctx.moveTo(x, canvas.height - 40)
+        ctx.lineTo(x, canvas.height - 35)
+        ctx.stroke()
+      })
+
+      // Draw grid lines
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'
+      ctx.setLineDash([2, 4])
+
+      // Vertical grid lines
+      years.forEach(year => {
+        const x = 40 + ((year - minYear) / yearRange) * (canvas.width - 60)
+        ctx.beginPath()
+        ctx.moveTo(x, 20)
+        ctx.lineTo(x, canvas.height - 40)
+        ctx.stroke()
+      })
+
+      // Horizontal grid lines
+      const numRows = rows.length
+      for (let i = 0; i <= numRows; i++) {
+        const y = 40 + (i / numRows) * (canvas.height - 80)
+        ctx.beginPath()
+        ctx.moveTo(40, y)
+        ctx.lineTo(canvas.width - 20, y)
+        ctx.stroke()
+      }
+
+      ctx.setLineDash([])
+
+      // Axis labels
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
+      ctx.font = '12px monospace'
+      ctx.fillText('Time', canvas.width / 2 - 15, canvas.height - 5)
+
+      ctx.save()
+      ctx.translate(10, canvas.height / 2)
+      ctx.rotate(-Math.PI / 2)
+      ctx.fillText('Giants', -20, 0)
+      ctx.restore()
+    }
+
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
+    return () => window.removeEventListener('resize', resizeCanvas)
+  }, [rows.length, minYear, yearRange])
+
   return (
-    <div className="w-full bg-surface rounded-xl border-2 border-primary p-6">
-      <h3 className="text-2xl font-bold mb-6 text-gradient text-center">
-        Standing on the Shoulders of Giants
-      </h3>
+    <div className="w-full h-full relative" ref={containerRef}>
+      {/* Canvas for Euclidean space background */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0 }}
+      />
 
-      <div className="relative overflow-x-auto overflow-y-visible pb-4">
-        <div className="min-w-[1200px]">
-          {/* Year markers */}
-          <div className="relative h-8 mb-4 border-b border-primary/30">
-            {[1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2024].map(year => (
-              <div
-                key={year}
-                className="absolute text-xs text-primary"
-                style={{ left: `${getPosition(year)}%`, transform: 'translateX(-50%)' }}
-              >
-                {year}
-              </div>
-            ))}
-          </div>
+      {/* Timeline content */}
+      <div className="relative z-10 p-8 h-full overflow-auto">
+        <h3 className="text-2xl font-bold mb-8 text-white text-center">
+          Standing on the Shoulders of Giants
+        </h3>
 
-          {/* Timeline rows */}
-          <div className="space-y-2">
-            {rows.map((row, rowIndex) => (
-              <div key={rowIndex} className="relative h-8">
-                {row.map(giant => {
-                  const startPos = getPosition(giant.birth_year)
-                  const endPos = getPosition(giant.death_year || maxYear)
-                  const width = endPos - startPos
-                  const color = getFieldColor(giant.fields)
+        <div className="relative min-h-[600px]" style={{ paddingLeft: '50px', paddingRight: '30px', paddingBottom: '50px', paddingTop: '30px' }}>
+          {/* Timeline rows with thin lines */}
+          <div className="relative h-full">
+            {rows.map((row, rowIndex) => {
+              const yPosition = 30 + (rowIndex / rows.length) * 500
+              return (
+                <div key={rowIndex} className="absolute w-full" style={{ top: `${yPosition}px` }}>
+                  {row.map(giant => {
+                    const startPos = getPosition(giant.birth_year)
+                    const endPos = getPosition(giant.death_year || maxYear)
+                    const width = endPos - startPos
+                    const color = getFieldColor(giant.fields)
 
-                  return (
-                    <div
-                      key={giant.name}
-                      className="absolute h-6 rounded-full cursor-pointer transition-all hover:h-8 hover:z-10 hover:shadow-lg"
-                      style={{
-                        left: `${startPos}%`,
-                        width: `${width}%`,
-                        backgroundColor: color,
-                        top: '50%',
-                        transform: 'translateY(-50%)'
-                      }}
-                      onMouseEnter={(e) => handleMouseEnter(giant, e)}
-                      onMouseLeave={handleMouseLeave}
-                      onClick={() => openWikipedia(giant.wikipedia)}
-                    >
-                      <div className="px-2 text-white text-xs truncate leading-6">
-                        {giant.name}
+                    return (
+                      <div
+                        key={giant.name}
+                        className="absolute cursor-pointer transition-all hover:z-20"
+                        style={{
+                          left: `${startPos}%`,
+                          width: `${width}%`,
+                          height: '2px',
+                          backgroundColor: color,
+                          boxShadow: hoveredGiant?.name === giant.name ? `0 0 8px ${color}` : 'none'
+                        }}
+                        onMouseEnter={(e) => handleMouseEnter(giant, e)}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={() => openWikipedia(giant.wikipedia)}
+                      >
+                        {/* Name label on hover */}
+                        {hoveredGiant?.name === giant.name && (
+                          <div className="absolute -top-5 left-0 text-xs text-white whitespace-nowrap px-1 bg-black/50 rounded">
+                            {giant.name}
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  )
-                })}
-              </div>
-            ))}
+                    )
+                  })}
+                </div>
+              )
+            })}
           </div>
 
           {/* Legend */}
-          <div className="flex flex-wrap gap-4 mt-6 text-xs">
+          <div className="absolute bottom-0 left-12 flex flex-wrap gap-4 text-xs text-white/70">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#3c6e71' }}></div>
+              <div className="w-8 h-0.5" style={{ backgroundColor: 'rgba(60, 110, 113, 0.8)' }}></div>
               <span>Physics / Philosophy</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#284b63' }}></div>
+              <div className="w-8 h-0.5" style={{ backgroundColor: 'rgba(40, 75, 99, 0.8)' }}></div>
               <span>Mathematics / Psychology</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#353535' }}></div>
+              <div className="w-8 h-0.5" style={{ backgroundColor: 'rgba(53, 53, 53, 0.8)' }}></div>
               <span>Computer Science / Literature</span>
             </div>
           </div>
@@ -159,7 +252,7 @@ export default function Timeline() {
       {/* Tooltip */}
       {hoveredGiant && (
         <div
-          className="fixed z-50 bg-background/95 backdrop-blur-sm border-2 border-primary rounded-lg p-4 shadow-xl max-w-sm pointer-events-none"
+          className="fixed z-50 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg p-4 shadow-xl max-w-sm pointer-events-none"
           style={{
             left: tooltipPosition.x,
             top: tooltipPosition.y - 10,
@@ -167,15 +260,15 @@ export default function Timeline() {
           }}
         >
           <div className="flex items-start justify-between mb-2">
-            <h4 className="font-bold text-primary">{hoveredGiant.name}</h4>
-            <ExternalLink className="w-3 h-3 text-primary/50" />
+            <h4 className="font-bold text-white">{hoveredGiant.name}</h4>
+            <ExternalLink className="w-3 h-3 text-white/50" />
           </div>
 
-          <p className="text-xs mb-2">
+          <p className="text-xs mb-2 text-white/70">
             {hoveredGiant.birth_year} - {hoveredGiant.death_year || 'Present'}
           </p>
 
-          <div className="text-xs space-y-1">
+          <div className="text-xs space-y-1 text-white/60">
             <p>
               <span className="font-semibold">Fields:</span> {hoveredGiant.fields.join(', ')}
             </p>
@@ -193,7 +286,7 @@ export default function Timeline() {
             )}
           </div>
 
-          <p className="text-xs mt-2 text-primary/70">Click to view Wikipedia page</p>
+          <p className="text-xs mt-2 text-white/50">Click to view Wikipedia page</p>
         </div>
       )}
     </div>
