@@ -346,7 +346,6 @@ export default function Timeline() {
                           onMouseLeave={handleMouseLeave}
                           onClick={() => openWikipedia(giant.wikipedia)}
                         />
-                        </div>
                       </div>
                     )
                   })}
