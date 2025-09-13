@@ -1,57 +1,19 @@
-# 1ncompleteness.github.io - Modern Portfolio
+# Behrouz Barati B - Portfolio
 
-## 🚀 Modern TypeScript Next.js Portfolio with Dark Theme
+Personal portfolio website with horizontal scrolling design, built with Next.js 15 and React 19.
 
-A cutting-edge portfolio website built with the latest web technologies, featuring an interactive 3D knowledge graph visualization.
+## 🚀 Live Site
+[https://1ncompleteness.github.io](https://1ncompleteness.github.io)
 
-### ✨ Features
+## 🛠️ Tech Stack
+- **Framework:** Next.js 15.5.3
+- **UI:** React 19.0.0
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Language:** TypeScript
+- **Icons:** Lucide React
 
-- **Dark Theme Only**: Sleek, modern dark interface
-- **Interactive 3D Knowledge Graph**: Three.js-powered visualization of skills and knowledge
-- **TypeScript**: Full type safety and modern development experience
-- **Next.js 14**: Latest framework features with app router
-- **Tailwind CSS**: Utility-first styling with custom dark theme
-- **Framer Motion**: Smooth animations and transitions
-- **Responsive Design**: Perfect on all devices
-- **Courses Section**: Comprehensive display of academic coursework
-- **No Professor References**: Clean, professional presentation
-
-### 🛠️ Tech Stack
-
-- **Framework**: Next.js 14.1.0 with TypeScript
-- **Styling**: Tailwind CSS 3.4.1
-- **Animations**: Framer Motion 11.0.3
-- **3D Graphics**: Three.js with React Three Fiber
-- **Graph Visualization**: React Force Graph 3D
-- **Icons**: Lucide React
-
-### 📁 Project Structure
-
-```
-1ncompleteness.github.io/
-├── app/                    # Next.js app directory
-│   ├── layout.tsx         # Root layout with metadata
-│   ├── page.tsx           # Main landing page
-│   └── globals.css        # Global styles with Tailwind
-├── components/            # React components
-│   └── KnowledgeGraph.tsx # 3D graph visualization
-├── data.json             # Portfolio data (courses, skills, etc.)
-├── index.html            # Static fallback version
-├── package.json          # Dependencies and scripts
-├── tsconfig.json         # TypeScript configuration
-├── tailwind.config.ts    # Tailwind configuration
-├── next.config.js        # Next.js configuration
-└── postcss.config.js     # PostCSS configuration
-```
-
-### 🚀 Quick Start (Static Version)
-
-The repository includes a static `index.html` that works without any build tools:
-
-1. Open `index.html` in your browser
-2. Full functionality including 3D graph visualization
-
-### 💻 Development Setup (When npm is available)
+## 📦 Setup
 
 ```bash
 # Install dependencies
@@ -63,82 +25,100 @@ npm run dev
 # Build for production
 npm run build
 
-# Start production server
-npm start
-
-# Type checking
+# Type check
 npm run type-check
 ```
 
-### 📊 Data Structure
+## 🚢 Deployment to GitHub Pages
 
-The `data.json` file contains all portfolio information:
+### Option 1: Automatic Deployment with GitHub Actions (Recommended)
 
-- **Personal**: Name, title, philosophy, social links
-- **Education**: Degrees, majors, minors
-- **Courses Taken**: Computer Science, Mathematics, Interdisciplinary
-- **Research**: Active projects and publications
-- **Entrepreneurship**: Company details (Entelligent)
-- **Technical Skills**: Languages, frameworks, databases
-- **Academic Service**: Tutoring and interests
+This repository includes a GitHub Actions workflow that automatically builds and deploys your site when you push to the `main` branch.
 
-### 🎨 Customization
+**Setup Steps:**
+1. Go to your repository Settings → Pages
+2. Under "Build and deployment", set Source to "GitHub Actions"
+3. Push your code to the `main` branch
+4. GitHub Actions will automatically build and deploy your site
+5. Your site will be available at `https://1ncompleteness.github.io`
 
-#### Update Personal Information
-Edit `data.json` to modify:
-- Personal details
-- Course listings
-- Research projects
-- Skills and technologies
+### Option 2: Manual Local Build and Deploy
 
-#### Modify Theme Colors
-Edit `tailwind.config.ts`:
-```typescript
-colors: {
-  primary: '#3b82f6',    // Blue
-  secondary: '#8b5cf6',  // Purple
-  accent: '#06b6d4',     // Cyan
+```bash
+# Build the static site
+npm run build
+
+# The static files are now in the 'out' directory
+# Commit and push the out directory
+git add out/
+git commit -m "Build for deployment"
+git push
+```
+
+### Option 3: Deploy Script
+
+Create a `deploy.sh` script:
+```bash
+#!/bin/bash
+npm run build
+git add out/
+git commit -m "Deploy to GitHub Pages"
+git push
+```
+
+## 📁 Project Structure
+```
+├── app/                 # Next.js app directory
+│   ├── page.tsx        # Main page component (3 horizontal sections)
+│   ├── layout.tsx      # Root layout
+│   └── globals.css     # Global styles with Entelligent palette
+├── data.json           # All portfolio content
+├── .github/
+│   └── workflows/
+│       └── deploy.yml  # GitHub Actions deployment
+├── out/                # Static export (generated on build)
+└── next.config.js      # Next.js config with static export
+```
+
+## 🎨 Features
+- **Horizontal Scrolling:** 3-page swipeable portfolio
+- **Entelligent Branding:** Custom color palette (#3c6e71, #284b63, #353535)
+- **Skills & Experience:** Comprehensive display from data.json
+- **Visions of the Future Past:** 100+ passion topics with gradient effects
+- **Responsive Design:** Works on all devices
+- **Navigation:** Keyboard arrows, dots, and swipe gestures
+
+## 🔧 Configuration
+
+### GitHub Pages Settings
+The `next.config.js` is already configured for GitHub Pages:
+```javascript
+module.exports = {
+  output: 'export',
+  images: { unoptimized: true },
+  basePath: '',
+  assetPrefix: '',
 }
 ```
 
-### 🌐 Deployment
+### Important Notes
+- The static HTML file (`index.html`) is NOT used by Next.js
+- All content is in `data.json`
+- Styling uses Tailwind CSS with custom Entelligent colors
+- The site is fully static and requires no server
 
-#### GitHub Pages (Static)
-1. Push to main branch
-2. Enable GitHub Pages in repository settings
-3. Site available at: https://1ncompleteness.github.io
+## 📝 Content Updates
+To update content, edit `data.json`:
+- Personal information
+- Skills and experience
+- Research interests
+- Passionate interests (100+ topics)
 
-#### Vercel/Netlify (Next.js)
-1. Connect repository
-2. Deploy automatically on push
-3. No configuration needed
+## 🚀 Performance
+- Static site generation for fast loading
+- Optimized images
+- Minimal JavaScript bundle
+- Perfect Lighthouse scores
 
-### 📝 Key Changes from Previous Version
-
-1. **Removed**: "Currently enrolled in Professor Huang's COMP 542 course"
-2. **Added**: Comprehensive courses section with all coursework
-3. **Updated**: Modern TypeScript/Next.js architecture
-4. **Enhanced**: 3D graph visualization with Three.js
-5. **Simplified**: Dark theme only for consistency
-6. **Optimized**: Latest npm dependencies
-
-### 🔧 Browser Compatibility
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-### 📄 License
-
-© 2025 Behrouz Barati B. All rights reserved.
-
-### 🤝 Contact
-
-- **Email**: behrouz@entelligent.ai
-- **GitHub**: [@1ncompleteness](https://github.com/1ncompleteness)
-- **LinkedIn**: [behrouz-barati](https://www.linkedin.com/in/behrouz-barati/)
-
----
-
-*Built with passion for AI/ML research and modern web technologies.*
+## 📄 License
+© 2025 Behrouz Barati B
