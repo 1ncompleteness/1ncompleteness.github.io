@@ -183,7 +183,7 @@ export default function Home() {
                   <BookOpen className="w-4 h-4 text-primary" />
                   Education
                 </h3>
-                <p className="text-sm">B.S. Computer Science (Math Minor) 2026 Class</p>
+                <p className="text-sm">B.S. Computer Science, Math Minor, 2026 Class</p>
                 <p className="text-xs text-primary mt-1">Associate's Degree in Software Engineering</p>
               </div>
 
