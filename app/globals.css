@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #3c6e71;
+    --secondary: #ffffff;
+    --accent: #3c6e71;
+    --background: #1a1a1a;
+    --surface: #2d2d2d;
+    --foreground: #ffffff;
+    --text-light: #ffffff;
+    --border: #3c6e71;
+    --muted: #ffffff;
+
+    /* Entelligent brand colors */
+    --entelligent-green: #3c6e71;
+    --entelligent-blue: #284b63;
+    --entelligent-dark: #353535;
+
+    /* Gradients */
+    --entelligent-gradient: linear-gradient(135deg, #3c6e71, #284b63 50%, #353535);
+
+    /* Fonts */
+    --font-sf-pro: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  html {
+    @apply scroll-smooth;
+    font-family: var(--font-sf-pro);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #3c6e71 #1a1a1a;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #3c6e71;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--entelligent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-entelligent {
+    background: var(--entelligent-gradient);
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(60, 110, 113, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60, 110, 113, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .glow {
+    box-shadow: 0 0 20px rgba(60, 110, 113, 0.5);
+  }
+
+  .horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .horizontal-scroll > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

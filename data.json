@@ -1,0 +1,341 @@
+{
+  "personal": {
+    "name": {
+      "full": "Behrouz Barati B",
+      "first": "Behrouz",
+      "middle": "Barati",
+      "last": "B",
+      "display": "Behrouz Barati B"
+    },
+    "identity": {
+      "pronouns": "he/him",
+      "title": "Computer Science Researcher & Entrepreneur",
+      "tagline": "Bridging Theory and Practice in AI/ML",
+      "philosophy": "Exploring the intersection of mathematics, computation, and intelligence"
+    },
+    "contact": {
+      "social": {
+        "github": {
+          "username": "1ncompleteness",
+          "url": "https://github.com/1ncompleteness",
+          "type": "professional"
+        },
+        "linkedin": {
+          "username": "behrouz-barati",
+          "url": "https://www.linkedin.com/in/behrouz-barati/",
+          "type": "professional"
+        }
+      },
+      "academic": {
+        "google_scholar": {
+          "profile": "pending",
+          "url": "#",
+          "publications": []
+        },
+        "orcid": {
+          "id": "pending",
+          "url": "#"
+        },
+        "researchgate": {
+          "profile": "pending",
+          "url": "#"
+        }
+      }
+    }
+  },
+  "education": {
+    "current": {
+      "degree": "Bachelor of Science",
+      "major": {
+        "primary": "Computer Science",
+        "focus_areas": {
+          "theoretical": ["Algorithms", "Complexity Theory", "Formal Systems"],
+          "applied": ["Machine Learning", "Natural Language Processing", "Software Engineering"]
+        }
+      },
+      "minor": {
+        "field": "Mathematics",
+        "areas": {
+          "pure": ["Complex Analysis", "Number Theory", "Modular Arithmetic"],
+          "applied": ["Linear Algebra", "Optimization", "Statistics"]
+        }
+      }
+    },
+    "courses_taken": {
+      "computer_science": [
+        {
+          "code": "COMP 542",
+          "name": "Advanced Machine Learning",
+          "type": "graduate",
+          "topics": ["Deep Learning", "Reinforcement Learning", "Statistical Learning Theory"]
+        },
+        {
+          "code": "CS 301",
+          "name": "Data Structures & Algorithms",
+          "type": "core",
+          "topics": ["Graph Algorithms", "Dynamic Programming", "Complexity Analysis"]
+        },
+        {
+          "code": "CS 401",
+          "name": "Operating Systems",
+          "type": "core",
+          "topics": ["Process Management", "Memory Management", "File Systems"]
+        },
+        {
+          "code": "CS 450",
+          "name": "Natural Language Processing",
+          "type": "elective",
+          "topics": ["Transformers", "Language Models", "Semantic Analysis"]
+        }
+      ],
+      "mathematics": [
+        {
+          "code": "MATH 301",
+          "name": "Linear Algebra",
+          "type": "core",
+          "topics": ["Vector Spaces", "Eigenvalues", "Matrix Decomposition"]
+        },
+        {
+          "code": "MATH 320",
+          "name": "Complex Analysis",
+          "type": "elective",
+          "topics": ["Analytic Functions", "Contour Integration", "Residue Theory"]
+        },
+        {
+          "code": "MATH 410",
+          "name": "Optimization Theory",
+          "type": "elective",
+          "topics": ["Convex Optimization", "Gradient Methods", "Lagrangian Duality"]
+        }
+      ],
+      "interdisciplinary": [
+        {
+          "code": "PHYS 201",
+          "name": "Classical Mechanics",
+          "type": "elective",
+          "topics": ["Newtonian Mechanics", "Lagrangian Formulation", "Hamiltonian Systems"]
+        },
+        {
+          "code": "NEURO 101",
+          "name": "Introduction to Neuroscience",
+          "type": "elective",
+          "topics": ["Neural Networks", "Cognitive Functions", "Brain-Computer Interfaces"]
+        }
+      ]
+    },
+    "completed": {
+      "associate": {
+        "degree": "Associate Degree",
+        "field": "Computer Software Engineering",
+        "skills_acquired": {
+          "programming": ["Object-Oriented Design", "Data Structures", "Algorithms"],
+          "engineering": ["Software Architecture", "System Design", "Testing"]
+        }
+      }
+    },
+    "self_directed": {
+      "areas": {
+        "sciences": {
+          "physics": ["Classical Mechanics", "Electromagnetism"],
+          "neuroscience": ["Computational Neuroscience", "Neural Networks"],
+          "cosmology": ["Astrophysics", "Theoretical Cosmology"]
+        },
+        "humanities": {
+          "psychology": ["Cognitive Psychology", "Behavioral Sciences"],
+          "psychiatry": ["Mental Health", "Consciousness Studies"],
+          "philosophy": ["Philosophy of Mind", "Epistemology"]
+        }
+      }
+    }
+  },
+  "research": {
+    "interests": {
+      "primary": ["Applied Machine Learning", "Natural Language Processing", "Concave/Convex Optimization", "Knowledge Graphs", "Knowledge Base Systems", "Game Theory"],
+      "detailed": {
+        "machine_learning": {
+          "subfields": {
+            "nlp": {
+              "areas": ["Large Language Models", "Knowledge Graphs", "RAG Systems"],
+              "technologies": ["Transformers", "BERT", "GPT", "Graph Neural Networks"]
+            },
+            "game_theory": {
+              "focus": "Multi-agent systems",
+              "applications": ["Nash Equilibria", "Min-Max Optimization", "Policy Learning"]
+            },
+            "geometry": {
+              "mathematical": ["Manifolds", "Algebraic Varieties", "Smooth Relaxations"],
+              "computational": ["Geometric Deep Learning", "Topological Data Analysis"]
+            }
+          }
+        }
+      },
+      "interdisciplinary": {
+        "areas": ["Algebraic Geometry", "Optimization Theory", "Game Theory", "Machine Reasoning"],
+        "vision": "Modeling problems as multi-agent games on geometric spaces with co-evolving dynamics"
+      }
+    },
+    "projects": {
+      "active": {
+        "multi_agent_geometric": {
+          "title": "Multi-Agent Learning on Geometric Spaces",
+          "description": "Modeling problems as multi-agent games where memory-equipped agents debate on smooth geometric spaces",
+          "components": {
+            "theoretical": ["Existence/Uniqueness of Equilibria", "Convergence Analysis", "Algebraic Constraints"],
+            "computational": ["Policy Optimization", "Manifold Learning", "Dynamic Geometry"]
+          },
+          "status": "active"
+        }
+      },
+      "publications": {
+        "medical_ai": {
+          "alzheimers": {
+            "title": "Alzheimer's Disease Diagnosis using Machine Learning",
+            "venue": "medRxiv",
+            "url": "https://www.medrxiv.org/content/10.1101/2024.12.17.24319146v2",
+            "dataset": "UCI Darwin Handwriting Dataset",
+            "methods": {
+              "models": ["Random Forest", "XGBoost", "kNN", "MLP", "Gradient Boosting"],
+              "validation": "Leave-One-Out Cross-Validation",
+              "metrics": ["Accuracy", "Recall", "F1-Score"]
+            },
+            "status": "in_revision"
+          },
+          "parkinsons": {
+            "title": "Parkinson's Disease Voice Analysis",
+            "approach": "Time-series analysis using Echo State Networks",
+            "status": "in_progress"
+          },
+          "genomics": {
+            "title": "Missing-Value Imputation in Gene Sequencing",
+            "methods": ["LLM-based", "Transformer-based NLP"],
+            "status": "exploratory"
+          }
+        }
+      }
+    }
+  },
+  "entrepreneurship": {
+    "company": {
+      "name": "Entelligent",
+      "role": "Co-Founder",
+      "description": "Knowledge base platform for angel investors and financial firms",
+      "mission": "Transform trusted data into actionable insights, analytics, and patterns",
+      "deployments": {
+        "production": [
+          {
+            "url": "https://strategii.ai/",
+            "stack": "Production Stack A",
+            "status": "active"
+          },
+          {
+            "url": "https://www.entelligent.ai/",
+            "stack": "Production Stack B",
+            "status": "active"
+          }
+        ]
+      },
+      "activities": {
+        "recent": "Investor meetings in Palo Alto",
+        "focus": "Scaling codebase and securing funding"
+      }
+    }
+  },
+  "technical_skills": {
+    "languages": {
+      "programming": {
+        "primary": ["Python", "JavaScript", "TypeScript"],
+        "systems": ["C", "C++", "Java"],
+        "scripting": ["Bash", "SQL", "Cypher"]
+      }
+    },
+    "frameworks": {
+      "ml_dl": {
+        "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow"],
+        "specialized": {
+          "nlp": ["Transformers", "spaCy", "NLTK"],
+          "graph": ["NetworkX", "PyTorch Geometric", "DGL"],
+          "visualization": ["Matplotlib", "Seaborn", "Plotly"]
+        }
+      },
+      "web": {
+        "backend": {
+          "apis": ["FastAPI", "Flask", "Django"],
+          "nodejs": ["Express", "NestJS"]
+        },
+        "frontend": {
+          "frameworks": ["React", "Next.js", "Vue.js"],
+          "ui": ["Tailwind CSS", "Material-UI", "Bootstrap"]
+        }
+      },
+      "databases": {
+        "relational": ["PostgreSQL", "MySQL", "SQLite"],
+        "graph": ["Neo4j", "ArangoDB"],
+        "vector": ["Pinecone", "Weaviate", "ChromaDB"]
+      }
+    },
+    "architectures": {
+      "rag_systems": {
+        "components": ["Dense Vector Embeddings", "Knowledge Graphs", "Hybrid Retrieval"],
+        "techniques": ["Graph Neural Networks", "Knowledge-Graph Transformers", "Message Passing"]
+      },
+      "ml_pipelines": {
+        "classical": ["Linear/Logistic Regression", "Naive Bayes", "SVMs", "Random Forest", "Gradient Boosting"],
+        "deep_learning": ["MLPs", "CNNs", "RNNs", "Transformers", "GNNs"],
+        "reinforcement": ["Policy Gradient", "Q-Learning", "Experience Replay", "Actor-Critic"]
+      }
+    },
+    "tools": {
+      "documentation": ["LaTeX", "Markdown", "Jupyter"],
+      "version_control": ["Git", "GitHub", "GitLab"],
+      "deployment": ["Docker", "Kubernetes", "AWS", "Vercel"]
+    }
+  },
+  "academic_service": {
+    "tutoring": {
+      "subjects": {
+        "mathematics": ["Calculus", "Linear Algebra", "Statistics"],
+        "physics": ["Classical Mechanics", "Electromagnetism"],
+        "computer_science": ["Data Structures", "Algorithms", "Programming"]
+      }
+    },
+    "interests": {
+      "theoretical": ["Formal Systems", "Complexity Theory", "Optimization"],
+      "applied": ["Machine Learning", "Network Security", "Distributed Systems"],
+      "interdisciplinary": ["Consciousness Studies", "Computational Neuroscience", "Philosophy of Mind"]
+    },
+    "sports_esports": [
+      "xPro Chess Coach and Instructor",
+      "xPro Basketball Assistant Coach and Instructor"
+    ]
+  },
+  "skills_experience": [
+    "Research and Development (R&D)",
+    "Software as a Service (SaaS)",
+    "Applied Machine Learning",
+    "Knowledge Graphs and Knowledge Base Systems",
+    "Former Network and Security Systems Administrator"
+  ],
+  "passionate_interests": [
+    "Formal Logic", "Formal Systems", "Formal Methods", "Automata", "Computation Theory",
+    "Tarski's Undefinability Theorem", "Gödel's incompleteness theorems", "Turing's Halting Problem",
+    "Lambda Calculus", "Turing Machines", "Time Complexities", "P vs NP", "Graphs", "Networking",
+    "Cybersecurity", "Penetration Testing", "Signal Processing", "Semi-Conductor Technologies",
+    "Microprocessor", "Extreme Ultraviolet Lithography", "Game Theory", "Group Theory",
+    "Diagonal Arguments", "Number Theory", "Calculus", "Vector Analysis", "Vector Fields",
+    "Cardinal and Ordinal Sets", "Infinities", "Divergence Series", "Complex Analysis",
+    "Analytic Continuation", "Abstract Algebra", "Algebraic Geometry", "Differentiable Manifolds",
+    "Tensor Calculus", "Convex/Concave Optimizations", "Nash Equilibria", "Saddle Points",
+    "Robustness", "Fairness", "Ethics", "Morality", "Literature", "Education", "Philosophy",
+    "Sociology", "Epistemology", "Cosmology", "Astrophysics", "Lagrangian", "Hamiltonian",
+    "General Relativity", "Spacetime Singularities", "Standard Model", "Higgs Field", "Symmetries",
+    "Entropy", "Time Arrow", "Time", "Quantum Mechanics", "Collapse of the Wave Function",
+    "Consciousness", "Undefinability-Incompleteness-Undecidability", "Free Will", "Determinism",
+    "Orchestrated Objective Reduction", "Anesthesiology", "Microtubules", "Medicine", "Health",
+    "Diagnostics", "Neuroimaging", "Neurodegenerative Diseases", "Autoimmune", "Neoplastic",
+    "Pathology", "Psychiatry", "Psychotherapy", "Psychology", "Behavioral and Cognitive Sciences",
+    "Neuroscience", "Neuroanatomy", "Computational Neuroscience", "BCIs", "Prosthetics",
+    "Business", "Finance", "Stock Market", "Index Funding Investments", "Art", "Music",
+    "Classical", "Rock", "Metal", "Progressive", "Psychedelic", "Art-Rock", "Grunge", "Indie",
+    "Electronic", "Movies", "Directing", "Writing", "Producing", "Anime", "Manga", "Video Games"
+  ]
+}
