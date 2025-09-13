@@ -14,9 +14,14 @@ interface Giant {
   wikipedia: string
 }
 
+interface GiantWithImage extends Giant {
+  imageUrl?: string
+}
+
 export default function Timeline() {
-  const [hoveredGiant, setHoveredGiant] = useState<Giant | null>(null)
+  const [hoveredGiant, setHoveredGiant] = useState<GiantWithImage | null>(null)
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
+  const [giantsWithImages, setGiantsWithImages] = useState<GiantWithImage[]>([])
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -25,9 +30,69 @@ export default function Timeline() {
   const maxYear = new Date().getFullYear()
   const yearRange = maxYear - minYear
 
+  // Define distinct colors for each field
+  const fieldColors: Record<string, string> = {
+    'physics': '#00D9FF',           // Cyan
+    'mathematics': '#FF6B6B',       // Coral
+    'computer science': '#4ECDC4',  // Teal
+    'philosophy': '#95E77E',        // Light Green
+    'psychology': '#FFD93D',        // Yellow
+    'psychiatry': '#FFA500',        // Orange
+    'literature': '#B19CD9',        // Lavender
+    'astronomy': '#FF69B4',         // Hot Pink
+    'computing': '#00CED1',         // Dark Turquoise
+    'logic': '#FF1493',             // Deep Pink
+    'epistemology': '#32CD32',      // Lime Green
+    'education': '#FF8C00',         // Dark Orange
+    'philology': '#9370DB',         // Medium Purple
+    'physiology': '#20B2AA',        // Light Sea Green
+    'psychotherapy': '#FFB6C1',     // Light Pink
+    'psychoanalysis': '#DDA0DD',    // Plum
+    'cryptanalysis': '#00FA9A',     // Medium Spring Green
+    'electrical engineering': '#FF4500', // Orange Red
+    'artificial intelligence': '#1E90FF', // Dodger Blue
+    'ai ethics': '#FF69B4',         // Hot Pink
+    'economics': '#FFD700',         // Gold
+    'linguistics': '#8A2BE2',        // Blue Violet
+    'cognitive science': '#00BFFF', // Deep Sky Blue
+    'neuroscience': '#FF00FF',      // Magenta
+    'behaviorism': '#7FFF00',       // Chartreuse
+    'philosophy of mind': '#DC143C', // Crimson
+    'philosophy of language': '#4B0082' // Indigo
+  }
+
+  // Fetch Wikipedia images for giants
+  useEffect(() => {
+    const fetchImages = async () => {
+      const giantsWithImageUrls = await Promise.all(
+        giantsData.map(async (giant: Giant) => {
+          try {
+            // Use Wikipedia API to get the main image
+            const response = await fetch(
+              `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(giant.wikipedia)}`
+            )
+            if (response.ok) {
+              const data = await response.json()
+              return {
+                ...giant,
+                imageUrl: data.thumbnail?.source || data.originalimage?.source
+              } as GiantWithImage
+            }
+          } catch (error) {
+            console.error(`Failed to fetch image for ${giant.name}:`, error)
+          }
+          return giant as GiantWithImage
+        })
+      )
+      setGiantsWithImages(giantsWithImageUrls)
+    }
+
+    fetchImages()
+  }, [])
+
   // Group giants by overlapping lifespans to create stacked rows
-  const rows: Giant[][] = []
-  const giants = giantsData as Giant[]
+  const rows: GiantWithImage[][] = []
+  const giants = giantsWithImages.length > 0 ? giantsWithImages : (giantsData as GiantWithImage[])
 
   giants.forEach(giant => {
     let placed = false
@@ -54,7 +119,7 @@ export default function Timeline() {
     return ((year - minYear) / yearRange) * 100
   }
 
-  const handleMouseEnter = (giant: Giant, event: React.MouseEvent) => {
+  const handleMouseEnter = (giant: GiantWithImage, event: React.MouseEvent) => {
     setHoveredGiant(giant)
     const rect = event.currentTarget.getBoundingClientRect()
     setTooltipPosition({
@@ -71,15 +136,23 @@ export default function Timeline() {
     window.open(`https://en.wikipedia.org/wiki/${wikipedia}`, '_blank')
   }
 
-  // Color mapping for different fields
-  const getFieldColor = (fields: string[]) => {
-    if (fields.includes('physics')) return 'rgba(60, 110, 113, 0.8)'
-    if (fields.includes('mathematics')) return 'rgba(40, 75, 99, 0.8)'
-    if (fields.includes('computer science')) return 'rgba(53, 53, 53, 0.8)'
-    if (fields.includes('philosophy')) return 'rgba(60, 110, 113, 0.8)'
-    if (fields.includes('psychology') || fields.includes('psychiatry')) return 'rgba(40, 75, 99, 0.8)'
-    if (fields.includes('literature')) return 'rgba(53, 53, 53, 0.8)'
-    return 'rgba(60, 110, 113, 0.8)'
+  // Get color or gradient for a giant based on their fields
+  const getGiantColor = (fields: string[]) => {
+    const colors = fields
+      .map(field => fieldColors[field.toLowerCase()] || '#808080')
+      .filter((color, index, self) => self.indexOf(color) === index) // Remove duplicates
+
+    if (colors.length === 1) {
+      return colors[0]
+    } else if (colors.length === 2) {
+      return `linear-gradient(90deg, ${colors[0]} 0%, ${colors[1]} 100%)`
+    } else {
+      // Create multi-color gradient
+      const stops = colors.map((color, i) =>
+        `${color} ${(i * 100) / (colors.length - 1)}%`
+      ).join(', ')
+      return `linear-gradient(90deg, ${stops})`
+    }
   }
 
   // Draw Euclidean axes
@@ -96,8 +169,12 @@ export default function Timeline() {
       const ctx = canvas.getContext('2d')
       if (!ctx) return
 
-      // Clear canvas
+      // Clear canvas and fill with black background only in the graph area
       ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      // Fill the area between axes with black
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.95)'
+      ctx.fillRect(40, 20, canvas.width - 60, canvas.height - 60)
 
       // Set axis color
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
@@ -190,7 +267,7 @@ export default function Timeline() {
         </h3>
 
         <div className="relative min-h-[600px]" style={{ paddingLeft: '50px', paddingRight: '30px', paddingBottom: '50px', paddingTop: '30px' }}>
-          {/* Timeline rows with thin lines */}
+          {/* Timeline rows with profile pictures and colored lines */}
           <div className="relative h-full">
             {rows.map((row, rowIndex) => {
               const yPosition = 30 + (rowIndex / rows.length) * 500
@@ -200,29 +277,58 @@ export default function Timeline() {
                     const startPos = getPosition(giant.birth_year)
                     const endPos = getPosition(giant.death_year || maxYear)
                     const width = endPos - startPos
-                    const color = getFieldColor(giant.fields)
+                    const colorStyle = getGiantColor(giant.fields)
+                    const isGradient = colorStyle.includes('gradient')
 
                     return (
                       <div
                         key={giant.name}
-                        className="absolute cursor-pointer transition-all hover:z-20"
-                        style={{
-                          left: `${startPos}%`,
-                          width: `${width}%`,
-                          height: '2px',
-                          backgroundColor: color,
-                          boxShadow: hoveredGiant?.name === giant.name ? `0 0 8px ${color}` : 'none'
-                        }}
-                        onMouseEnter={(e) => handleMouseEnter(giant, e)}
-                        onMouseLeave={handleMouseLeave}
-                        onClick={() => openWikipedia(giant.wikipedia)}
+                        className="absolute group"
+                        style={{ left: `${startPos}%`, width: `${width}%` }}
                       >
-                        {/* Name label on hover */}
-                        {hoveredGiant?.name === giant.name && (
-                          <div className="absolute -top-5 left-0 text-xs text-white whitespace-nowrap px-1 bg-black/50 rounded">
-                            {giant.name}
+                        {/* Profile picture at the start */}
+                        {giant.imageUrl && (
+                          <div
+                            className="absolute -left-4 -top-4 w-8 h-8 rounded-full overflow-hidden border-2 border-white/50 cursor-pointer hover:scale-110 transition-transform z-30"
+                            onClick={() => openWikipedia(giant.wikipedia)}
+                          >
+                            <img
+                              src={giant.imageUrl}
+                              alt={giant.name}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).style.display = 'none'
+                              }}
+                            />
                           </div>
                         )}
+
+                        {/* Timeline line */}
+                        <div
+                          className="absolute cursor-pointer transition-all hover:z-20"
+                          style={{
+                            left: 0,
+                            width: '100%',
+                            height: '3px',
+                            top: '0',
+                            background: isGradient ? colorStyle : undefined,
+                            backgroundColor: !isGradient ? colorStyle : undefined,
+                            boxShadow: hoveredGiant?.name === giant.name
+                              ? `0 0 12px ${isGradient ? 'rgba(255,255,255,0.8)' : colorStyle}`
+                              : 'none',
+                            filter: hoveredGiant?.name === giant.name ? 'brightness(1.3)' : 'none'
+                          }}
+                          onMouseEnter={(e) => handleMouseEnter(giant, e)}
+                          onMouseLeave={handleMouseLeave}
+                          onClick={() => openWikipedia(giant.wikipedia)}
+                        >
+                          {/* Name label on hover */}
+                          {hoveredGiant?.name === giant.name && (
+                            <div className="absolute -top-6 left-0 text-xs text-white whitespace-nowrap px-2 py-1 bg-black/70 rounded">
+                              {giant.name}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     )
                   })}
@@ -231,20 +337,14 @@ export default function Timeline() {
             })}
           </div>
 
-          {/* Legend */}
-          <div className="absolute bottom-0 left-12 flex flex-wrap gap-4 text-xs text-white/70">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-0.5" style={{ backgroundColor: 'rgba(60, 110, 113, 0.8)' }}></div>
-              <span>Physics / Philosophy</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-0.5" style={{ backgroundColor: 'rgba(40, 75, 99, 0.8)' }}></div>
-              <span>Mathematics / Psychology</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-0.5" style={{ backgroundColor: 'rgba(53, 53, 53, 0.8)' }}></div>
-              <span>Computer Science / Literature</span>
-            </div>
+          {/* Legend with all unique fields */}
+          <div className="absolute bottom-0 left-12 right-12 flex flex-wrap gap-3 text-xs text-white/70">
+            {Object.entries(fieldColors).slice(0, 8).map(([field, color]) => (
+              <div key={field} className="flex items-center gap-2">
+                <div className="w-8 h-1" style={{ backgroundColor: color }}></div>
+                <span className="capitalize">{field}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
