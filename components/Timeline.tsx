@@ -345,13 +345,7 @@ export default function Timeline() {
                           onMouseEnter={(e) => handleMouseEnter(giant, e)}
                           onMouseLeave={handleMouseLeave}
                           onClick={() => openWikipedia(giant.wikipedia)}
-                        >
-                          {/* Name label on hover */}
-                          {hoveredGiant?.name === giant.name && (
-                            <div className="absolute -top-6 left-0 text-xs text-white whitespace-nowrap px-2 py-1 bg-black/70 rounded">
-                              {giant.name}
-                            </div>
-                          )}
+                        />
                         </div>
                       </div>
                     )
