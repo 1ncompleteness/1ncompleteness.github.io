@@ -199,9 +199,10 @@ export default function Timeline() {
     if (!canvas || !container) return
 
     const resizeCanvas = () => {
-      const rect = container.getBoundingClientRect()
-      canvas.width = rect.width
-      canvas.height = rect.height
+      // Use fixed height for the scrollable area
+      const scrollableHeight = 2500
+      canvas.width = window.innerWidth
+      canvas.height = scrollableHeight
 
       const ctx = canvas.getContext('2d')
       if (!ctx) return
@@ -341,15 +342,14 @@ export default function Timeline() {
 
   return (
     <div className="w-full h-full relative">
-      {/* Canvas for Euclidean space background */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 0 }}
-      />
-
       {/* Timeline content */}
       <div className="relative z-10 px-8 py-4 h-full overflow-y-auto bg-transparent" ref={timelineRef}>
+        {/* Canvas for Euclidean space background - now inside scrollable area */}
+        <canvas
+          ref={canvasRef}
+          className="absolute left-0 top-0 pointer-events-none"
+          style={{ zIndex: 0, width: '100%', height: '2500px' }}
+        />
         {/* Fixed header */}
         <div className="sticky top-0 z-20 bg-transparent pb-4" ref={containerRef}>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-white">
