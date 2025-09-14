@@ -284,9 +284,19 @@ export default function Timeline() {
 
       {/* Timeline content */}
       <div className="relative z-10 p-8 h-full overflow-auto bg-transparent">
-        <h3 className="text-2xl font-bold mb-8 text-white text-center">
+        <h3 className="text-2xl font-bold mb-4 text-white text-center">
           Standing on the Shoulders of Giants
         </h3>
+
+        {/* Legend with all unique fields */}
+        <div className="flex flex-wrap gap-3 text-xs text-white/70 justify-center mb-6">
+          {Object.entries(fieldColors).slice(0, 8).map(([field, color]) => (
+            <div key={field} className="flex items-center gap-2">
+              <div className="w-8 h-1" style={{ backgroundColor: color }}></div>
+              <span className="capitalize">{field}</span>
+            </div>
+          ))}
+        </div>
 
         <div className="relative min-h-[600px]" style={{ paddingLeft: '50px', paddingRight: '30px', paddingBottom: '50px', paddingTop: '30px' }}>
           {/* Timeline rows with profile pictures and colored lines */}
@@ -352,16 +362,6 @@ export default function Timeline() {
                 </div>
               )
             })}
-          </div>
-
-          {/* Legend with all unique fields */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-wrap gap-3 text-xs text-white/70 justify-center">
-            {Object.entries(fieldColors).slice(0, 8).map(([field, color]) => (
-              <div key={field} className="flex items-center gap-2">
-                <div className="w-8 h-1" style={{ backgroundColor: color }}></div>
-                <span className="capitalize">{field}</span>
-              </div>
-            ))}
           </div>
         </div>
       </div>
