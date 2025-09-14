@@ -676,5 +676,9 @@
     "Business", "Finance", "Stock Market", "Index Funding Investments", "Art", "Music",
     "Classical", "Rock", "Metal", "Progressive", "Psychedelic", "Art-Rock", "Grunge", "Indie",
     "Electronic", "Movies", "Directing", "Writing", "Producing", "Anime", "Manga", "Video Games"
-  ]
+  ],
+  "metadata": {
+    "last_updated": "2025-09-13",
+    "version": "0.1.0"
+  }
 }

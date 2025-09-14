@@ -22,6 +22,7 @@ export default function Timeline() {
   const [hoveredGiant, setHoveredGiant] = useState<GiantWithImage | null>(null)
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
   const [giantsWithImages, setGiantsWithImages] = useState<GiantWithImage[]>([])
+  const [currentTime, setCurrentTime] = useState(new Date())
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -29,6 +30,14 @@ export default function Timeline() {
   const minYear = Math.min(...giantsData.map(g => g.birth_year))
   const maxYear = new Date().getFullYear()
   const yearRange = maxYear - minYear
+
+  // Update current time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
 
   // Define distinct colors for each field
   const fieldColors: Record<string, string> = {
@@ -172,26 +181,7 @@ export default function Timeline() {
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Draw grid pattern in the graph area (similar to bg-grid class)
-      const gridSize = 20 // Size of each grid square
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)' // Low opacity white lines
-      ctx.lineWidth = 0.5
-
-      // Draw vertical grid lines
-      for (let x = 40; x < canvas.width - 20; x += gridSize) {
-        ctx.beginPath()
-        ctx.moveTo(x, 20)
-        ctx.lineTo(x, canvas.height - 40)
-        ctx.stroke()
-      }
-
-      // Draw horizontal grid lines
-      for (let y = 20; y < canvas.height - 40; y += gridSize) {
-        ctx.beginPath()
-        ctx.moveTo(40, y)
-        ctx.lineTo(canvas.width - 20, y)
-        ctx.stroke()
-      }
+      // Clear area between axes (no grid pattern)
 
       // Set axis color (make them more prominent)
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'
@@ -229,29 +219,6 @@ export default function Timeline() {
         ctx.stroke()
       })
 
-      // Draw major grid lines for years (overlaid on the background grid)
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)'
-      ctx.setLineDash([4, 8])
-      ctx.lineWidth = 1
-
-      // Vertical grid lines for years
-      years.forEach(year => {
-        const x = 40 + ((year - minYear) / yearRange) * (canvas.width - 60)
-        ctx.beginPath()
-        ctx.moveTo(x, 20)
-        ctx.lineTo(x, canvas.height - 40)
-        ctx.stroke()
-      })
-
-      // Horizontal grid lines for giant rows
-      const numRows = rows.length
-      for (let i = 0; i <= numRows; i++) {
-        const y = 40 + (i / numRows) * (canvas.height - 80)
-        ctx.beginPath()
-        ctx.moveTo(40, y)
-        ctx.lineTo(canvas.width - 20, y)
-        ctx.stroke()
-      }
 
       ctx.setLineDash([])
       ctx.lineWidth = 1
@@ -260,6 +227,20 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
       ctx.font = '12px monospace'
       ctx.fillText('Time', canvas.width / 2 - 15, canvas.height - 5)
+
+      // Display current date and time with seconds
+      const timeString = currentTime.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      })
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
+      ctx.font = '14px monospace'
+      ctx.fillText(timeString, canvas.width - 200, canvas.height - 10)
 
       ctx.save()
       ctx.translate(10, canvas.height / 2)
@@ -271,7 +252,7 @@ export default function Timeline() {
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
     return () => window.removeEventListener('resize', resizeCanvas)
-  }, [rows.length, minYear, yearRange])
+  }, [rows.length, minYear, yearRange, currentTime])
 
   return (
     <div className="w-full h-full relative" ref={containerRef}>
@@ -298,11 +279,11 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative min-h-[600px]" style={{ paddingLeft: '50px', paddingRight: '30px', paddingBottom: '50px', paddingTop: '30px' }}>
+        <div className="relative min-h-[900px]" style={{ paddingLeft: '50px', paddingRight: '30px', paddingBottom: '50px', paddingTop: '30px' }}>
           {/* Timeline rows with profile pictures and colored lines */}
           <div className="relative h-full">
             {rows.map((row, rowIndex) => {
-              const yPosition = 30 + (rowIndex / rows.length) * 500
+              const yPosition = 30 + (rowIndex / rows.length) * 750
               return (
                 <div key={rowIndex} className="absolute w-full" style={{ top: `${yPosition}px` }}>
                   {row.map(giant => {

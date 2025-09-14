@@ -1,5 +1,131 @@
 [
   {
+    "name": "Socrates",
+    "birth_year": -470,
+    "death_year": -399,
+    "fields": ["philosophy"],
+    "contributions": ["Socratic method", "ethical philosophy", "epistemology"],
+    "works": ["No written works (teachings recorded by Plato)"],
+    "wikipedia": "Socrates"
+  },
+  {
+    "name": "Hippocrates",
+    "birth_year": -460,
+    "death_year": -370,
+    "fields": ["medicine", "philosophy"],
+    "contributions": ["Hippocratic Oath", "clinical medicine", "medical ethics"],
+    "works": ["Hippocratic Corpus"],
+    "wikipedia": "Hippocrates"
+  },
+  {
+    "name": "Plato",
+    "birth_year": -428,
+    "death_year": -348,
+    "fields": ["philosophy", "mathematics"],
+    "contributions": ["theory of Forms", "Platonic idealism", "Academy of Athens"],
+    "works": ["Republic", "Symposium", "Phaedo", "Timaeus"],
+    "wikipedia": "Plato"
+  },
+  {
+    "name": "Aristotle",
+    "birth_year": -384,
+    "death_year": -322,
+    "fields": ["philosophy", "physics", "biology"],
+    "contributions": ["formal logic", "empiricism", "virtue ethics", "natural philosophy"],
+    "works": ["Nicomachean Ethics", "Politics", "Metaphysics", "Poetics"],
+    "wikipedia": "Aristotle"
+  },
+  {
+    "name": "Euclid",
+    "birth_year": -325,
+    "death_year": -265,
+    "fields": ["mathematics"],
+    "contributions": ["Euclidean geometry", "number theory", "mathematical proofs"],
+    "works": ["Elements"],
+    "wikipedia": "Euclid"
+  },
+  {
+    "name": "Archimedes",
+    "birth_year": -287,
+    "death_year": -212,
+    "fields": ["mathematics", "physics", "engineering"],
+    "contributions": ["hydrostatics", "calculus precursors", "pi approximation", "Archimedes' principle"],
+    "works": ["On the Equilibrium of Planes", "On Floating Bodies"],
+    "wikipedia": "Archimedes"
+  },
+  {
+    "name": "Ptolemy",
+    "birth_year": 100,
+    "death_year": 170,
+    "fields": ["astronomy", "mathematics", "geography"],
+    "contributions": ["geocentric model", "Ptolemaic system", "star catalog", "trigonometry"],
+    "works": ["Almagest", "Geography", "Tetrabiblos"],
+    "wikipedia": "Ptolemy"
+  },
+  {
+    "name": "Al-Khwarizmi",
+    "birth_year": 780,
+    "death_year": 850,
+    "fields": ["mathematics", "astronomy"],
+    "contributions": ["algebra", "algorithms", "Hindu-Arabic numerals", "trigonometry"],
+    "works": ["The Compendious Book on Calculation by Completion and Balancing"],
+    "wikipedia": "Muhammad_ibn_Musa_al-Khwarizmi"
+  },
+  {
+    "name": "Al-Biruni",
+    "birth_year": 973,
+    "death_year": 1048,
+    "fields": ["mathematics", "astronomy", "physics", "geography"],
+    "contributions": ["experimental astronomy", "comparative religion", "geodesy"],
+    "works": ["The Remaining Signs of Past Centuries", "The Mas'udi Canon"],
+    "wikipedia": "Al-Biruni"
+  },
+  {
+    "name": "Ibn Sina (Avicenna)",
+    "birth_year": 980,
+    "death_year": 1037,
+    "fields": ["medicine", "philosophy", "mathematics"],
+    "contributions": ["The Canon of Medicine", "floating man thought experiment", "Avicennian logic"],
+    "works": ["The Book of Healing", "The Canon of Medicine"],
+    "wikipedia": "Avicenna"
+  },
+  {
+    "name": "Omar Khayyam",
+    "birth_year": 1048,
+    "death_year": 1131,
+    "fields": ["mathematics", "astronomy", "philosophy", "poetry"],
+    "contributions": ["geometric algebra", "calendar reform", "cubic equations"],
+    "works": ["Treatise on Demonstration of Problems of Algebra", "Rubaiyat"],
+    "wikipedia": "Omar_Khayyam"
+  },
+  {
+    "name": "Fibonacci",
+    "birth_year": 1170,
+    "death_year": 1250,
+    "fields": ["mathematics"],
+    "contributions": ["Fibonacci sequence", "Hindu-Arabic numerals in Europe", "number theory"],
+    "works": ["Liber Abaci", "Practica Geometriae"],
+    "wikipedia": "Fibonacci"
+  },
+  {
+    "name": "Thomas Aquinas",
+    "birth_year": 1225,
+    "death_year": 1274,
+    "fields": ["philosophy", "theology"],
+    "contributions": ["Thomism", "natural theology", "five proofs of God"],
+    "works": ["Summa Theologica", "Summa contra Gentiles"],
+    "wikipedia": "Thomas_Aquinas"
+  },
+  {
+    "name": "René Descartes",
+    "birth_year": 1596,
+    "death_year": 1650,
+    "fields": ["philosophy", "mathematics"],
+    "contributions": ["Cartesian coordinate system", "methodological skepticism", "cogito ergo sum"],
+    "works": ["Discourse on the Method", "Meditations on First Philosophy"],
+    "wikipedia": "René_Descartes"
+  },
+  {
     "name": "Isaac Newton",
     "birth_year": 1642,
     "death_year": 1727,
@@ -16,6 +142,51 @@
     "contributions": ["celestial mechanics", "Bayesian probability", "Laplace transform"],
     "works": ["Mécanique Céleste", "Théorie Analytique des Probabilités"],
     "wikipedia": "Pierre-Simon_Laplace"
+  },
+  {
+    "name": "Leonhard Euler",
+    "birth_year": 1707,
+    "death_year": 1783,
+    "fields": ["mathematics", "physics"],
+    "contributions": ["graph theory", "Euler's formula", "topology", "number theory", "analysis"],
+    "works": ["Introductio in analysin infinitorum", "Institutiones calculi differentialis"],
+    "wikipedia": "Leonhard_Euler"
+  },
+  {
+    "name": "Immanuel Kant",
+    "birth_year": 1724,
+    "death_year": 1804,
+    "fields": ["philosophy"],
+    "contributions": ["transcendental idealism", "categorical imperative", "synthetic a priori judgments"],
+    "works": ["Critique of Pure Reason", "Critique of Practical Reason", "Critique of Judgment"],
+    "wikipedia": "Immanuel_Kant"
+  },
+  {
+    "name": "Carl Friedrich Gauss",
+    "birth_year": 1777,
+    "death_year": 1855,
+    "fields": ["mathematics", "physics", "astronomy"],
+    "contributions": ["number theory", "statistics", "differential geometry", "magnetism", "optics"],
+    "works": ["Disquisitiones Arithmeticae", "Theoria motus corporum coelestium"],
+    "wikipedia": "Carl_Friedrich_Gauss"
+  },
+  {
+    "name": "Carl Gustav Jacob Jacobi",
+    "birth_year": 1804,
+    "death_year": 1851,
+    "fields": ["mathematics"],
+    "contributions": ["elliptic functions", "dynamics", "differential equations", "number theory"],
+    "works": ["Fundamenta nova theoriae functionum ellipticarum"],
+    "wikipedia": "Carl_Gustav_Jacob_Jacobi"
+  },
+  {
+    "name": "Ludwig Otto Hesse",
+    "birth_year": 1811,
+    "death_year": 1874,
+    "fields": ["mathematics"],
+    "contributions": ["Hessian matrix", "algebraic geometry", "invariant theory"],
+    "works": ["Papers on algebraic curves and surfaces"],
+    "wikipedia": "Otto_Hesse"
   },
   {
     "name": "Jean-Baptiste Joseph Fourier",
@@ -306,15 +477,6 @@
     "wikipedia": "Roger_Penrose"
   },
   {
-    "name": "Stephen Cook",
-    "birth_year": 1939,
-    "death_year": null,
-    "fields": ["computer science", "mathematics"],
-    "contributions": ["NP-completeness (Cook–Levin theorem)", "complexity theory (P vs NP)"],
-    "works": ["The Complexity of Theorem-Proving Procedures"],
-    "wikipedia": "Stephen_Cook"
-  },
-  {
     "name": "Patricia Churchland",
     "birth_year": 1943,
     "death_year": null,
@@ -322,6 +484,15 @@
     "contributions": ["neurophilosophy", "eliminative materialism"],
     "works": ["Neurophilosophy", "Touching a Nerve"],
     "wikipedia": "Patricia_Churchland"
+  },
+  {
+    "name": "Stephen Cook",
+    "birth_year": 1939,
+    "death_year": null,
+    "fields": ["computer science", "mathematics"],
+    "contributions": ["NP-completeness (Cook–Levin theorem)", "complexity theory (P vs NP)"],
+    "works": ["The Complexity of Theorem-Proving Procedures"],
+    "wikipedia": "Stephen_Cook"
   },
   {
     "name": "Geoffrey Hinton",
