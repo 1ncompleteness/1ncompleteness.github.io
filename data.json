@@ -599,17 +599,17 @@
       },
       "web": {
         "backend": {
-          "apis": ["FastAPI", "Flask", "Django", "Express"],
+          "apis": ["FastAPI", "Flask", "Express"],
           "nodejs": ["Express", "NestJS"]
         },
         "frontend": {
-          "frameworks": ["React", "Next.js", "Vue.js", "Svelte"],
+          "frameworks": ["React", "Next.js"],
           "ui": ["Tailwind CSS", "Material-UI", "Bootstrap", "Framer Motion"]
         }
       },
       "databases": {
         "relational": ["PostgreSQL", "MySQL", "SQLite"],
-        "graph": ["Neo4j", "ArangoDB"],
+        "graph": ["Neo4j"],
         "vector": ["Pinecone", "Weaviate", "ChromaDB"],
         "nosql": ["MongoDB", "Redis"]
       },
@@ -651,6 +651,8 @@
       "interdisciplinary": ["Consciousness Studies", "Computational Neuroscience", "Philosophy of Mind"]
     },
     "sports_esports": [
+      "Chess",
+      "Basketball",
       "xPro Chess Coach and Instructor",
       "xPro Basketball Assistant Coach and Instructor"
     ]

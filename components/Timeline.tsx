@@ -104,8 +104,8 @@ export default function Timeline() {
   const sortedGiants = [...giants].sort((a, b) => a.birth_year - b.birth_year)
 
   const getYPosition = (year: number) => {
-    // Inverted: older dates at top, newer at bottom
-    return (1 - (year - minYear) / yearRange) * 100
+    // Standard: newer dates at bottom, older at top
+    return ((year - minYear) / yearRange) * 100
   }
 
   const handleMouseEnter = (giant: GiantWithImage, event: React.MouseEvent) => {
@@ -186,11 +186,11 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // Y-axis labels (years) - inverted so older is at top
+      // Y-axis labels (years) - standard so newer is at bottom
       const years = [1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2024]
       years.forEach(year => {
-        // Inverted positioning
-        const y = 20 + ((year - minYear) / yearRange) * (canvas.height - 60)
+        // Standard positioning - flip the y coordinate
+        const y = canvas.height - 40 - ((year - minYear) / yearRange) * (canvas.height - 60)
         ctx.fillText(year.toString(), 5, y + 3)
 
         // Draw tick marks
@@ -245,13 +245,13 @@ export default function Timeline() {
       />
 
       {/* Timeline content */}
-      <div className="relative z-10 p-8 h-full overflow-auto bg-transparent">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">
+      <div className="relative z-10 px-8 py-4 h-full overflow-hidden bg-transparent">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-white">
           Standing on the Shoulders of Giants
         </h2>
 
         {/* Legend with all unique fields */}
-        <div className="flex flex-wrap gap-3 text-xs text-white/70 justify-center mb-6">
+        <div className="flex flex-wrap gap-3 text-xs text-white/70 justify-center mb-4">
           {Object.entries(fieldColors).slice(0, 8).map(([field, color]) => (
             <div key={field} className="flex items-center gap-2">
               <div className="w-8 h-1" style={{ backgroundColor: color }}></div>
@@ -260,9 +260,9 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative min-h-[900px]" style={{ paddingLeft: '50px', paddingRight: '30px', paddingBottom: '50px', paddingTop: '10px' }}>
+        <div className="relative" style={{ paddingLeft: '60px', paddingRight: '40px', paddingBottom: '60px', paddingTop: '20px', height: 'calc(100vh - 250px)' }}>
           {/* Timeline with vertical lines for each giant */}
-          <div className="relative h-full">
+          <div className="relative w-full h-full">
             {sortedGiants.map((giant, index) => {
               const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 100
               const startY = getYPosition(giant.birth_year)
@@ -277,15 +277,15 @@ export default function Timeline() {
                   className="absolute"
                   style={{
                     left: `${xPosition}%`,
-                    top: `${startY}%`,
+                    bottom: `${startY}%`,
                     height: `${height}%`,
                     width: '3px'
                   }}
                 >
-                  {/* Profile picture at the top (birth) */}
+                  {/* Profile picture at the bottom (birth) */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-3 -top-4 w-8 h-8 rounded-full overflow-hidden border-2 border-white/50 cursor-pointer hover:scale-110 transition-transform z-30"
+                      className="absolute -left-3 -bottom-4 w-8 h-8 rounded-full overflow-hidden border-2 border-white/50 cursor-pointer hover:scale-110 transition-transform z-30"
                       onClick={() => openWikipedia(giant.wikipedia)}
                       onMouseEnter={(e) => handleMouseEnter(giant, e)}
                       onMouseLeave={handleMouseLeave}
@@ -305,7 +305,7 @@ export default function Timeline() {
                   <div
                     className="absolute cursor-pointer transition-all hover:z-20"
                     style={{
-                      top: 0,
+                      bottom: 0,
                       height: '100%',
                       width: '3px',
                       left: '0',
