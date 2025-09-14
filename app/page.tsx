@@ -125,7 +125,7 @@ export default function Home() {
                 <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
               <a
-                href="mailto:b3h@me.com"
+                href={`mailto:${profileData.personal.contact.email}`}
                 className="p-2 sm:p-3 bg-transparent border border-primary/30 rounded-full hover:bg-primary hover:scale-110 transition-all"
               >
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -196,8 +196,9 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">Primary</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.primary.slice(0, 3).map((lang: string) => (
-                      <span key={lang} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
+                    {profileData.technical_skills.languages.programming.primary.slice(0, 3).map((lang: string, idx: number) => (
+                      <span key={lang} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${45 + idx * 30}deg, #3c6e71, #284b63)` }}>
                         {lang}
                       </span>
                     ))}
@@ -206,8 +207,9 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">System</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.primary.slice(3).map((lang: string) => (
-                      <span key={lang} className="px-2 py-1 bg-primary/20 text-white rounded text-xs">
+                    {profileData.technical_skills.languages.programming.primary.slice(3).map((lang: string, idx: number) => (
+                      <span key={lang} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${90 + idx * 30}deg, #284b63, #353535)` }}>
                         {lang}
                       </span>
                     ))}
@@ -216,8 +218,9 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">Scripting</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.scripting?.slice(0, 3).map((lang: string) => (
-                      <span key={lang} className="px-2 py-1 bg-primary/30 text-white rounded text-xs">
+                    {profileData.technical_skills.languages.programming.scripting?.slice(0, 3).map((lang: string, idx: number) => (
+                      <span key={lang} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${135 + idx * 30}deg, #353535, #3c6e71)` }}>
                         {lang}
                       </span>
                     ))}
@@ -233,8 +236,9 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">Core</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.ml_ai.core?.map((fw: string) => (
-                      <span key={fw} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.ml_ai.core?.map((fw: string, idx: number) => (
+                      <span key={fw} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${20 + idx * 25}deg, #3c6e71, #284b63)` }}>
                         {fw}
                       </span>
                     ))}
@@ -243,8 +247,9 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">NLP</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.ml_ai.specialized?.nlp?.map((nlp: string) => (
-                      <span key={nlp} className="px-2 py-1 bg-primary/20 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.ml_ai.specialized?.nlp?.map((nlp: string, idx: number) => (
+                      <span key={nlp} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${60 + idx * 40}deg, #284b63, #353535)` }}>
                         {nlp}
                       </span>
                     ))}
@@ -253,13 +258,15 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">Graph & Visualization</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.ml_ai.specialized?.graph?.map((graph: string) => (
-                      <span key={graph} className="px-2 py-1 bg-primary/30 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.ml_ai.specialized?.graph?.map((graph: string, idx: number) => (
+                      <span key={graph} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${100 + idx * 60}deg, #353535, #3c6e71)` }}>
                         {graph}
                       </span>
                     ))}
-                    {profileData.technical_skills.frameworks.ml_ai.specialized?.visualization?.map((viz: string) => (
-                      <span key={viz} className="px-2 py-1 bg-primary/30 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.ml_ai.specialized?.visualization?.map((viz: string, idx: number) => (
+                      <span key={viz} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${160 + idx * 60}deg, #353535, #3c6e71)` }}>
                         {viz}
                       </span>
                     ))}
@@ -275,8 +282,9 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">Relational</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.databases.relational?.map((db: string) => (
-                      <span key={db} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.databases.relational?.map((db: string, idx: number) => (
+                      <span key={db} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${30 + idx * 35}deg, #3c6e71, #284b63)` }}>
                         {db}
                       </span>
                     ))}
@@ -285,13 +293,15 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">Graph & Vector</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.databases.graph?.map((db: string) => (
-                      <span key={db} className="px-2 py-1 bg-primary/20 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.databases.graph?.map((db: string, idx: number) => (
+                      <span key={db} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${80 + idx * 50}deg, #284b63, #353535)` }}>
                         {db}
                       </span>
                     ))}
-                    {profileData.technical_skills.frameworks.databases.vector?.map((db: string) => (
-                      <span key={db} className="px-2 py-1 bg-primary/20 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.databases.vector?.map((db: string, idx: number) => (
+                      <span key={db} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${130 + idx * 50}deg, #284b63, #353535)` }}>
                         {db}
                       </span>
                     ))}
@@ -300,8 +310,9 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">NoSQL</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.databases.nosql?.map((db: string) => (
-                      <span key={db} className="px-2 py-1 bg-primary/30 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.databases.nosql?.map((db: string, idx: number) => (
+                      <span key={db} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${180 + idx * 45}deg, #353535, #3c6e71)` }}>
                         {db}
                       </span>
                     ))}
@@ -316,13 +327,15 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.frontend}</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.web.frontend.frameworks.map((fw: string) => (
-                      <span key={fw} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.web.frontend.frameworks.map((fw: string, idx: number) => (
+                      <span key={fw} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${15 + idx * 45}deg, #3c6e71, #284b63)` }}>
                         {fw}
                       </span>
                     ))}
-                    {profileData.technical_skills.frameworks.web.frontend.http_clients?.map((client: string) => (
-                      <span key={client} className="px-2 py-1 bg-primary/20 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.web.frontend.http_clients?.map((client: string, idx: number) => (
+                      <span key={client} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${60 + idx * 30}deg, #284b63, #3c6e71)` }}>
                         {client}
                       </span>
                     ))}
@@ -331,18 +344,21 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.backend}</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.web.backend.apis.map((api: string) => (
-                      <span key={api} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.web.backend.apis.map((api: string, idx: number) => (
+                      <span key={api} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${45 + idx * 60}deg, #284b63, #353535)` }}>
                         {api}
                       </span>
                     ))}
-                    {profileData.technical_skills.frameworks.web.backend.nodejs?.map((node: string) => (
-                      <span key={node} className="px-2 py-1 bg-primary/20 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.web.backend.nodejs?.map((node: string, idx: number) => (
+                      <span key={node} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${90 + idx * 60}deg, #353535, #284b63)` }}>
                         {node}
                       </span>
                     ))}
-                    {profileData.technical_skills.frameworks.web.backend.authentication?.map((auth: string) => (
-                      <span key={auth} className="px-2 py-1 bg-primary/30 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.web.backend.authentication?.map((auth: string, idx: number) => (
+                      <span key={auth} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${120 + idx * 40}deg, #3c6e71, #353535)` }}>
                         {auth}
                       </span>
                     ))}
@@ -351,18 +367,21 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.devops}</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.devops?.containerization?.map((container: string) => (
-                      <span key={container} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.devops?.containerization?.map((container: string, idx: number) => (
+                      <span key={container} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${25 + idx * 50}deg, #353535, #3c6e71)` }}>
                         {container}
                       </span>
                     ))}
-                    {profileData.technical_skills.frameworks.devops?.cloud?.map((cloud: string) => (
-                      <span key={cloud} className="px-2 py-1 bg-primary/20 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.devops?.cloud?.map((cloud: string, idx: number) => (
+                      <span key={cloud} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${75 + idx * 35}deg, #3c6e71, #284b63)` }}>
                         {cloud}
                       </span>
                     ))}
-                    {profileData.technical_skills.frameworks.devops?.ci_cd?.map((ci: string) => (
-                      <span key={ci} className="px-2 py-1 bg-primary/30 text-white rounded text-xs">
+                    {profileData.technical_skills.frameworks.devops?.ci_cd?.map((ci: string, idx: number) => (
+                      <span key={ci} className="px-3 py-1 text-white rounded-full text-xs"
+                        style={{ background: `linear-gradient(${180 + idx * 45}deg, #284b63, #353535)` }}>
                         {ci}
                       </span>
                     ))}
@@ -438,7 +457,7 @@ export default function Home() {
             <div className="text-center">
               <div className="flex justify-center gap-4 mb-6">
                 <a
-                  href="mailto:b3h@me.com"
+                  href={`mailto:${profileData.personal.contact.email}`}
                   className="px-6 py-3 bg-entelligent text-white rounded-lg hover:scale-105 transition-all flex items-center gap-2"
                 >
                   <Mail className="w-5 h-5" />

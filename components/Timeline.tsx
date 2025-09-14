@@ -170,16 +170,22 @@ export default function Timeline() {
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'
       ctx.lineWidth = 2
 
-      // Draw X-axis (Giants) at top
+      // Calculate graph area position (below title and legend)
+      const graphTop = 120 // Space for title and legend
+      const graphBottom = canvas.height - 60
+      const graphLeft = 60
+      const graphRight = canvas.width - 40
+
+      // Draw X-axis (Giants) at top of graph area
       ctx.beginPath()
-      ctx.moveTo(40, 20)
-      ctx.lineTo(canvas.width - 20, 20)
+      ctx.moveTo(graphLeft, graphTop)
+      ctx.lineTo(graphRight, graphTop)
       ctx.stroke()
 
       // Draw Y-axis (Time)
       ctx.beginPath()
-      ctx.moveTo(40, 20)
-      ctx.lineTo(40, canvas.height - 40)
+      ctx.moveTo(graphLeft, graphTop)
+      ctx.lineTo(graphLeft, graphBottom)
       ctx.stroke()
 
       // Reset line width for other elements
@@ -191,19 +197,52 @@ export default function Timeline() {
 
       // Y-axis labels (years) - older at top, current at bottom
       const currentYearInt = currentTime.getFullYear()
-      const years = [1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, currentYearInt]
+      // Add more year labels for better scale visibility
+      const years = []
+      for (let year = 1650; year <= currentYearInt; year += 10) {
+        if (year <= 1700 || (year >= 1750 && year % 25 === 0) || year === currentYearInt) {
+          years.push(year)
+        }
+      }
+
       years.forEach(year => {
-        // Top-left origin positioning
-        const y = 20 + ((year - minYear) / yearRange) * (canvas.height - 60)
-        ctx.fillText(year.toString(), 5, y + 3)
+        // Position labels in graph area
+        const y = graphTop + ((year - minYear) / yearRange) * (graphBottom - graphTop)
+        ctx.fillText(year.toString(), graphLeft - 35, y + 3)
 
         // Draw tick marks
         ctx.beginPath()
-        ctx.moveTo(40, y)
-        ctx.lineTo(35, y)
+        ctx.moveTo(graphLeft, y)
+        ctx.lineTo(graphLeft - 5, y)
         ctx.stroke()
       })
 
+      // Draw minor tick marks for decades
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
+      ctx.lineWidth = 0.5
+      for (let year = 1650; year <= currentYearInt; year += 10) {
+        if (!years.includes(year)) {
+          const y = graphTop + ((year - minYear) / yearRange) * (graphBottom - graphTop)
+          ctx.beginPath()
+          ctx.moveTo(graphLeft, y)
+          ctx.lineTo(graphLeft - 3, y)
+          ctx.stroke()
+        }
+      }
+
+      // Draw horizontal grid lines for major years
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'
+      ctx.lineWidth = 0.5
+      ctx.setLineDash([5, 5])
+      years.forEach(year => {
+        if (year % 50 === 0 || year === currentYearInt) {
+          const y = graphTop + ((year - minYear) / yearRange) * (graphBottom - graphTop)
+          ctx.beginPath()
+          ctx.moveTo(graphLeft, y)
+          ctx.lineTo(graphRight, y)
+          ctx.stroke()
+        }
+      })
 
       ctx.setLineDash([])
       ctx.lineWidth = 1
@@ -211,7 +250,7 @@ export default function Timeline() {
       // Axis labels
       ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
       ctx.font = '12px monospace'
-      ctx.fillText('Giants', canvas.width / 2 - 20, 15)
+      ctx.fillText('Giants', canvas.width / 2 - 20, graphTop - 5)
 
       // Display current date and time at the bottom of Y-axis (current time position)
       const timeString = currentTime.toLocaleString('en-US', {
@@ -226,10 +265,10 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
       ctx.font = '14px monospace'
       // Position at the bottom of the Y-axis where current time is
-      ctx.fillText(timeString, 50, canvas.height - 25)
+      ctx.fillText(timeString, graphLeft + 10, graphBottom + 20)
 
       ctx.save()
-      ctx.translate(10, canvas.height / 2)
+      ctx.translate(15, (graphTop + graphBottom) / 2)
       ctx.rotate(-Math.PI / 2)
       ctx.fillText('Time', -15, 0)
       ctx.restore()
@@ -265,11 +304,12 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative" style={{ paddingLeft: '60px', paddingRight: '60px', paddingBottom: '80px', paddingTop: '20px', height: 'calc(100vh - 200px)' }}>
+        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '60px', paddingBottom: '100px', paddingTop: '120px', height: 'calc(100vh - 200px)' }}>
           {/* Timeline with vertical lines for each giant */}
           <div className="relative w-full h-full">
             {sortedGiants.map((giant, index) => {
-              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 90 + 5
+              // Spread giants across more of the width for better visibility
+              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 95 + 2.5
               const startY = getYPosition(giant.birth_year)
               const currentYearDecimal = currentTime.getFullYear() + currentTime.getMonth() / 12 + currentTime.getDate() / 365
               const endY = getYPosition(giant.death_year || currentYearDecimal)
@@ -285,7 +325,7 @@ export default function Timeline() {
                     left: `${xPosition}%`,
                     top: `${startY}%`,
                     height: `${Math.abs(height)}%`,
-                    width: '8px'
+                    width: '10px'
                   }}
                 >
                   {/* Profile picture at birth year position */}
@@ -313,7 +353,7 @@ export default function Timeline() {
                     style={{
                       top: 0,
                       height: '100%',
-                      width: '8px',
+                      width: '10px',
                       left: '0',
                       background: isGradient ? colorStyle : undefined,
                       backgroundColor: !isGradient ? colorStyle : undefined,
