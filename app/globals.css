@@ -75,6 +75,10 @@
     background: var(--entelligent-gradient);
   }
 
+  .bg-entelligent-gradient {
+    background: var(--entelligent-gradient);
+  }
+
   .bg-grid {
     background-image:
       linear-gradient(rgba(60, 110, 113, 0.1) 1px, transparent 1px),

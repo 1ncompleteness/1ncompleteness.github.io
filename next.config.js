@@ -13,11 +13,7 @@ const nextConfig = {
   },
   basePath: '',
   assetPrefix: '',
-  devIndicators: {
-    appIsrStatus: false,
-    buildActivity: false,
-    buildActivityPosition: 'bottom-right',
-  },
+  devIndicators: false,
 }
 
 module.exports = nextConfig
