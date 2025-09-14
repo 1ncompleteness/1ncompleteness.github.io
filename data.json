@@ -582,34 +582,42 @@
   "technical_skills": {
     "languages": {
       "programming": {
-        "primary": ["Python", "JavaScript", "TypeScript"],
+        "primary": ["Python", "TypeScript", "JavaScript", "C", "C++", "Java"],
         "systems": ["C", "C++", "Java"],
-        "scripting": ["Bash", "SQL", "Cypher"]
+        "scripting": ["Bash", "Shell", "SQL", "Cypher"],
+        "web": ["HTML", "CSS", "TypeScript", "JavaScript"]
       }
     },
     "frameworks": {
-      "ml_dl": {
-        "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow"],
+      "ml_ai": {
+        "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "XGBoost"],
         "specialized": {
-          "nlp": ["Transformers", "spaCy", "NLTK"],
+          "nlp": ["Transformers", "spaCy", "NLTK", "LangChain"],
           "graph": ["NetworkX", "PyTorch Geometric", "DGL"],
           "visualization": ["Matplotlib", "Seaborn", "Plotly"]
         }
       },
       "web": {
         "backend": {
-          "apis": ["FastAPI", "Flask", "Django"],
+          "apis": ["FastAPI", "Flask", "Django", "Express"],
           "nodejs": ["Express", "NestJS"]
         },
         "frontend": {
-          "frameworks": ["React", "Next.js", "Vue.js"],
-          "ui": ["Tailwind CSS", "Material-UI", "Bootstrap"]
+          "frameworks": ["React", "Next.js", "Vue.js", "Svelte"],
+          "ui": ["Tailwind CSS", "Material-UI", "Bootstrap", "Framer Motion"]
         }
       },
       "databases": {
         "relational": ["PostgreSQL", "MySQL", "SQLite"],
         "graph": ["Neo4j", "ArangoDB"],
-        "vector": ["Pinecone", "Weaviate", "ChromaDB"]
+        "vector": ["Pinecone", "Weaviate", "ChromaDB"],
+        "nosql": ["MongoDB", "Redis"]
+      },
+      "devops": {
+        "containerization": ["Docker", "Docker Compose"],
+        "orchestration": ["Kubernetes"],
+        "cloud": ["AWS", "DigitalOcean", "Vercel"],
+        "ci_cd": ["GitHub Actions", "GitLab CI"]
       }
     },
     "architectures": {

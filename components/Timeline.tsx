@@ -104,7 +104,8 @@ export default function Timeline() {
   const sortedGiants = [...giants].sort((a, b) => a.birth_year - b.birth_year)
 
   const getYPosition = (year: number) => {
-    return ((year - minYear) / yearRange) * 100
+    // Inverted: older dates at top, newer at bottom
+    return (1 - (year - minYear) / yearRange) * 100
   }
 
   const handleMouseEnter = (giant: GiantWithImage, event: React.MouseEvent) => {
@@ -185,10 +186,11 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // Y-axis labels (years) - now on vertical axis
+      // Y-axis labels (years) - inverted so older is at top
       const years = [1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2024]
       years.forEach(year => {
-        const y = canvas.height - 40 - ((year - minYear) / yearRange) * (canvas.height - 60)
+        // Inverted positioning
+        const y = 20 + ((year - minYear) / yearRange) * (canvas.height - 60)
         ctx.fillText(year.toString(), 5, y + 3)
 
         // Draw tick marks
@@ -258,7 +260,7 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative min-h-[900px]" style={{ paddingLeft: '50px', paddingRight: '30px', paddingBottom: '50px', paddingTop: '30px' }}>
+        <div className="relative min-h-[900px]" style={{ paddingLeft: '50px', paddingRight: '30px', paddingBottom: '50px', paddingTop: '10px' }}>
           {/* Timeline with vertical lines for each giant */}
           <div className="relative h-full">
             {sortedGiants.map((giant, index) => {
@@ -275,15 +277,15 @@ export default function Timeline() {
                   className="absolute"
                   style={{
                     left: `${xPosition}%`,
-                    bottom: `${startY}%`,
+                    top: `${startY}%`,
                     height: `${height}%`,
                     width: '3px'
                   }}
                 >
-                  {/* Profile picture at the bottom (birth) */}
+                  {/* Profile picture at the top (birth) */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-3 -bottom-4 w-8 h-8 rounded-full overflow-hidden border-2 border-white/50 cursor-pointer hover:scale-110 transition-transform z-30"
+                      className="absolute -left-3 -top-4 w-8 h-8 rounded-full overflow-hidden border-2 border-white/50 cursor-pointer hover:scale-110 transition-transform z-30"
                       onClick={() => openWikipedia(giant.wikipedia)}
                       onMouseEnter={(e) => handleMouseEnter(giant, e)}
                       onMouseLeave={handleMouseLeave}
@@ -303,7 +305,7 @@ export default function Timeline() {
                   <div
                     className="absolute cursor-pointer transition-all hover:z-20"
                     style={{
-                      bottom: 0,
+                      top: 0,
                       height: '100%',
                       width: '3px',
                       left: '0',

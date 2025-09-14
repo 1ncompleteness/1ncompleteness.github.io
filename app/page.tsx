@@ -172,44 +172,8 @@ export default function Home() {
           <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">Skills & Experiences</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center gap-2">
-                  <Code className="w-5 h-5 text-primary" />
-                  Languages
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {profileData.technical_skills.languages.programming.primary.map((lang: string) => (
-                    <span key={lang} className="px-2 sm:px-3 py-1 bg-primary/20 rounded-full text-xs sm:text-sm">
-                      {lang}
-                    </span>
-                  ))}
-                </div>
-              </div>
 
-              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">ML/AI Stack</h3>
-                <div className="flex flex-wrap gap-2">
-                  {profileData.technical_skills.frameworks.ml_dl.core.slice(0, 5).map((fw: string) => (
-                    <span key={fw} className="px-2 sm:px-3 py-1 bg-primary/20 rounded-full text-xs sm:text-sm">
-                      {fw}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Databases</h3>
-                <div className="flex flex-wrap gap-2">
-                  {profileData.technical_skills.frameworks.databases.graph.map((db: string) => (
-                    <span key={db} className="px-2 sm:px-3 py-1 bg-primary/20 rounded-full text-xs sm:text-sm">
-                      {db}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
+            {/* Experiences section moved to top */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">
                 <Briefcase className="w-5 h-5" />
@@ -227,6 +191,45 @@ export default function Home() {
                 <div>
                   <p className="text-sm sm:text-base font-semibold">Network & Security Systems Administrator</p>
                   <p className="text-xs sm:text-sm text-primary">Infrastructure Management • Network and Security Maintenance</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Skills section */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center gap-2">
+                  <Code className="w-5 h-5 text-primary" />
+                  Languages
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {profileData.technical_skills.languages.programming.primary.map((lang: string) => (
+                    <span key={lang} className="px-2 sm:px-3 py-1 bg-primary/20 rounded-full text-xs sm:text-sm">
+                      {lang}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">ML/AI</h3>
+                <div className="flex flex-wrap gap-2">
+                  {profileData.technical_skills.frameworks.ml_ai.core.slice(0, 6).map((fw: string) => (
+                    <span key={fw} className="px-2 sm:px-3 py-1 bg-primary/20 rounded-full text-xs sm:text-sm">
+                      {fw}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Databases</h3>
+                <div className="flex flex-wrap gap-2">
+                  {[...profileData.technical_skills.frameworks.databases.graph, ...profileData.technical_skills.frameworks.databases.relational.slice(0, 2)].map((db: string) => (
+                    <span key={db} className="px-2 sm:px-3 py-1 bg-primary/20 rounded-full text-xs sm:text-sm">
+                      {db}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
