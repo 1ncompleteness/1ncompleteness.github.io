@@ -14,6 +14,7 @@ const nextConfig = {
   basePath: '',
   assetPrefix: '',
   devIndicators: false,
+  allowedDevOrigins: ['*.local', 'localhost'],
 }
 
 module.exports = nextConfig
