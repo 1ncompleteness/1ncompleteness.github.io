@@ -152,7 +152,7 @@ export default function Home() {
                   <Briefcase className="w-4 h-4 text-primary" />
                   Entelligent
                 </h3>
-                <p className="text-xs sm:text-sm">Cofounder</p>
+                <p className="text-xs sm:text-sm">Co-Founder</p>
                 <a href={profileData.entrepreneurship.company.deployments.production[1].url}
                    target="_blank"
                    rel="noopener noreferrer"
@@ -222,7 +222,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm sm:text-base font-semibold">Software as a Service (SaaS)</p>
-                  <p className="text-xs sm:text-sm text-primary">Entelligent Cofounder • Knowledge Base Systems</p>
+                  <p className="text-xs sm:text-sm text-primary">Entelligent Co-Founder • Knowledge Base Systems</p>
                 </div>
                 <div>
                   <p className="text-sm sm:text-base font-semibold">Network & Security Systems Administrator</p>
