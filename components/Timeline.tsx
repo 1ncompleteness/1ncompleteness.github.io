@@ -284,7 +284,7 @@ export default function Timeline() {
 
       {/* Timeline content */}
       <div className="relative z-10 p-8 h-full overflow-auto bg-transparent">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center" style={{ color: '#353535' }}>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">
           Standing on the Shoulders of Giants
         </h2>
 
