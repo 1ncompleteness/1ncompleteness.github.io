@@ -30,7 +30,7 @@ export default function TopBar({ currentPage, totalPages, scrollToPage }: TopBar
             key={i}
             onClick={() => scrollToPage(i)}
             className={`h-2 rounded-full transition-all ${
-              i === currentPage ? 'w-8 bg-primary' : 'w-2 bg-surface hover:bg-primary/50'
+              i === currentPage ? 'w-8 bg-primary' : 'w-2 bg-white/30 hover:bg-primary/50'
             }`}
             aria-label={`Go to page ${i + 1}`}
           />
@@ -41,7 +41,7 @@ export default function TopBar({ currentPage, totalPages, scrollToPage }: TopBar
       {currentPage > 0 && (
         <button
           onClick={() => scrollToPage(currentPage - 1)}
-          className="fixed left-2 sm:left-3 md:left-4 top-1/2 -translate-y-1/2 z-[60] p-2 sm:p-2.5 md:p-3 rounded-full bg-surface/80 backdrop-blur-sm hover:bg-primary transition-all group"
+          className="fixed left-2 sm:left-3 md:left-4 top-1/2 -translate-y-1/2 z-[60] p-2 sm:p-2.5 md:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-primary/50 transition-all group"
           aria-label="Previous page"
         >
           <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -53,7 +53,7 @@ export default function TopBar({ currentPage, totalPages, scrollToPage }: TopBar
       {currentPage < totalPages - 1 && (
         <button
           onClick={() => scrollToPage(currentPage + 1)}
-          className="fixed right-2 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 z-[60] p-2 sm:p-2.5 md:p-3 rounded-full bg-surface/80 backdrop-blur-sm hover:bg-primary transition-all group"
+          className="fixed right-2 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 z-[60] p-2 sm:p-2.5 md:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-primary/50 transition-all group"
           aria-label="Next page"
         >
           <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
