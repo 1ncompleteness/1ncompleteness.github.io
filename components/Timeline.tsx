@@ -260,11 +260,11 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative" style={{ paddingLeft: '60px', paddingRight: '40px', paddingBottom: '60px', paddingTop: '20px', height: 'calc(100vh - 250px)' }}>
+        <div className="relative" style={{ paddingLeft: '60px', paddingRight: '60px', paddingBottom: '80px', paddingTop: '20px', height: 'calc(100vh - 200px)' }}>
           {/* Timeline with vertical lines for each giant */}
           <div className="relative w-full h-full">
             {sortedGiants.map((giant, index) => {
-              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 100
+              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 90 + 5
               const startY = getYPosition(giant.birth_year)
               const endY = getYPosition(giant.death_year || maxYear)
               const height = endY - startY
@@ -279,13 +279,13 @@ export default function Timeline() {
                     left: `${xPosition}%`,
                     bottom: `${startY}%`,
                     height: `${height}%`,
-                    width: '3px'
+                    width: '8px'
                   }}
                 >
                   {/* Profile picture at the bottom (birth) */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-3 -bottom-4 w-8 h-8 rounded-full overflow-hidden border-2 border-white/50 cursor-pointer hover:scale-110 transition-transform z-30"
+                      className="absolute -left-3 -bottom-4 w-10 h-10 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 transition-transform z-30 shadow-lg"
                       onClick={() => openWikipedia(giant.wikipedia)}
                       onMouseEnter={(e) => handleMouseEnter(giant, e)}
                       onMouseLeave={handleMouseLeave}
@@ -307,14 +307,15 @@ export default function Timeline() {
                     style={{
                       bottom: 0,
                       height: '100%',
-                      width: '3px',
+                      width: '8px',
                       left: '0',
                       background: isGradient ? colorStyle : undefined,
                       backgroundColor: !isGradient ? colorStyle : undefined,
+                      opacity: 0.9,
                       boxShadow: hoveredGiant?.name === giant.name
-                        ? `0 0 12px ${isGradient ? 'rgba(255,255,255,0.8)' : colorStyle}`
-                        : 'none',
-                      filter: hoveredGiant?.name === giant.name ? 'brightness(1.3)' : 'none'
+                        ? `0 0 20px ${isGradient ? 'rgba(255,255,255,0.9)' : colorStyle}, 0 0 40px ${isGradient ? 'rgba(255,255,255,0.5)' : colorStyle}`
+                        : `0 2px 8px rgba(0,0,0,0.3)`,
+                      filter: hoveredGiant?.name === giant.name ? 'brightness(1.5)' : 'brightness(1.1)'
                     }}
                     onMouseEnter={(e) => handleMouseEnter(giant, e)}
                     onMouseLeave={handleMouseLeave}

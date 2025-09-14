@@ -583,9 +583,8 @@
     "languages": {
       "programming": {
         "primary": ["Python", "TypeScript", "JavaScript", "C", "C++", "Java"],
-        "systems": ["C", "C++", "Java"],
         "scripting": ["Bash", "Shell", "SQL", "Cypher"],
-        "web": ["HTML", "CSS", "TypeScript", "JavaScript"]
+        "web": ["HTML", "CSS"]
       }
     },
     "frameworks": {
@@ -599,7 +598,7 @@
       },
       "web": {
         "backend": {
-          "apis": ["FastAPI", "Flask", "Express"],
+          "apis": ["FastAPI", "Flask"],
           "nodejs": ["Express", "NestJS"]
         },
         "frontend": {
@@ -656,6 +655,33 @@
       "xPro Chess Coach and Instructor",
       "xPro Basketball Assistant Coach and Instructor"
     ]
+  },
+  "experiences": {
+    "items": [
+      {
+        "title": "Research and Development (R&D)",
+        "description": "Multi-Agent Geometric Learning • Medical AI Diagnostics"
+      },
+      {
+        "title": "Software as a Service (SaaS)",
+        "description": "Entelligent Co-Founder • Knowledge Base Systems"
+      },
+      {
+        "title": "Network & Security Systems Administrator",
+        "description": "Infrastructure Management • Network and Security Maintenance"
+      }
+    ],
+    "section_titles": {
+      "main": "Skills & Experiences",
+      "experiences": "Experiences",
+      "languages": "Languages",
+      "ml_ai": "ML/AI",
+      "databases": "Databases",
+      "full_stack": "Full Stack Development & DevOps",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devops": "DevOps"
+    }
   },
   "skills_experiences": [
     "Research and Development (R&D)",

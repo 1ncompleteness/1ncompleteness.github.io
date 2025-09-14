@@ -152,7 +152,7 @@ export default function Home() {
                   <Briefcase className="w-4 h-4 text-primary" />
                   Entelligent
                 </h3>
-                <p className="text-xs sm:text-sm">Co-Founder</p>
+                <p className="text-xs sm:text-sm">Co-Founder, Research and Development (R&D)</p>
                 <a href={profileData.entrepreneurship.company.deployments.production[1].url}
                    target="_blank"
                    rel="noopener noreferrer"
@@ -171,27 +171,21 @@ export default function Home() {
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">Skills & Experiences</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">{profileData.experiences.section_titles.main}</h2>
 
             {/* Experiences section moved to top */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">
                 <Briefcase className="w-5 h-5" />
-                Experiences
+                {profileData.experiences.section_titles.experiences}
               </h3>
               <div className="space-y-3">
-                <div>
-                  <p className="text-sm sm:text-base font-semibold">Research and Development (R&D)</p>
-                  <p className="text-xs sm:text-sm text-primary">Multi-Agent Geometric Learning • Medical AI Diagnostics</p>
-                </div>
-                <div>
-                  <p className="text-sm sm:text-base font-semibold">Software as a Service (SaaS)</p>
-                  <p className="text-xs sm:text-sm text-primary">Entelligent Co-Founder • Knowledge Base Systems</p>
-                </div>
-                <div>
-                  <p className="text-sm sm:text-base font-semibold">Network & Security Systems Administrator</p>
-                  <p className="text-xs sm:text-sm text-primary">Infrastructure Management • Network and Security Maintenance</p>
-                </div>
+                {profileData.experiences.items.map((exp: any, index: number) => (
+                  <div key={index}>
+                    <p className="text-sm sm:text-base font-semibold">{exp.title}</p>
+                    <p className="text-xs sm:text-sm text-primary">{exp.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -200,7 +194,7 @@ export default function Home() {
               <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
                 <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center gap-2">
                   <Code className="w-5 h-5 text-primary" />
-                  Languages
+                  {profileData.experiences.section_titles.languages}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {profileData.technical_skills.languages.programming.primary.map((lang: string) => (
@@ -212,7 +206,7 @@ export default function Home() {
               </div>
 
               <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">ML/AI</h3>
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{profileData.experiences.section_titles.ml_ai}</h3>
                 <div className="flex flex-wrap gap-2">
                   {profileData.technical_skills.frameworks.ml_ai.core.slice(0, 6).map((fw: string) => (
                     <span key={fw} className="px-2 sm:px-3 py-1 bg-primary/20 rounded-full text-xs sm:text-sm">
@@ -223,7 +217,7 @@ export default function Home() {
               </div>
 
               <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Databases</h3>
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{profileData.experiences.section_titles.databases}</h3>
                 <div className="flex flex-wrap gap-2">
                   {[...profileData.technical_skills.frameworks.databases.graph, ...profileData.technical_skills.frameworks.databases.relational.slice(0, 2)].map((db: string) => (
                     <span key={db} className="px-2 sm:px-3 py-1 bg-primary/20 rounded-full text-xs sm:text-sm">
@@ -235,10 +229,10 @@ export default function Home() {
             </div>
 
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Full Stack Development & DevOps</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">{profileData.experiences.section_titles.full_stack}</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <div>
-                  <p className="text-sm font-medium mb-2">Frontend</p>
+                  <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.frontend}</p>
                   <div className="flex flex-wrap gap-2">
                     {profileData.technical_skills.frameworks.web.frontend.frameworks.map((fw: string) => (
                       <span key={fw} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
@@ -248,7 +242,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-2">Backend</p>
+                  <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.backend}</p>
                   <div className="flex flex-wrap gap-2">
                     {profileData.technical_skills.frameworks.web.backend.apis.map((api: string) => (
                       <span key={api} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
@@ -258,7 +252,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-2">DevOps</p>
+                  <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.devops}</p>
                   <div className="flex flex-wrap gap-2">
                     {profileData.technical_skills.tools.deployment.map((tool: string) => (
                       <span key={tool} className="px-2 py-1 bg-entelligent-gradient text-white rounded text-xs">
