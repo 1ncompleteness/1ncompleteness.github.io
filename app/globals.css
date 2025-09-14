@@ -65,10 +65,7 @@
   }
 
   h2.text-gradient {
-    background: linear-gradient(135deg, #2a5558, #1e3a4f 50%, #242424);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #353535;
   }
 
   .bg-entelligent {
