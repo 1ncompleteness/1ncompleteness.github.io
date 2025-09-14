@@ -23,11 +23,21 @@ export default function Timeline() {
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
   const [giantsWithImages, setGiantsWithImages] = useState<GiantWithImage[]>([])
   const [currentTime, setCurrentTime] = useState(new Date())
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [visiblePeriod, setVisiblePeriod] = useState('Ancient Period')
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const timelineRef = useRef<HTMLDivElement>(null)
 
-  // Calculate timeline range from -400 to 2025
-  const minYear = -400
+  // Define time periods for display
+  const timePeriods = [
+    { start: -1000, end: 0, label: 'Ancient Period' },
+    { start: 0, end: 1000, label: 'Classical to Medieval' },
+    { start: 1000, end: 2025, label: 'Modern Era' }
+  ]
+
+  // Full timeline range for continuous scroll
+  const minYear = -1000
   const maxYear = 2025
   const yearRange = maxYear - minYear
 
@@ -99,7 +109,45 @@ export default function Timeline() {
     fetchImages()
   }, [])
 
-  // Sort giants by birth year for vertical timeline
+  // Handle continuous scroll and update visible period
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return
+
+      const scrollTop = timelineRef.current.scrollTop
+      const scrollHeight = timelineRef.current.scrollHeight - timelineRef.current.clientHeight
+      const scrollPercentage = scrollTop / scrollHeight
+
+      setScrollPosition(scrollPercentage)
+
+      // Determine which period is currently visible based on scroll position
+      const visibleYear = minYear + (scrollPercentage * yearRange)
+
+      let currentPeriodLabel = 'Ancient Period'
+      for (const period of timePeriods) {
+        if (visibleYear >= period.start && visibleYear <= period.end) {
+          currentPeriodLabel = period.label
+          break
+        }
+      }
+
+      setVisiblePeriod(currentPeriodLabel)
+    }
+
+    const container = timelineRef.current
+    if (container) {
+      container.addEventListener('scroll', handleScroll)
+      handleScroll() // Initial call
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [minYear, yearRange, timePeriods])
+
+  // Sort giants for full timeline (no filtering needed for continuous scroll)
   const giants = giantsWithImages.length > 0 ? giantsWithImages : (giantsData as GiantWithImage[])
   const sortedGiants = [...giants].sort((a, b) => a.birth_year - b.birth_year)
 
@@ -186,14 +234,18 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // Y-axis labels (years) - from -400 to 2025
+      // Y-axis labels (years) - full timeline
       const years = []
       // Ancient period
-      for (let year = -400; year <= 0; year += 100) {
+      for (let year = -1000; year <= 0; year += 100) {
         years.push(year)
       }
-      // Early centuries
-      for (let year = 200; year <= 1400; year += 200) {
+      // Classical to Medieval
+      for (let year = 100; year <= 900; year += 100) {
+        years.push(year)
+      }
+      // Early Modern
+      for (let year = 1000; year <= 1400; year += 100) {
         years.push(year)
       }
       // Modern period - more detail
@@ -285,10 +337,10 @@ export default function Timeline() {
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
     return () => window.removeEventListener('resize', resizeCanvas)
-  }, [sortedGiants.length, currentTime])
+  }, [sortedGiants.length, currentTime, minYear, yearRange])
 
   return (
-    <div className="w-full h-full relative" ref={containerRef}>
+    <div className="w-full h-full relative">
       {/* Canvas for Euclidean space background */}
       <canvas
         ref={canvasRef}
@@ -297,10 +349,46 @@ export default function Timeline() {
       />
 
       {/* Timeline content */}
-      <div className="relative z-10 px-8 py-4 h-full overflow-hidden bg-transparent">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-white">
-          Standing on the Shoulders of Giants
-        </h2>
+      <div className="relative z-10 px-8 py-4 h-full overflow-y-auto bg-transparent" ref={timelineRef}>
+        {/* Fixed header */}
+        <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-sm pb-4" ref={containerRef}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-white">
+            Standing on the Shoulders of Giants
+          </h2>
+
+          {/* Dynamic period indicator */}
+          <div className="text-center mb-2">
+            <span className="text-lg text-white/80 font-semibold">
+              {visiblePeriod}
+            </span>
+          </div>
+
+          {/* Period progress bar */}
+          <div className="flex justify-center gap-2 mb-4">
+            {timePeriods.map((period, index) => {
+              const periodStart = (period.start - minYear) / yearRange
+              const periodEnd = (period.end - minYear) / yearRange
+              const isActive = scrollPosition >= periodStart && scrollPosition <= periodEnd
+
+              return (
+                <div
+                  key={index}
+                  className={`h-1 transition-all ${
+                    isActive ? 'bg-white w-12' : 'bg-white/30 w-8'
+                  }`}
+                  onClick={() => {
+                    // Scroll to period start
+                    if (timelineRef.current) {
+                      const targetScroll = periodStart * (timelineRef.current.scrollHeight - timelineRef.current.clientHeight)
+                      timelineRef.current.scrollTo({ top: targetScroll, behavior: 'smooth' })
+                    }
+                  }}
+                  style={{ cursor: 'pointer' }}
+                />
+              )
+            })}
+          </div>
+        </div>
 
         {/* Legend with all unique fields */}
         <div className="flex flex-wrap gap-3 text-xs text-white/70 justify-center mb-4">
@@ -312,9 +400,9 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '60px', paddingBottom: '80px', paddingTop: '100px', height: 'calc(100vh - 180px)' }}>
+        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '60px', paddingBottom: '80px', paddingTop: '20px', minHeight: '3000px' }}>
           {/* Timeline with vertical lines for each giant */}
-          <div className="relative w-full h-full">
+          <div className="relative w-full" style={{ height: '3000px' }}>
             {sortedGiants.map((giant, index) => {
               // Spread giants across more of the width for better visibility
               const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 95 + 2.5

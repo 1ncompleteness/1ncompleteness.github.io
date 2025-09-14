@@ -409,7 +409,7 @@ export default function Home() {
                     {category.title}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {category.items.slice(0, 6).map((item: string, i: number) => (
+                    {category.items.map((item: string, i: number) => (
                       <span
                         key={i}
                         className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white"

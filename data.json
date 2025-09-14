@@ -653,10 +653,9 @@
       "interdisciplinary": ["Consciousness Studies", "Computational Neuroscience", "Philosophy of Mind"]
     },
     "sports_esports": [
-      "Chess",
-      "Basketball",
-      "xPro Chess Coach and Instructor",
-      "xPro Basketball Assistant Coach and Instructor"
+      "Chess: xPro, Coach",
+      "Basketball: xPro, Assistant Coach",
+      "Dota 2"
     ]
   },
   "experiences": {
@@ -695,7 +694,7 @@
   ],
   "passionate_interests": [
     "Formal Logic", "Formal Systems", "Formal Methods", "Automata", "Computation Theory",
-    "Tarski's Undefinability Theorem", "Gödel's incompleteness theorems", "Turing's Halting Problem",
+    "Tarski's Undefinability Theorem", "Gödel's Incompleteness Theorems", "Turing's Halting Problem",
     "Lambda Calculus", "Turing Machines", "Time Complexities", "P vs NP", "Graphs", "Networking",
     "Cybersecurity", "Penetration Testing", "Signal Processing", "Semi-Conductor Technologies",
     "Microprocessor", "Extreme Ultraviolet Lithography", "Game Theory", "Group Theory",
