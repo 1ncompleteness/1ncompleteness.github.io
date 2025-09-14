@@ -26,12 +26,9 @@ export default function Timeline() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Calculate timeline range
-  const minYear = Math.min(...giantsData.map(g => g.birth_year))
-  const currentYear = currentTime.getFullYear()
-  const currentMonth = currentTime.getMonth() / 12 // Fraction of year
-  const currentDay = currentTime.getDate() / 365 // Approximate fraction
-  const maxYear = currentYear + currentMonth + currentDay // Precise current time as decimal year
+  // Calculate timeline range from -400 to 2025
+  const minYear = -400
+  const maxYear = 2025
   const yearRange = maxYear - minYear
 
   // Update current time every second
@@ -171,16 +168,10 @@ export default function Timeline() {
       ctx.lineWidth = 2
 
       // Calculate graph area position (below title and legend)
-      const graphTop = 120 // Space for title and legend
-      const graphBottom = canvas.height - 60
-      const graphLeft = 60
+      const graphTop = 100 // Space for title and legend
+      const graphBottom = canvas.height - 50
+      const graphLeft = 70
       const graphRight = canvas.width - 40
-
-      // Draw X-axis (Giants) at top of graph area
-      ctx.beginPath()
-      ctx.moveTo(graphLeft, graphTop)
-      ctx.lineTo(graphRight, graphTop)
-      ctx.stroke()
 
       // Draw Y-axis (Time)
       ctx.beginPath()
@@ -195,14 +186,19 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // Y-axis labels (years) - older at top, current at bottom
-      const currentYearInt = currentTime.getFullYear()
-      // Add more year labels for better scale visibility
+      // Y-axis labels (years) - from -400 to 2025
       const years = []
-      for (let year = 1650; year <= currentYearInt; year += 10) {
-        if (year <= 1700 || (year >= 1750 && year % 25 === 0) || year === currentYearInt) {
-          years.push(year)
-        }
+      // Ancient period
+      for (let year = -400; year <= 0; year += 100) {
+        years.push(year)
+      }
+      // Early centuries
+      for (let year = 200; year <= 1400; year += 200) {
+        years.push(year)
+      }
+      // Modern period - more detail
+      for (let year = 1500; year <= 2025; year += 50) {
+        years.push(year)
       }
 
       years.forEach(year => {
@@ -217,10 +213,21 @@ export default function Timeline() {
         ctx.stroke()
       })
 
-      // Draw minor tick marks for decades
+      // Draw minor tick marks for centuries and decades
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
       ctx.lineWidth = 0.5
-      for (let year = 1650; year <= currentYearInt; year += 10) {
+      // Minor ticks for centuries in ancient period
+      for (let year = -400; year <= 1400; year += 50) {
+        if (!years.includes(year) && year <= 1400) {
+          const y = graphTop + ((year - minYear) / yearRange) * (graphBottom - graphTop)
+          ctx.beginPath()
+          ctx.moveTo(graphLeft, y)
+          ctx.lineTo(graphLeft - 3, y)
+          ctx.stroke()
+        }
+      }
+      // Minor ticks for modern period
+      for (let year = 1500; year <= 2025; year += 10) {
         if (!years.includes(year)) {
           const y = graphTop + ((year - minYear) / yearRange) * (graphBottom - graphTop)
           ctx.beginPath()
@@ -235,7 +242,8 @@ export default function Timeline() {
       ctx.lineWidth = 0.5
       ctx.setLineDash([5, 5])
       years.forEach(year => {
-        if (year % 50 === 0 || year === currentYearInt) {
+        // Grid lines for centuries and major milestones
+        if (year % 100 === 0 || year === 1 || year === 2025) {
           const y = graphTop + ((year - minYear) / yearRange) * (graphBottom - graphTop)
           ctx.beginPath()
           ctx.moveTo(graphLeft, y)
@@ -250,9 +258,8 @@ export default function Timeline() {
       // Axis labels
       ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
       ctx.font = '12px monospace'
-      ctx.fillText('Giants', canvas.width / 2 - 20, graphTop - 5)
 
-      // Display current date and time at the bottom of Y-axis (current time position)
+      // Display current date and time at 2025 position on Y-axis
       const timeString = currentTime.toLocaleString('en-US', {
         year: 'numeric',
         month: 'short',
@@ -263,9 +270,10 @@ export default function Timeline() {
         hour12: false
       })
       ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
-      ctx.font = '14px monospace'
-      // Position at the bottom of the Y-axis where current time is
-      ctx.fillText(timeString, graphLeft + 10, graphBottom + 20)
+      ctx.font = '12px monospace'
+      // Position at 2025 on the Y-axis
+      const year2025Y = graphTop + ((2025 - minYear) / yearRange) * (graphBottom - graphTop)
+      ctx.fillText(timeString, graphLeft + 10, year2025Y)
 
       ctx.save()
       ctx.translate(15, (graphTop + graphBottom) / 2)
@@ -277,7 +285,7 @@ export default function Timeline() {
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
     return () => window.removeEventListener('resize', resizeCanvas)
-  }, [sortedGiants.length, minYear, yearRange, currentTime])
+  }, [sortedGiants.length, currentTime])
 
   return (
     <div className="w-full h-full relative" ref={containerRef}>
@@ -304,7 +312,7 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '60px', paddingBottom: '100px', paddingTop: '120px', height: 'calc(100vh - 200px)' }}>
+        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '60px', paddingBottom: '80px', paddingTop: '100px', height: 'calc(100vh - 180px)' }}>
           {/* Timeline with vertical lines for each giant */}
           <div className="relative w-full h-full">
             {sortedGiants.map((giant, index) => {
@@ -324,14 +332,14 @@ export default function Timeline() {
                   style={{
                     left: `${xPosition}%`,
                     top: `${startY}%`,
-                    height: `${Math.abs(height)}%`,
-                    width: '10px'
+                    height: `${Math.max(Math.abs(height), 3)}%`, // Minimum height to exceed icon
+                    width: '12px'
                   }}
                 >
                   {/* Profile picture at birth year position */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-3 -top-4 w-10 h-10 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 transition-transform z-30 shadow-lg"
+                      className="absolute -left-3 -top-3 w-9 h-9 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 transition-transform z-30 shadow-lg"
                       onClick={() => openWikipedia(giant.wikipedia)}
                       onMouseEnter={(e) => handleMouseEnter(giant, e)}
                       onMouseLeave={handleMouseLeave}
@@ -353,7 +361,7 @@ export default function Timeline() {
                     style={{
                       top: 0,
                       height: '100%',
-                      width: '10px',
+                      width: '12px',
                       left: '0',
                       background: isGradient ? colorStyle : undefined,
                       backgroundColor: !isGradient ? colorStyle : undefined,
