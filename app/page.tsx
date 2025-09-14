@@ -43,9 +43,9 @@ export default function Home() {
       items: profileData.research.interests.primary
     },
     {
-      title: "Skills & Experience",
+      title: "Skills & Experiences",
       icon: <Zap className="w-5 h-5" />,
-      items: profileData.skills_experience
+      items: profileData.skills_experiences
     },
     {
       title: "Teaching & Sports",
@@ -165,13 +165,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Page 2: Skills & Experience */}
+        {/* Page 2: Skills & Experiences */}
         <section className="min-w-full h-full snap-start relative overflow-hidden">
           <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">Skills & Experience</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">Skills & Experiences</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
                 <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center gap-2">
@@ -213,7 +213,7 @@ export default function Home() {
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">
                 <Briefcase className="w-5 h-5" />
-                Professional Experience
+                Experiences
               </h3>
               <div className="space-y-3">
                 <div>

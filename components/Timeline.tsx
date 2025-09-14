@@ -99,32 +99,11 @@ export default function Timeline() {
     fetchImages()
   }, [])
 
-  // Group giants by overlapping lifespans to create stacked rows
-  const rows: GiantWithImage[][] = []
+  // Sort giants by birth year for vertical timeline
   const giants = giantsWithImages.length > 0 ? giantsWithImages : (giantsData as GiantWithImage[])
+  const sortedGiants = [...giants].sort((a, b) => a.birth_year - b.birth_year)
 
-  giants.forEach(giant => {
-    let placed = false
-    for (let i = 0; i < rows.length; i++) {
-      const row = rows[i]
-      const canPlace = !row.some(g => {
-        return !(giant.death_year && giant.death_year < g.birth_year ||
-                 g.death_year && g.death_year < giant.birth_year)
-      })
-
-      if (canPlace) {
-        row.push(giant)
-        placed = true
-        break
-      }
-    }
-
-    if (!placed) {
-      rows.push([giant])
-    }
-  })
-
-  const getPosition = (year: number) => {
+  const getYPosition = (year: number) => {
     return ((year - minYear) / yearRange) * 100
   }
 
@@ -187,13 +166,13 @@ export default function Timeline() {
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'
       ctx.lineWidth = 2
 
-      // Draw X-axis (time)
+      // Draw X-axis (Giants)
       ctx.beginPath()
       ctx.moveTo(40, canvas.height - 40)
       ctx.lineTo(canvas.width - 20, canvas.height - 40)
       ctx.stroke()
 
-      // Draw Y-axis
+      // Draw Y-axis (Time)
       ctx.beginPath()
       ctx.moveTo(40, 20)
       ctx.lineTo(40, canvas.height - 40)
@@ -206,16 +185,16 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // X-axis labels (years)
+      // Y-axis labels (years) - now on vertical axis
       const years = [1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2024]
       years.forEach(year => {
-        const x = 40 + ((year - minYear) / yearRange) * (canvas.width - 60)
-        ctx.fillText(year.toString(), x - 15, canvas.height - 25)
+        const y = canvas.height - 40 - ((year - minYear) / yearRange) * (canvas.height - 60)
+        ctx.fillText(year.toString(), 5, y + 3)
 
         // Draw tick marks
         ctx.beginPath()
-        ctx.moveTo(x, canvas.height - 40)
-        ctx.lineTo(x, canvas.height - 35)
+        ctx.moveTo(40, y)
+        ctx.lineTo(35, y)
         ctx.stroke()
       })
 
@@ -226,7 +205,7 @@ export default function Timeline() {
       // Axis labels
       ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
       ctx.font = '12px monospace'
-      ctx.fillText('Time', canvas.width / 2 - 15, canvas.height - 5)
+      ctx.fillText('Giants', canvas.width / 2 - 20, canvas.height - 5)
 
       // Display current date and time with seconds
       const timeString = currentTime.toLocaleString('en-US', {
@@ -245,14 +224,14 @@ export default function Timeline() {
       ctx.save()
       ctx.translate(10, canvas.height / 2)
       ctx.rotate(-Math.PI / 2)
-      ctx.fillText('Giants', -20, 0)
+      ctx.fillText('Time', -15, 0)
       ctx.restore()
     }
 
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
     return () => window.removeEventListener('resize', resizeCanvas)
-  }, [rows.length, minYear, yearRange, currentTime])
+  }, [sortedGiants.length, minYear, yearRange, currentTime])
 
   return (
     <div className="w-full h-full relative" ref={containerRef}>
@@ -280,66 +259,65 @@ export default function Timeline() {
         </div>
 
         <div className="relative min-h-[900px]" style={{ paddingLeft: '50px', paddingRight: '30px', paddingBottom: '50px', paddingTop: '30px' }}>
-          {/* Timeline rows with profile pictures and colored lines */}
+          {/* Timeline with vertical lines for each giant */}
           <div className="relative h-full">
-            {rows.map((row, rowIndex) => {
-              const yPosition = 30 + (rowIndex / rows.length) * 750
+            {sortedGiants.map((giant, index) => {
+              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 100
+              const startY = getYPosition(giant.birth_year)
+              const endY = getYPosition(giant.death_year || maxYear)
+              const height = endY - startY
+              const colorStyle = getGiantColor(giant.fields)
+              const isGradient = colorStyle.includes('gradient')
+
               return (
-                <div key={rowIndex} className="absolute w-full" style={{ top: `${yPosition}px` }}>
-                  {row.map(giant => {
-                    const startPos = getPosition(giant.birth_year)
-                    const endPos = getPosition(giant.death_year || maxYear)
-                    const width = endPos - startPos
-                    const colorStyle = getGiantColor(giant.fields)
-                    const isGradient = colorStyle.includes('gradient')
+                <div
+                  key={giant.name}
+                  className="absolute"
+                  style={{
+                    left: `${xPosition}%`,
+                    bottom: `${startY}%`,
+                    height: `${height}%`,
+                    width: '3px'
+                  }}
+                >
+                  {/* Profile picture at the bottom (birth) */}
+                  {giant.imageUrl && (
+                    <div
+                      className="absolute -left-3 -bottom-4 w-8 h-8 rounded-full overflow-hidden border-2 border-white/50 cursor-pointer hover:scale-110 transition-transform z-30"
+                      onClick={() => openWikipedia(giant.wikipedia)}
+                      onMouseEnter={(e) => handleMouseEnter(giant, e)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <img
+                        src={giant.imageUrl}
+                        alt={giant.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none'
+                        }}
+                      />
+                    </div>
+                  )}
 
-                    return (
-                      <div
-                        key={giant.name}
-                        className="absolute group"
-                        style={{ left: `${startPos}%`, width: `${width}%` }}
-                      >
-                        {/* Profile picture at the start */}
-                        {giant.imageUrl && (
-                          <div
-                            className="absolute -left-4 -top-4 w-8 h-8 rounded-full overflow-hidden border-2 border-white/50 cursor-pointer hover:scale-110 transition-transform z-30"
-                            onClick={() => openWikipedia(giant.wikipedia)}
-                            onMouseEnter={(e) => handleMouseEnter(giant, e)}
-                            onMouseLeave={handleMouseLeave}
-                          >
-                            <img
-                              src={giant.imageUrl}
-                              alt={giant.name}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).style.display = 'none'
-                              }}
-                            />
-                          </div>
-                        )}
-
-                        {/* Timeline line */}
-                        <div
-                          className="absolute cursor-pointer transition-all hover:z-20"
-                          style={{
-                            left: 0,
-                            width: '100%',
-                            height: '3px',
-                            top: '0',
-                            background: isGradient ? colorStyle : undefined,
-                            backgroundColor: !isGradient ? colorStyle : undefined,
-                            boxShadow: hoveredGiant?.name === giant.name
-                              ? `0 0 12px ${isGradient ? 'rgba(255,255,255,0.8)' : colorStyle}`
-                              : 'none',
-                            filter: hoveredGiant?.name === giant.name ? 'brightness(1.3)' : 'none'
-                          }}
-                          onMouseEnter={(e) => handleMouseEnter(giant, e)}
-                          onMouseLeave={handleMouseLeave}
-                          onClick={() => openWikipedia(giant.wikipedia)}
-                        />
-                      </div>
-                    )
-                  })}
+                  {/* Timeline line (vertical) */}
+                  <div
+                    className="absolute cursor-pointer transition-all hover:z-20"
+                    style={{
+                      bottom: 0,
+                      height: '100%',
+                      width: '3px',
+                      left: '0',
+                      background: isGradient ? colorStyle : undefined,
+                      backgroundColor: !isGradient ? colorStyle : undefined,
+                      boxShadow: hoveredGiant?.name === giant.name
+                        ? `0 0 12px ${isGradient ? 'rgba(255,255,255,0.8)' : colorStyle}`
+                        : 'none',
+                      filter: hoveredGiant?.name === giant.name ? 'brightness(1.3)' : 'none'
+                    }}
+                    onMouseEnter={(e) => handleMouseEnter(giant, e)}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => openWikipedia(giant.wikipedia)}
+                  />
                 </div>
               )
             })}
