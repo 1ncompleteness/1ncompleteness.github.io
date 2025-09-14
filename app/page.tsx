@@ -69,11 +69,11 @@ export default function Home() {
         className="flex flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory no-scrollbar"
       >
         {/* Page 1: Hero & About */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto">
-          <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+        <section className="min-w-full h-full snap-start relative overflow-hidden">
+          <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
 
-          <div className="relative z-10 min-h-full flex items-center justify-center py-16 sm:py-20">
+          <div className="relative z-10 h-full flex items-center justify-center p-8">
             <div className="text-center px-4 sm:px-6 md:px-8 max-w-4xl">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -112,7 +112,7 @@ export default function Home() {
                 href={profileData.personal.contact.social.github.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 sm:p-3 bg-surface rounded-full hover:bg-primary hover:scale-110 transition-all"
+                className="p-2 sm:p-3 bg-transparent border border-primary/30 rounded-full hover:bg-primary hover:scale-110 transition-all"
               >
                 <Github className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
@@ -120,13 +120,13 @@ export default function Home() {
                 href={profileData.personal.contact.social.linkedin.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 sm:p-3 bg-surface rounded-full hover:bg-primary hover:scale-110 transition-all"
+                className="p-2 sm:p-3 bg-transparent border border-primary/30 rounded-full hover:bg-primary hover:scale-110 transition-all"
               >
                 <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
               <a
                 href="mailto:b3h@me.com"
-                className="p-2 sm:p-3 bg-surface rounded-full hover:bg-primary hover:scale-110 transition-all"
+                className="p-2 sm:p-3 bg-transparent border border-primary/30 rounded-full hover:bg-primary hover:scale-110 transition-all"
               >
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
@@ -138,7 +138,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-left"
             >
-              <div className="bg-surface/80 p-3 sm:p-4 rounded-xl border border-primary">
+              <div className="bg-transparent p-3 sm:p-4 rounded-xl border border-primary">
                 <h3 className="text-base sm:text-lg font-semibold mb-2 flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" />
                   Education
@@ -147,7 +147,7 @@ export default function Home() {
                 <p className="text-xs text-primary mt-1">Associate's Degree in Software Engineering</p>
               </div>
 
-              <div className="bg-surface/80 p-3 sm:p-4 rounded-xl border border-primary">
+              <div className="bg-transparent p-3 sm:p-4 rounded-xl border border-primary">
                 <h3 className="text-base sm:text-lg font-semibold mb-2 flex items-center gap-2">
                   <Briefcase className="w-4 h-4 text-primary" />
                   Entelligent
@@ -166,14 +166,14 @@ export default function Home() {
         </section>
 
         {/* Page 2: Skills & Experience */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto">
-          <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+        <section className="min-w-full h-full snap-start relative overflow-hidden">
+          <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
-          <div className="relative z-10 min-h-full py-16 sm:py-20">
+          <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center" style={{ color: '#353535' }}>Skills & Experience</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-              <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary">
+              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
                 <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center gap-2">
                   <Code className="w-5 h-5 text-primary" />
                   Languages
@@ -187,7 +187,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary">
+              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
                 <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">ML/AI Stack</h3>
                 <div className="flex flex-wrap gap-2">
                   {profileData.technical_skills.frameworks.ml_dl.core.slice(0, 5).map((fw: string) => (
@@ -198,7 +198,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary">
+              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
                 <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Databases</h3>
                 <div className="flex flex-wrap gap-2">
                   {profileData.technical_skills.frameworks.databases.graph.map((db: string) => (
@@ -210,7 +210,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
+            <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">
                 <Briefcase className="w-5 h-5" />
                 Professional Experience
@@ -231,7 +231,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary">
+            <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Full Stack Development & DevOps</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <div>
@@ -271,16 +271,16 @@ export default function Home() {
         </section>
 
         {/* Page 3: Interests & Contact */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto">
-          <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+        <section className="min-w-full h-full snap-start relative overflow-hidden">
+          <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
-          <div className="relative z-10 min-h-full py-16 sm:py-20">
+          <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center" style={{ color: '#353535' }}>Interests & Passions</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {interestCategories.map((category, idx) => (
-                <div key={idx} className="bg-surface p-3 sm:p-4 rounded-xl border-2 border-primary">
+                <div key={idx} className="bg-transparent p-3 sm:p-4 rounded-xl border-2 border-primary">
                   <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 flex items-center gap-2">
                     {category.icon}
                     {category.title}
@@ -299,12 +299,12 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary mb-6 sm:mb-8">
+            <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-6 sm:mb-8">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-center">Visions of the Future Past</h3>
               <p className="text-center mb-4">
                 <span className="text-gradient" style={{ textDecoration: 'line-through', textDecorationColor: '#3c6e71', textDecorationThickness: '2px' }}>Small</span> Talk Only About:
               </p>
-              <div className="flex flex-wrap gap-2 justify-center max-h-64 sm:max-h-80 md:max-h-96 overflow-y-auto p-3 sm:p-4">
+              <div className="flex flex-wrap gap-2 justify-center max-h-64 sm:max-h-80 md:max-h-96 overflow-y-auto p-3 sm:p-4 scrollbar-thin scrollbar-thumb-primary scrollbar-track-surface">
                 {profileData.passionate_interests.map((interest: string, idx: number) => {
                   const angle = (idx * 10) % 360;
                   const colors = [
@@ -344,7 +344,7 @@ export default function Home() {
                   href={profileData.personal.contact.social.linkedin.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-surface border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2"
+                  className="px-6 py-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2"
                 >
                   <Linkedin className="w-5 h-5" />
                   Connect
@@ -357,10 +357,10 @@ export default function Home() {
         </section>
 
         {/* Page 4: Shoulders of Giants Timeline */}
-        <section className="min-w-full h-full snap-start relative overflow-y-auto">
-          <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+        <section className="min-w-full h-full snap-start relative overflow-hidden">
+          <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
-          <div className="relative z-10 min-h-full">
+          <div className="relative z-10 h-full">
             <Timeline />
           </div>
         </section>

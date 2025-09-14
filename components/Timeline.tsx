@@ -369,7 +369,7 @@ export default function Timeline() {
       {/* Tooltip */}
       {hoveredGiant && (
         <div
-          className="fixed z-50 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg p-4 shadow-xl max-w-sm pointer-events-none"
+          className="fixed z-50 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg p-4 max-w-sm pointer-events-none"
           style={{
             left: tooltipPosition.x,
             top: tooltipPosition.y - 10,
