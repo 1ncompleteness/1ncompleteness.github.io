@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   keywords: ['AI', 'Machine Learning', 'NLP', 'Research', 'Entrepreneur', 'Computer Science'],
   openGraph: {
     title: 'Behrouz Barati B',
-    description: 'Student of Math, CS, and Software Engineering. Co-founder of Entelligent.',
+    description: 'Student of Math, CS, and Software Engineering. Cofounder of Entelligent.',
     url: 'https://1ncompleteness.github.io',
     siteName: 'Behrouz Barati B Portfolio',
     type: 'website',

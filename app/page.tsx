@@ -81,7 +81,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 font-sf-pro"
             >
-              <span className="text-gradient">{profileData.personal.name.display}</span>
+              <span style={{ color: '#353535' }}>{profileData.personal.name.display}</span>
             </motion.h1>
 
             <motion.p
@@ -138,7 +138,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-left"
             >
-              <div className="bg-surface/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-primary">
+              <div className="bg-surface/80 p-3 sm:p-4 rounded-xl border border-primary">
                 <h3 className="text-base sm:text-lg font-semibold mb-2 flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" />
                   Education
@@ -147,12 +147,12 @@ export default function Home() {
                 <p className="text-xs text-primary mt-1">Associate's Degree in Software Engineering</p>
               </div>
 
-              <div className="bg-surface/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-primary">
+              <div className="bg-surface/80 p-3 sm:p-4 rounded-xl border border-primary">
                 <h3 className="text-base sm:text-lg font-semibold mb-2 flex items-center gap-2">
                   <Briefcase className="w-4 h-4 text-primary" />
                   Entelligent
                 </h3>
-                <p className="text-xs sm:text-sm">Co-Founder</p>
+                <p className="text-xs sm:text-sm">Cofounder</p>
                 <a href={profileData.entrepreneurship.company.deployments.production[1].url}
                    target="_blank"
                    rel="noopener noreferrer"
@@ -171,7 +171,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 min-h-full py-16 sm:py-20">
             <div className="px-4 max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-gradient text-center">Skills & Experience</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center" style={{ color: '#353535' }}>Skills & Experience</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               <div className="bg-surface p-4 sm:p-6 rounded-xl border-2 border-primary">
                 <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center gap-2">
@@ -222,7 +222,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm sm:text-base font-semibold">Software as a Service (SaaS)</p>
-                  <p className="text-xs sm:text-sm text-primary">Entelligent Co-Founder • Knowledge Base Systems</p>
+                  <p className="text-xs sm:text-sm text-primary">Entelligent Cofounder • Knowledge Base Systems</p>
                 </div>
                 <div>
                   <p className="text-sm sm:text-base font-semibold">Network & Security Systems Administrator</p>
@@ -276,7 +276,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 min-h-full py-16 sm:py-20">
             <div className="px-4 max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-gradient text-center">Interests & Passions</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center" style={{ color: '#353535' }}>Interests & Passions</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {interestCategories.map((category, idx) => (

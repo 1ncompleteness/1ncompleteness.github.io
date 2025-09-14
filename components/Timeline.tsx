@@ -284,9 +284,9 @@ export default function Timeline() {
 
       {/* Timeline content */}
       <div className="relative z-10 p-8 h-full overflow-auto bg-transparent">
-        <h3 className="text-2xl font-bold mb-4 text-white text-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center" style={{ color: '#353535' }}>
           Standing on the Shoulders of Giants
-        </h3>
+        </h2>
 
         {/* Legend with all unique fields */}
         <div className="flex flex-wrap gap-3 text-xs text-white/70 justify-center mb-6">
