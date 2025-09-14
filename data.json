@@ -591,25 +591,27 @@
       "ml_ai": {
         "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "XGBoost"],
         "specialized": {
-          "nlp": ["Transformers", "spaCy", "NLTK", "LangChain"],
-          "graph": ["NetworkX", "PyTorch Geometric", "DGL"],
-          "visualization": ["Matplotlib", "Seaborn", "Plotly"]
+          "nlp": ["Transformers", "NLTK", "LangChain"],
+          "graph": ["PyTorch Geometric"],
+          "visualization": ["Matplotlib"]
         }
       },
       "web": {
         "backend": {
           "apis": ["FastAPI", "Flask"],
-          "nodejs": ["Express", "NestJS"]
+          "nodejs": ["Express", "NestJS"],
+          "authentication": ["JWT", "OAuth 2.0", "Session-based Auth"]
         },
         "frontend": {
           "frameworks": ["React", "Next.js"],
-          "ui": ["Tailwind CSS", "Material-UI", "Bootstrap", "Framer Motion"]
+          "ui": ["Tailwind CSS", "Material-UI", "Bootstrap", "Framer Motion"],
+          "http_clients": ["Axios", "Fetch API", "GraphQL Client"]
         }
       },
       "databases": {
         "relational": ["PostgreSQL", "MySQL", "SQLite"],
         "graph": ["Neo4j"],
-        "vector": ["Pinecone", "Weaviate", "ChromaDB"],
+        "vector": ["ChromaDB"],
         "nosql": ["MongoDB", "Redis"]
       },
       "devops": {
@@ -675,7 +677,7 @@
       "main": "Skills & Experiences",
       "experiences": "Experiences",
       "languages": "Languages",
-      "ml_ai": "ML/AI",
+      "ml_ai": "Machine Learning",
       "databases": "Databases",
       "full_stack": "Full Stack Development & DevOps",
       "frontend": "Frontend",
