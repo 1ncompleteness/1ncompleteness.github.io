@@ -31,13 +31,13 @@ export default function Timeline() {
 
   // Define time periods for display
   const timePeriods = [
-    { start: -1000, end: 0, label: 'Ancient Period' },
+    { start: -500, end: 0, label: 'Ancient Period' },
     { start: 0, end: 1000, label: 'Classical to Medieval' },
     { start: 1000, end: 2025, label: 'Modern Era' }
   ]
 
-  // Full timeline range for continuous scroll
-  const minYear = -1000
+  // Timeline range starting from -500
+  const minYear = -500
   const maxYear = 2025
   const yearRange = maxYear - minYear
 
@@ -234,10 +234,10 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // Y-axis labels (years) - full timeline
+      // Y-axis labels (years) - from -500 to 2025
       const years = []
       // Ancient period
-      for (let year = -1000; year <= 0; year += 100) {
+      for (let year = -500; year <= 0; year += 100) {
         years.push(year)
       }
       // Classical to Medieval
@@ -400,9 +400,9 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '60px', paddingBottom: '80px', paddingTop: '20px', minHeight: '3000px' }}>
+        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '60px', paddingBottom: '80px', paddingTop: '20px', minHeight: '2500px' }}>
           {/* Timeline with vertical lines for each giant */}
-          <div className="relative w-full" style={{ height: '3000px' }}>
+          <div className="relative w-full" style={{ height: '2500px' }}>
             {sortedGiants.map((giant, index) => {
               // Spread giants across more of the width for better visibility
               const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 95 + 2.5
