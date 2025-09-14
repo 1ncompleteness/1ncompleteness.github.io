@@ -28,7 +28,10 @@ export default function Timeline() {
 
   // Calculate timeline range
   const minYear = Math.min(...giantsData.map(g => g.birth_year))
-  const maxYear = new Date().getFullYear()
+  const currentYear = currentTime.getFullYear()
+  const currentMonth = currentTime.getMonth() / 12 // Fraction of year
+  const currentDay = currentTime.getDate() / 365 // Approximate fraction
+  const maxYear = currentYear + currentMonth + currentDay // Precise current time as decimal year
   const yearRange = maxYear - minYear
 
   // Update current time every second
@@ -104,8 +107,8 @@ export default function Timeline() {
   const sortedGiants = [...giants].sort((a, b) => a.birth_year - b.birth_year)
 
   const getYPosition = (year: number) => {
-    // Inverted: older dates at top, newer at bottom
-    return (1 - ((year - minYear) / yearRange)) * 100
+    // Top-left origin: older dates at top (0%), current time at bottom (100%)
+    return ((year - minYear) / yearRange) * 100
   }
 
   const handleMouseEnter = (giant: GiantWithImage, event: React.MouseEvent) => {
@@ -167,10 +170,10 @@ export default function Timeline() {
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'
       ctx.lineWidth = 2
 
-      // Draw X-axis (Giants)
+      // Draw X-axis (Giants) at top
       ctx.beginPath()
-      ctx.moveTo(40, canvas.height - 40)
-      ctx.lineTo(canvas.width - 20, canvas.height - 40)
+      ctx.moveTo(40, 20)
+      ctx.lineTo(canvas.width - 20, 20)
       ctx.stroke()
 
       // Draw Y-axis (Time)
@@ -186,10 +189,11 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // Y-axis labels (years) - inverted so older is at top
-      const years = [1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2024]
+      // Y-axis labels (years) - older at top, current at bottom
+      const currentYearInt = currentTime.getFullYear()
+      const years = [1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, currentYearInt]
       years.forEach(year => {
-        // Inverted positioning - older at top
+        // Top-left origin positioning
         const y = 20 + ((year - minYear) / yearRange) * (canvas.height - 60)
         ctx.fillText(year.toString(), 5, y + 3)
 
@@ -207,9 +211,9 @@ export default function Timeline() {
       // Axis labels
       ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
       ctx.font = '12px monospace'
-      ctx.fillText('Giants', canvas.width / 2 - 20, canvas.height - 5)
+      ctx.fillText('Giants', canvas.width / 2 - 20, 15)
 
-      // Display current date and time with seconds
+      // Display current date and time at the bottom of Y-axis (current time position)
       const timeString = currentTime.toLocaleString('en-US', {
         year: 'numeric',
         month: 'short',
@@ -221,7 +225,8 @@ export default function Timeline() {
       })
       ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
       ctx.font = '14px monospace'
-      ctx.fillText(timeString, canvas.width - 200, 35)
+      // Position at the bottom of the Y-axis where current time is
+      ctx.fillText(timeString, 50, canvas.height - 25)
 
       ctx.save()
       ctx.translate(10, canvas.height / 2)
@@ -266,7 +271,8 @@ export default function Timeline() {
             {sortedGiants.map((giant, index) => {
               const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 90 + 5
               const startY = getYPosition(giant.birth_year)
-              const endY = getYPosition(giant.death_year || maxYear)
+              const currentYearDecimal = currentTime.getFullYear() + currentTime.getMonth() / 12 + currentTime.getDate() / 365
+              const endY = getYPosition(giant.death_year || currentYearDecimal)
               const height = endY - startY
               const colorStyle = getGiantColor(giant.fields)
               const isGradient = colorStyle.includes('gradient')
@@ -278,11 +284,11 @@ export default function Timeline() {
                   style={{
                     left: `${xPosition}%`,
                     top: `${startY}%`,
-                    height: `${height}%`,
+                    height: `${Math.abs(height)}%`,
                     width: '8px'
                   }}
                 >
-                  {/* Profile picture at the top (birth) */}
+                  {/* Profile picture at birth year position */}
                   {giant.imageUrl && (
                     <div
                       className="absolute -left-3 -top-4 w-10 h-10 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 transition-transform z-30 shadow-lg"
