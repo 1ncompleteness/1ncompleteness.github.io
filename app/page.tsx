@@ -33,10 +33,31 @@ export default function Home() {
   }
 
 
-  // Helper function to generate Wikipedia URL
-  const getWikipediaUrl = (item: string) => {
+  // Helper function to generate search URL (Wikipedia or Google fallback)
+  const getSearchUrl = (item: string) => {
     // Special mappings for items that need specific Wikipedia pages
     const wikipediaMappings: { [key: string]: string } = {
+      // Research Interests
+      "NLP (Natural Language Processing)": "Natural_language_processing",
+      "LLMs (Large Language Models)": "Large_language_model",
+      "MAS (Multi-Agent Systems)": "Multi-agent_system",
+      "RAG (Retrieval-Augmented Generation) Systems": "Retrieval-augmented_generation",
+      "ZSL (Zero-Shot Learning)": "Zero-shot_learning",
+      "tACS (Transcranial Alternating Current Stimulation)": "Transcranial_alternating_current_stimulation",
+      "tDCS (Transcranial Direct Current Stimulation)": "Transcranial_direct-current_stimulation",
+      "TMS (Transcranial Magnetic Stimulation)": "Transcranial_magnetic_stimulation",
+      "Formal Systems": "Formal_system",
+      "Formal Methods": "Formal_methods",
+      "Multimodal Agents": "Multimodal_learning",
+      "Computational Neuroscience": "Computational_neuroscience",
+      "Embedding Models": "Word_embedding",
+      "Applied Machine Learning": "Machine_learning",
+      "Knowledge Graphs": "Knowledge_graph",
+      "Game Theory": "Game_theory",
+      "Robust Optimization": "Robust_optimization",
+      "Knowledge Base Systems": "Knowledge_base",
+      "Algebraic Geometry": "Algebraic_geometry",
+      // Sports & Esports
       "FIDE ~2000 ELO Norm": "FIDE_titles",
       "Basketball Assistant Coach": "Coach_(basketball)",
       "Basketball Instructor": "Basketball",
@@ -73,7 +94,22 @@ export default function Home() {
       "World of Warcraft": "World_of_Warcraft"
     }
 
-    // Check if there's a specific mapping, otherwise use the item name with underscores
+    // Items that don't have Wikipedia pages - use Google search instead
+    const googleSearchOnly: string[] = [
+      "Basketball Assistant Coach",
+      "Basketball Instructor",
+      "Chess Coach",
+      "Chess Instructor",
+      "Multimodal Agents", // Actually doesn't have a direct Wikipedia page
+      "Embedding Models" // Redirects to Word embedding but might be better as Google search
+    ]
+
+    // If item should use Google search or has no Wikipedia mapping
+    if (googleSearchOnly.includes(item)) {
+      return `https://www.google.com/search?q=${encodeURIComponent(item)}`
+    }
+
+    // Check if there's a specific Wikipedia mapping, otherwise use the item name with underscores
     const wikiPage = wikipediaMappings[item] || item.replace(/ /g, '_')
     return `https://en.wikipedia.org/wiki/${wikiPage}`
   }
@@ -239,13 +275,21 @@ export default function Home() {
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {(() => {
-                      // Collect all interests
+                      // Collect all interests with proper acronym format
                       const allInterests = [
                         ...profileData.research.interests.primary,
                         ...profileData.research.interests.detailed.machine_learning.subfields.nlp.areas.slice(0, 2),
                         profileData.research.interests.detailed.machine_learning.subfields.game_theory.focus,
                         "Algebraic Geometry",
-                        "Embedding Models"
+                        "Embedding Models",
+                        "Formal Systems",
+                        "Formal Methods",
+                        "ZSL (Zero-Shot Learning)",
+                        "Multimodal Agents",
+                        "Computational Neuroscience",
+                        "tACS (Transcranial Alternating Current Stimulation)",
+                        "tDCS (Transcranial Direct Current Stimulation)",
+                        "TMS (Transcranial Magnetic Stimulation)"
                       ];
 
                       // Remove duplicates (case-insensitive)
@@ -259,16 +303,28 @@ export default function Home() {
                       const sortedInterests = uniqueInterests.sort((a, b) => {
                         const priority: Record<string, number> = {
                           "applied machine learning": 1,
+                          "nlp (natural language processing)": 2,
                           "natural language processing": 2,
+                          "llms (large language models)": 3,
                           "large language models": 3,
                           "knowledge graphs": 4,
                           "game theory": 5,
                           "robust optimization": 6,
+                          "mas (multi-agent systems)": 7,
                           "multi-agent systems": 7,
-                          "knowledge base systems": 8,
-                          "rag systems": 9,
-                          "embedding models": 10,
-                          "algebraic geometry": 11
+                          "multimodal agents": 8,
+                          "knowledge base systems": 9,
+                          "rag (retrieval-augmented generation) systems": 10,
+                          "rag systems": 10,
+                          "embedding models": 11,
+                          "computational neuroscience": 12,
+                          "formal systems": 13,
+                          "formal methods": 14,
+                          "zsl (zero-shot learning)": 15,
+                          "tacs (transcranial alternating current stimulation)": 16,
+                          "tdcs (transcranial direct current stimulation)": 17,
+                          "tms (transcranial magnetic stimulation)": 18,
+                          "algebraic geometry": 19
                         };
 
                         const aPriority = priority[a.toLowerCase()] || 99;
@@ -278,18 +334,41 @@ export default function Home() {
                       });
 
                       return sortedInterests.map((interest: string, index: number) => {
-                        // Title case each word
-                        const titleCased = interest.split(' ').map((word: string) =>
-                          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                        ).join(' ');
+                        // Format with proper acronyms and title case
+                        let formatted = interest;
+
+                        // Map to proper acronym format
+                        const acronymMappings: Record<string, string> = {
+                          "natural language processing": "NLP (Natural Language Processing)",
+                          "large language models": "LLMs (Large Language Models)",
+                          "multi-agent systems": "MAS (Multi-Agent Systems)",
+                          "rag systems": "RAG (Retrieval-Augmented Generation) Systems",
+                          "zsl (zero-shot learning)": "ZSL (Zero-Shot Learning)",
+                          "tacs (transcranial alternating current stimulation)": "tACS (Transcranial Alternating Current Stimulation)",
+                          "tdcs (transcranial direct current stimulation)": "tDCS (Transcranial Direct Current Stimulation)",
+                          "tms (transcranial magnetic stimulation)": "TMS (Transcranial Magnetic Stimulation)"
+                        };
+
+                        const lowerInterest = interest.toLowerCase();
+                        if (acronymMappings[lowerInterest]) {
+                          formatted = acronymMappings[lowerInterest];
+                        } else if (!interest.includes('(')) {
+                          // Title case if not already formatted with acronym
+                          formatted = interest.split(' ').map((word: string) =>
+                            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                          ).join(' ');
+                        }
 
                         return (
-                          <span
+                          <a
                             key={index}
-                            className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white"
+                            href={getSearchUrl(formatted)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white hover:opacity-80 transition-opacity"
                           >
-                            {titleCased}
-                          </span>
+                            {formatted}
+                          </a>
                         );
                       });
                     })()}
@@ -775,7 +854,7 @@ export default function Home() {
                     {category.items.map((item: string, i: number) => (
                       <a
                         key={`${category.title}-${item}-${i}`}
-                        href={getWikipediaUrl(item)}
+                        href={getSearchUrl(item)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white hover:scale-105 transition-transform cursor-pointer"
