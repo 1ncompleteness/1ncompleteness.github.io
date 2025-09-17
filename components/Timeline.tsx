@@ -272,10 +272,10 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // Y-axis labels (years) - from -500 to 2025
+      // Y-axis labels (years) - from -1000 to 2025
       const years = []
       // Ancient period
-      for (let year = -500; year <= 0; year += 100) {
+      for (let year = -1000; year <= 0; year += 100) {
         years.push(year)
       }
       // Classical to Medieval
@@ -307,7 +307,7 @@ export default function Timeline() {
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
       ctx.lineWidth = 0.5
       // Minor ticks for centuries in ancient period
-      for (let year = -400; year <= 1400; year += 50) {
+      for (let year = -900; year <= 1400; year += 50) {
         if (!years.includes(year) && year <= 1400) {
           const y = graphTop + ((year - minYear) / yearRange) * (graphBottom - graphTop)
           ctx.beginPath()

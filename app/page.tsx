@@ -1,9 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, BookOpen, Code, Briefcase, Sparkles, Zap, GraduationCap, FileText, FlaskConical, Activity, Music } from 'lucide-react'
-import { Github } from 'lucide-react'
-import { Linkedin as LinkedinIcon } from 'lucide-react'
+import { Mail, BookOpen, Code, Briefcase, Sparkles, Zap, GraduationCap, FileText, FlaskConical, Activity, Music, Github, Linkedin } from 'lucide-react'
 import profileData from '@/data.json'
 import Timeline from '@/components/Timeline'
 import TopBar from '@/components/TopBar'
@@ -35,26 +33,82 @@ export default function Home() {
   }
 
 
+  // Helper function to generate Wikipedia URL
+  const getWikipediaUrl = (item: string) => {
+    // Special mappings for items that need specific Wikipedia pages
+    const wikipediaMappings: { [key: string]: string } = {
+      "FIDE ~2000 ELO Norm": "FIDE_titles",
+      "Basketball Assistant Coach": "Coach_(basketball)",
+      "Basketball Instructor": "Basketball",
+      "Basketball Pro League": "List_of_basketball_leagues",
+      "Basketball State Championship": "High_school_basketball",
+      "Chess Coach": "Chess",
+      "Chess Instructor": "Chess",
+      "Baroque Period": "Baroque_music",
+      "Romantic Era": "Romantic_music",
+      "Modern Classical": "Contemporary_classical_music",
+      "Alternative Rock": "Alternative_rock",
+      "Progressive Metal": "Progressive_metal",
+      "Assassin's Creed": "Assassin%27s_Creed",
+      "Beyond Two Souls": "Beyond:_Two_Souls",
+      "Counter Strike": "Counter-Strike",
+      "Cyberpunk 2077": "Cyberpunk_2077",
+      "Dark Souls": "Dark_Souls",
+      "Devil May Cry": "Devil_May_Cry",
+      "Dota 2": "Dota_2",
+      "Dragon Age": "Dragon_Age",
+      "Elden Ring": "Elden_Ring",
+      "God of War": "God_of_War_(franchise)",
+      "Guitar Hero": "Guitar_Hero",
+      "Half-Life": "Half-Life_(series)",
+      "Heavy Rain": "Heavy_Rain",
+      "Max Payne": "Max_Payne",
+      "Mortal Kombat": "Mortal_Kombat",
+      "NBA 2K": "NBA_2K",
+      "Red Dead Redemption": "Red_Dead_Redemption",
+      "Rust": "Rust_(video_game)",
+      "The Last of Us": "The_Last_of_Us",
+      "The Legend of Zelda": "The_Legend_of_Zelda",
+      "The Witcher": "The_Witcher_(video_game_series)",
+      "World of Warcraft": "World_of_Warcraft"
+    }
+
+    // Check if there's a specific mapping, otherwise use the item name with underscores
+    const wikiPage = wikipediaMappings[item] || item.replace(/ /g, '_')
+    return `https://en.wikipedia.org/wiki/${wikiPage}`
+  }
+
   // Categories for interests with icons
   const interestCategories = [
     {
-      title: "Music & Art",
+      title: "Art & Music",
       icon: <Music className="w-5 h-5" />,
       items: [
-        "Alternative Rock", "Progressive Metal", "Electronic",
-        "Classical Music", "Grunge", "Indie Rock",
-        "Baroque Period", "Romantic Era", "Modern Classical"
-      ]
-    },
-    {
-      title: "Teaching",
-      icon: <BookOpen className="w-5 h-5" />,
-      items: Object.values(profileData.academic_service.tutoring.subjects).flat()
+        "Alternative Rock", "Ambient", "Art Rock", "Baroque Period", "Blues",
+        "Chamber Music", "Classical Music", "Dark Ambient", "Electronic",
+        "Experimental", "Gothic Rock", "Grunge", "Heavy Metal", "Impressionism",
+        "Indie Rock", "Industrial", "Jazz", "Medieval Music", "Modern Classical",
+        "Neo-Classical", "New Wave", "Opera", "Orchestral", "Post-Punk",
+        "Post-Rock", "Progressive Metal", "Progressive Rock", "Psychedelic Rock",
+        "Renaissance Music", "Romantic Era", "Shoegaze", "Soundtrack",
+        "Space Rock", "Symphonic Metal", "Synthwave", "Trip Hop"
+      ].sort()
     },
     {
       title: "Sports & Esports",
       icon: <Sparkles className="w-5 h-5" />,
-      items: profileData.academic_service.sports_esports
+      items: [
+        "Armored Core", "Assassin's Creed", "Basketball",
+        "Basketball Pro League", "Basketball State Championship",
+        "Beyond Two Souls", "BioShock", "Bloodborne", "Borderlands", "Chess",
+        "Counter Strike", "Cyberpunk 2077",
+        "Dark Souls", "Devil May Cry", "Dota 2", "Dragon Age", "Elden Ring",
+        "Fallout", "FarCry", "FIDE ~2000 ELO Norm", "FIFA", "God of War",
+        "Guitar Hero", "Hades", "Half-Life", "Heavy Rain", "Max Payne",
+        "Mortal Kombat", "NBA 2K", "Persona", "Red Dead Redemption", "Rust",
+        "Sekiro", "The Last of Us", "The Legend of Zelda", "The Witcher",
+        "Uncharted", "World of Warcraft"
+      ].sort()
     }
   ]
 
@@ -123,7 +177,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="p-2 sm:p-3 bg-transparent border border-primary/30 rounded-full hover:bg-primary hover:scale-110 transition-all"
               >
-                <LinkedinIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
               <a
                 href={`mailto:${profileData.personal.contact.email}`}
@@ -251,11 +305,11 @@ export default function Home() {
                   <div className="space-y-3 max-h-64 overflow-y-auto">
                     {/* Alzheimer's Paper with Preprint */}
                     <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-primary">
+                      <h4 className="text-sm sm:text-base font-semibold text-white">
                         {profileData.research.projects.publications.medical_ai.alzheimers.title}
                       </h4>
                       <p className="text-xs sm:text-sm text-white/60">
-                        UCI Darwin Dataset • {profileData.research.projects.publications.medical_ai.alzheimers.venue} • {profileData.research.projects.publications.medical_ai.alzheimers.status}
+                        UCI DARWIN Dataset • {profileData.research.projects.publications.medical_ai.alzheimers.venue} • {profileData.research.projects.publications.medical_ai.alzheimers.status}
                       </p>
                       <p className="text-xs sm:text-sm text-white/60">
                         XGBoost Baseline with Cross-Validation
@@ -270,7 +324,7 @@ export default function Home() {
                           View Preprint →
                         </a>
                         <a
-                          href="https://archive.ics.uci.edu/dataset/178/darwin"
+                          href="https://archive.ics.uci.edu/dataset/732/darwin"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs sm:text-sm text-primary hover:underline"
@@ -282,7 +336,7 @@ export default function Home() {
 
                     {/* Parkinson's Research */}
                     <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-primary">
+                      <h4 className="text-sm sm:text-base font-semibold text-white">
                         {profileData.research.projects.publications.medical_ai.parkinsons.title}
                       </h4>
                       <p className="text-xs sm:text-sm text-white/60">
@@ -303,7 +357,7 @@ export default function Home() {
 
                     {/* Multi-Agent Geometric Project */}
                     <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-primary">
+                      <h4 className="text-sm sm:text-base font-semibold text-white">
                         {profileData.research.projects.active.multi_agent_geometric.title}
                       </h4>
                       <p className="text-xs sm:text-sm text-white/60">
@@ -316,7 +370,7 @@ export default function Home() {
 
                     {/* Knowledge Graph Systems */}
                     <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-primary">
+                      <h4 className="text-sm sm:text-base font-semibold text-white">
                         Knowledge Graph & Base Systems
                       </h4>
                       <p className="text-xs sm:text-sm text-white/60">
@@ -341,7 +395,7 @@ export default function Home() {
                       <h4 className="text-sm sm:text-base font-semibold text-primary mb-2">Current Enrollment (Spring 2025)</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         {profileData.education.courses_taken.current_enrollment.map((course: any, index: number) => (
-                          <div key={index} className="border-l-2 border-primary/50 pl-2 py-1">
+                          <div key={`current-${course.code}-${course.name}-${index}`} className="border-l-2 border-primary/50 pl-2 py-1">
                             <div className="flex justify-between items-start">
                               <div className="flex-1">
                                 <span className="text-xs font-semibold text-white">{course.code}</span>
@@ -357,13 +411,13 @@ export default function Home() {
                     {/* Completed Courses */}
                     <div>
                       <h4 className="text-sm sm:text-base font-semibold text-primary mb-2">Completed Courses</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {/* Computer Science */}
                         <div>
                           <h5 className="text-xs sm:text-sm font-semibold text-primary/80 mb-2">Computer Science</h5>
                           <div className="space-y-1 max-h-48 overflow-y-auto">
                             {profileData.education.courses_taken.computer_science.map((course: any, index: number) => (
-                              <div key={index} className="border-b border-white/10 pb-1">
+                              <div key={`cs-${course.code}-${course.name}-${index}`} className="border-b border-white/10 pb-1">
                                 <div className="flex justify-between items-start">
                                   <div className="flex-1">
                                     <span className="text-xs font-semibold text-white">{course.code}</span>
@@ -382,7 +436,7 @@ export default function Home() {
                           <h5 className="text-xs sm:text-sm font-semibold text-primary/80 mb-2">Mathematics</h5>
                           <div className="space-y-1 max-h-48 overflow-y-auto">
                             {profileData.education.courses_taken.mathematics.map((course: any, index: number) => (
-                              <div key={index} className="border-b border-white/10 pb-1">
+                              <div key={`math-${course.code}-${course.name}-${index}`} className="border-b border-white/10 pb-1">
                                 <div className="flex justify-between items-start">
                                   <div className="flex-1">
                                     <span className="text-xs font-semibold text-white">{course.code}</span>
@@ -401,7 +455,26 @@ export default function Home() {
                           <h5 className="text-xs sm:text-sm font-semibold text-primary/80 mb-2">Physics</h5>
                           <div className="space-y-1 max-h-48 overflow-y-auto">
                             {profileData.education.courses_taken.physics.map((course: any, index: number) => (
-                              <div key={index} className="border-b border-white/10 pb-1">
+                              <div key={`phys-${course.code}-${course.name}-${index}`} className="border-b border-white/10 pb-1">
+                                <div className="flex justify-between items-start">
+                                  <div className="flex-1">
+                                    <span className="text-xs font-semibold text-white">{course.code}</span>
+                                    <p className="text-xs text-white/60">{course.name}</p>
+                                    {course.term && <p className="text-xs text-white/40">{course.term}</p>}
+                                  </div>
+                                  <span className="text-xs font-bold text-primary ml-1">{course.grade}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* General Education */}
+                        <div>
+                          <h5 className="text-xs sm:text-sm font-semibold text-primary/80 mb-2">General Education</h5>
+                          <div className="space-y-1 max-h-48 overflow-y-auto">
+                            {profileData.education.courses_taken.general_education?.map((course: any, index: number) => (
+                              <div key={`ge-${course.code}-${course.name}-${index}`} className="border-b border-white/10 pb-1">
                                 <div className="flex justify-between items-start">
                                   <div className="flex-1">
                                     <span className="text-xs font-semibold text-white">{course.code}</span>
@@ -431,19 +504,38 @@ export default function Home() {
             <div className="px-4 max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">{profileData.experiences.section_titles.main}</h2>
 
-            {/* Experiences section moved to top */}
-            <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
-                <Briefcase className="w-5 h-5" />
-                {profileData.experiences.section_titles.experiences}
-              </h3>
-              <div className="space-y-3">
-                {profileData.experiences.items.map((exp: any, index: number) => (
-                  <div key={index}>
-                    <p className="text-sm sm:text-base font-semibold">{exp.title}</p>
-                    <p className="text-xs sm:text-sm text-primary">{exp.description}</p>
-                  </div>
-                ))}
+            {/* Experiences and Teaching sections side by side */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+                <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                  <Briefcase className="w-5 h-5" />
+                  {profileData.experiences.section_titles.experiences}
+                </h3>
+                <div className="space-y-3">
+                  {profileData.experiences.items.map((exp: any, index: number) => (
+                    <div key={`exp-${exp.title}-${exp.organization}-${index}`}>
+                      <p className="text-sm sm:text-base font-semibold">{exp.title}</p>
+                      <p className="text-xs sm:text-sm text-primary">{exp.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+                <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                  <BookOpen className="w-5 h-5" />
+                  Teaching
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {[...Object.values(profileData.academic_service.tutoring.subjects).flat(),
+                    "Basketball Assistant Coach", "Basketball Instructor", "Chess Coach", "Chess Instructor"
+                  ].map((subject: any, idx: number) => (
+                    <span key={`teach-${subject}-${idx}`} className="px-3 py-1 text-white rounded-full text-xs"
+                      style={{ background: `linear-gradient(${45 + idx * 30}deg, #3c6e71, #284b63)` }}>
+                      {subject}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -588,6 +680,7 @@ export default function Home() {
               </div>
             </div>
 
+
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
                 <Code className="w-5 h-5" />
@@ -671,21 +764,24 @@ export default function Home() {
             <div className="px-4 max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">Interests & Passions</h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {interestCategories.map((category, idx) => (
-                <div key={idx} className="bg-transparent p-3 sm:p-4 rounded-xl border-2 border-primary">
+                <div key={`category-${category.title}-${idx}`} className="bg-transparent p-3 sm:p-4 rounded-xl border-2 border-primary">
                   <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-primary flex items-center gap-2">
                     {category.icon}
                     {category.title}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {category.items.map((item: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white"
+                      <a
+                        key={`${category.title}-${item}-${i}`}
+                        href={getWikipediaUrl(item)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white hover:scale-105 transition-transform cursor-pointer"
                       >
                         {item}
-                      </span>
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -739,7 +835,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2"
                 >
-                  <LinkedinIcon className="w-5 h-5" />
+                  <Linkedin className="w-5 h-5" />
                   Connect
                 </a>
                 <a
