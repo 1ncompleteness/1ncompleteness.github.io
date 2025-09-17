@@ -275,21 +275,11 @@ export default function Home() {
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {(() => {
-                      // Collect all interests with proper acronym format
+                      // Collect all interests from data.json
                       const allInterests = [
                         ...profileData.research.interests.primary,
                         ...profileData.research.interests.detailed.machine_learning.subfields.nlp.areas.slice(0, 2),
-                        profileData.research.interests.detailed.machine_learning.subfields.game_theory.focus,
-                        "Algebraic Geometry",
-                        "Embedding Models",
-                        "Formal Systems",
-                        "Formal Methods",
-                        "ZSL (Zero-Shot Learning)",
-                        "Multimodal Agents",
-                        "Computational Neuroscience",
-                        "tACS (Transcranial Alternating Current Stimulation)",
-                        "tDCS (Transcranial Direct Current Stimulation)",
-                        "TMS (Transcranial Magnetic Stimulation)"
+                        profileData.research.interests.detailed.machine_learning.subfields.game_theory.focus
                       ];
 
                       // Remove duplicates (case-insensitive)
@@ -318,12 +308,12 @@ export default function Home() {
                           "rag (retrieval-augmented generation) systems": 11,
                           "rag systems": 11,
                           "embedding models": 12,
-                          "computational neuroscience": 13,
-                          "consciousness": 14,
-                          "cosmology": 15,
-                          "formal systems": 16,
-                          "formal methods": 17,
-                          "zsl (zero-shot learning)": 18,
+                          "formal systems": 13,
+                          "formal methods": 14,
+                          "zsl (zero-shot learning)": 15,
+                          "computational neuroscience": 16,
+                          "consciousness": 17,
+                          "cosmology": 18,
                           "tacs (transcranial alternating current stimulation)": 19,
                           "tdcs (transcranial direct current stimulation)": 20,
                           "tms (transcranial magnetic stimulation)": 21

@@ -485,7 +485,7 @@
   },
   "research": {
     "interests": {
-      "primary": ["Applied Machine Learning", "Natural Language Processing", "Robust Optimization", "Knowledge Graphs", "Knowledge Base Systems", "Game Theory", "Formal Systems", "Formal Methods", "Computational Neuroscience", "Consciousness", "Cosmology", "Multimodal Agents"],
+      "primary": ["Applied Machine Learning", "Natural Language Processing", "Robust Optimization", "Knowledge Graphs", "Knowledge Base Systems", "Game Theory", "Algebraic Geometry", "Multimodal Agents", "Embedding Models", "Formal Systems", "Formal Methods", "ZSL (Zero-Shot Learning)", "Computational Neuroscience", "Consciousness", "Cosmology", "tACS (Transcranial Alternating Current Stimulation)", "tDCS (Transcranial Direct Current Stimulation)", "TMS (Transcranial Magnetic Stimulation)"],
       "detailed": {
         "machine_learning": {
           "subfields": {

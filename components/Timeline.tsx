@@ -341,10 +341,13 @@ export default function Timeline() {
         years.push(currentYear)
       }
 
+
       years.forEach(year => {
         // Position labels in graph area using the same scaling as getYPosition
         const yPercent = getYPosition(year) / 100
         const y = graphTop + yPercent * (graphBottom - graphTop)
+
+
         ctx.fillText(year.toString(), graphLeft - 35, y + 3)
 
         // Draw tick marks
@@ -491,18 +494,26 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '80px', paddingBottom: '80px', paddingTop: '20px', minHeight: '2500px' }}>
-          {/* Timeline with vertical lines for each giant */}
-          <div className="relative w-full" style={{ height: '2500px' }}>
+        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '80px', paddingBottom: '50px', paddingTop: '100px', minHeight: '2500px' }}>
+          {/* Timeline with vertical lines for each giant - matches canvas graph area */}
+          <div className="relative w-full" style={{ height: '2350px' }}>
             {sortedGiants.map((giant, index) => {
               // Simple left-to-right ordering based on index
               const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 95 + 2.5
-              const startY = getYPosition(giant.birth_year)
+
+              // Get raw Y position percentage
+              const startYRaw = getYPosition(giant.birth_year)
               const currentYearDecimal = currentTime ? (currentTime.getFullYear() + currentTime.getMonth() / 12 + currentTime.getDate() / 365) : currentYear
-              const endY = getYPosition(giant.death_year || currentYearDecimal)
+              const endYRaw = getYPosition(giant.death_year || currentYearDecimal)
+
+
+              // Use raw percentages directly
+              const startY = startYRaw
+              const endY = endYRaw
               const height = endY - startY
               const colorStyle = getGiantColor(giant.fields)
               const isGradient = colorStyle.includes('gradient')
+
 
               return (
                 <div
@@ -518,7 +529,7 @@ export default function Timeline() {
                   {/* Profile picture at birth year position */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-3 -top-3 w-9 h-9 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 transition-transform z-30 shadow-lg"
+                      className="absolute -left-3 -top-3 w-9 h-9 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 hover:z-50 transition-all z-30 shadow-lg"
                       onClick={() => openWikipedia(giant.wikipedia)}
                       onMouseEnter={(e) => handleMouseEnter(giant, e)}
                       onMouseLeave={handleMouseLeave}
