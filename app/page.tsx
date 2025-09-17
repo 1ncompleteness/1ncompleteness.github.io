@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, BookOpen, Code, Briefcase, Sparkles, Zap, GraduationCap, FileText, FlaskConical, Activity } from 'lucide-react'
+import { Mail, BookOpen, Code, Briefcase, Sparkles, Zap, GraduationCap, FileText, FlaskConical, Activity, Music } from 'lucide-react'
 import { Github } from 'lucide-react'
-import { Linkedin } from 'lucide-react'
+import { Linkedin as LinkedinIcon } from 'lucide-react'
 import profileData from '@/data.json'
 import Timeline from '@/components/Timeline'
 import TopBar from '@/components/TopBar'
@@ -38,9 +38,13 @@ export default function Home() {
   // Categories for interests with icons
   const interestCategories = [
     {
-      title: "Skills & Experiences",
-      icon: <Zap className="w-5 h-5" />,
-      items: profileData.skills_experiences
+      title: "Music & Art",
+      icon: <Music className="w-5 h-5" />,
+      items: [
+        "Alternative Rock", "Progressive Metal", "Electronic",
+        "Classical Music", "Grunge", "Indie Rock",
+        "Baroque Period", "Romantic Era", "Modern Classical"
+      ]
     },
     {
       title: "Teaching",
@@ -119,7 +123,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="p-2 sm:p-3 bg-transparent border border-primary/30 rounded-full hover:bg-primary hover:scale-110 transition-all"
               >
-                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
+                <LinkedinIcon className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
               <a
                 href={`mailto:${profileData.personal.contact.email}`}
@@ -735,8 +739,17 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2"
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <LinkedinIcon className="w-5 h-5" />
                   Connect
+                </a>
+                <a
+                  href="https://open.spotify.com/user/12100413470?si=f0f77136f72f4cef"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2"
+                >
+                  <Music className="w-5 h-5" />
+                  Spotify
                 </a>
               </div>
               <p className="text-sm">© 2025 {profileData.personal.name.display}</p>
