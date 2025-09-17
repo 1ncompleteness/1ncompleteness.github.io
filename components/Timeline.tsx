@@ -190,44 +190,10 @@ export default function Timeline() {
   const sortedGiants = [...giants].sort((a, b) => a.birth_year - b.birth_year)
 
   const getYPosition = (year: number) => {
-    // Progressive linear scaling starting from 1500
-    // Each century gets progressively more space to avoid overlaps
-
-    if (year < 1500) {
-      // -1000 to 1500: Use 30% of total space (2500 years in 30%)
-      const range = 1500 - minYear
-      const progress = (year - minYear) / range
-      return progress * 30
-    } else {
-      // 1500+: Use 70% of space with progressive scaling
-      // Each century gets more space than the previous one
-      const basePosition = 30 // Starting position at year 1500
-
-      // Define century breakpoints and their cumulative space usage
-      const centuries = [
-        { year: 1600, spacePercent: 8 },   // 1500-1600: 8% of space
-        { year: 1700, spacePercent: 10 },  // 1600-1700: 10% of space
-        { year: 1800, spacePercent: 12 },  // 1700-1800: 12% of space
-        { year: 1900, spacePercent: 15 },  // 1800-1900: 15% of space
-        { year: 2000, spacePercent: 20 },  // 1900-2000: 20% of space
-        { year: maxYear, spacePercent: 5 } // 2000-current: 5% of space
-      ]
-
-      let cumulativePercent = basePosition
-      let prevYear = 1500
-
-      for (const century of centuries) {
-        if (year <= century.year) {
-          const centuryRange = century.year - prevYear
-          const yearProgress = (year - prevYear) / centuryRange
-          return cumulativePercent + (yearProgress * century.spacePercent)
-        }
-        cumulativePercent += century.spacePercent
-        prevYear = century.year
-      }
-
-      return 100 // Should not reach here
-    }
+    // Simple linear scale from minYear to maxYear
+    const range = maxYear - minYear
+    const progress = (year - minYear) / range
+    return progress * 100 // Return percentage from 0 to 100
   }
 
   const handleMouseEnter = (giant: GiantWithImage, event: React.MouseEvent) => {
@@ -340,6 +306,7 @@ export default function Timeline() {
       if (!years.includes(currentYear)) {
         years.push(currentYear)
       }
+
 
 
       years.forEach(year => {
@@ -494,9 +461,10 @@ export default function Timeline() {
           ))}
         </div>
 
-        <div className="relative" style={{ paddingLeft: '80px', paddingRight: '80px', paddingBottom: '50px', paddingTop: '100px', minHeight: '2500px' }}>
-          {/* Timeline with vertical lines for each giant - matches canvas graph area */}
-          <div className="relative w-full" style={{ height: '2350px' }}>
+        {/* Container that matches canvas coordinate system exactly */}
+        <div className="absolute w-full" style={{ top: '100px', height: '2350px', left: '80px', right: '80px' }}>
+          {/* Timeline with vertical lines for each giant */}
+          <div className="relative w-full h-full">
             {sortedGiants.map((giant, index) => {
               // Simple left-to-right ordering based on index
               const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 95 + 2.5
