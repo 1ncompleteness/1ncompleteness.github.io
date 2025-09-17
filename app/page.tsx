@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, BookOpen, Code, Briefcase, Brain, Sparkles, Zap } from 'lucide-react'
+import { Mail, BookOpen, Code, Briefcase, Sparkles, Zap, GraduationCap, FileText, FlaskConical, Activity } from 'lucide-react'
 import { Github } from 'lucide-react'
 import { Linkedin } from 'lucide-react'
 import profileData from '@/data.json'
@@ -38,22 +38,19 @@ export default function Home() {
   // Categories for interests with icons
   const interestCategories = [
     {
-      title: "Research Interests",
-      icon: <Brain className="w-5 h-5" />,
-      items: profileData.research.interests.primary
-    },
-    {
       title: "Skills & Experiences",
       icon: <Zap className="w-5 h-5" />,
       items: profileData.skills_experiences
     },
     {
-      title: "Teaching & Sports",
+      title: "Teaching",
+      icon: <BookOpen className="w-5 h-5" />,
+      items: Object.values(profileData.academic_service.tutoring.subjects).flat()
+    },
+    {
+      title: "Sports & Esports",
       icon: <Sparkles className="w-5 h-5" />,
-      items: [
-        ...Object.values(profileData.academic_service.tutoring.subjects).flat(),
-        ...profileData.academic_service.sports_esports
-      ]
+      items: profileData.academic_service.sports_esports
     }
   ]
 
@@ -139,7 +136,7 @@ export default function Home() {
               className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-left"
             >
               <div className="bg-transparent p-3 sm:p-4 rounded-xl border border-primary">
-                <h3 className="text-base sm:text-lg font-semibold mb-2 flex items-center gap-2">
+                <h3 className="text-base sm:text-lg font-semibold mb-2 text-primary flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" />
                   Education
                 </h3>
@@ -148,7 +145,7 @@ export default function Home() {
               </div>
 
               <div className="bg-transparent p-3 sm:p-4 rounded-xl border border-primary">
-                <h3 className="text-base sm:text-lg font-semibold mb-2 flex items-center gap-2">
+                <h3 className="text-base sm:text-lg font-semibold mb-2 text-primary flex items-center gap-2">
                   <Briefcase className="w-4 h-4 text-primary" />
                   Entelligent
                 </h3>
@@ -172,70 +169,123 @@ export default function Home() {
           <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">
-                Research & Academic Profile
+                Research & Academia
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Research Interests - merged with ML Focus */}
                 <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary">Research Interests</h3>
+                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                    <FlaskConical className="w-5 h-5" />
+                    Research Interests
+                  </h3>
                   <div className="flex flex-wrap gap-2">
-                    {[
-                      ...profileData.research.interests.primary,
-                      ...profileData.research.interests.detailed.machine_learning.subfields.nlp.areas.slice(0, 2),
-                      profileData.research.interests.detailed.machine_learning.subfields.game_theory.focus,
-                      "Algebraic Geometry",
-                      "Embedding Models"
-                    ].map((interest: string, index: number) => {
-                      // Title case each word
-                      const titleCased = interest.split(' ').map((word: string) =>
-                        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                      ).join(' ');
+                    {(() => {
+                      // Collect all interests
+                      const allInterests = [
+                        ...profileData.research.interests.primary,
+                        ...profileData.research.interests.detailed.machine_learning.subfields.nlp.areas.slice(0, 2),
+                        profileData.research.interests.detailed.machine_learning.subfields.game_theory.focus,
+                        "Algebraic Geometry",
+                        "Embedding Models"
+                      ];
 
-                      return (
-                        <span
-                          key={index}
-                          className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white"
-                        >
-                          {titleCased}
-                        </span>
+                      // Remove duplicates (case-insensitive)
+                      const uniqueInterests = Array.from(new Set(
+                        allInterests.map(interest => interest.toLowerCase())
+                      )).map(lowerInterest =>
+                        allInterests.find(original => original.toLowerCase() === lowerInterest) || lowerInterest
                       );
-                    })}
+
+                      // Sort based on your profile focus
+                      const sortedInterests = uniqueInterests.sort((a, b) => {
+                        const priority: Record<string, number> = {
+                          "applied machine learning": 1,
+                          "natural language processing": 2,
+                          "large language models": 3,
+                          "knowledge graphs": 4,
+                          "game theory": 5,
+                          "robust optimization": 6,
+                          "multi-agent systems": 7,
+                          "knowledge base systems": 8,
+                          "rag systems": 9,
+                          "embedding models": 10,
+                          "algebraic geometry": 11
+                        };
+
+                        const aPriority = priority[a.toLowerCase()] || 99;
+                        const bPriority = priority[b.toLowerCase()] || 99;
+
+                        return aPriority - bPriority;
+                      });
+
+                      return sortedInterests.map((interest: string, index: number) => {
+                        // Title case each word
+                        const titleCased = interest.split(' ').map((word: string) =>
+                          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                        ).join(' ');
+
+                        return (
+                          <span
+                            key={index}
+                            className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white"
+                          >
+                            {titleCased}
+                          </span>
+                        );
+                      });
+                    })()}
                   </div>
                 </div>
 
                 {/* Research Publications - 4 items */}
                 <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary">Research & Publications</h3>
+                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                    <FileText className="w-5 h-5" />
+                    Research & Publications
+                  </h3>
                   <div className="space-y-3 max-h-64 overflow-y-auto">
                     {/* Alzheimer's Paper with Preprint */}
                     <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white">
+                      <h4 className="text-sm sm:text-base font-semibold text-primary">
                         {profileData.research.projects.publications.medical_ai.alzheimers.title}
                       </h4>
                       <p className="text-xs sm:text-sm text-white/60">
-                        {profileData.research.projects.publications.medical_ai.alzheimers.venue} • {profileData.research.projects.publications.medical_ai.alzheimers.status}
+                        UCI Darwin Dataset • {profileData.research.projects.publications.medical_ai.alzheimers.venue} • {profileData.research.projects.publications.medical_ai.alzheimers.status}
                       </p>
-                      <a
-                        href={profileData.research.projects.publications.medical_ai.alzheimers.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs sm:text-sm text-primary hover:underline"
-                      >
-                        View Preprint →
-                      </a>
+                      <p className="text-xs sm:text-sm text-white/60">
+                        XGBoost Baseline with Cross-Validation
+                      </p>
+                      <div className="flex gap-4">
+                        <a
+                          href={profileData.research.projects.publications.medical_ai.alzheimers.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs sm:text-sm text-primary hover:underline"
+                        >
+                          View Preprint →
+                        </a>
+                        <a
+                          href="https://archive.ics.uci.edu/dataset/178/darwin"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs sm:text-sm text-primary hover:underline"
+                        >
+                          View Dataset →
+                        </a>
+                      </div>
                     </div>
 
                     {/* Parkinson's Research */}
                     <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white">
+                      <h4 className="text-sm sm:text-base font-semibold text-primary">
                         {profileData.research.projects.publications.medical_ai.parkinsons.title}
                       </h4>
                       <p className="text-xs sm:text-sm text-white/60">
                         UCI Parkinson's Dataset • {profileData.research.projects.publications.medical_ai.parkinsons.status}
                       </p>
                       <p className="text-xs sm:text-sm text-white/60">
-                        Echo State Networks for Voice Analysis
+                        Gradient Boosting Baseline
                       </p>
                       <a
                         href="https://archive.ics.uci.edu/dataset/174/parkinsons"
@@ -249,7 +299,7 @@ export default function Home() {
 
                     {/* Multi-Agent Geometric Project */}
                     <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white">
+                      <h4 className="text-sm sm:text-base font-semibold text-primary">
                         {profileData.research.projects.active.multi_agent_geometric.title}
                       </h4>
                       <p className="text-xs sm:text-sm text-white/60">
@@ -262,7 +312,7 @@ export default function Home() {
 
                     {/* Knowledge Graph Systems */}
                     <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white">
+                      <h4 className="text-sm sm:text-base font-semibold text-primary">
                         Knowledge Graph & Base Systems
                       </h4>
                       <p className="text-xs sm:text-sm text-white/60">
@@ -275,48 +325,91 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Courses - Computer Science */}
-                <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary">Computer Science</h3>
-                  <div className="space-y-2 max-h-64 overflow-y-auto">
-                    {profileData.education.courses_taken.computer_science.map((course: any, index: number) => (
-                      <div key={index} className="border-b border-white/10 pb-1">
-                        <div className="flex justify-between items-start">
-                          <div className="flex-1">
-                            <span className="text-xs sm:text-sm font-semibold text-white">{course.code}</span>
-                            <p className="text-xs sm:text-sm text-white/70">{course.name}</p>
-                          </div>
-                          <span className="text-xs sm:text-sm font-bold text-primary ml-2">{course.grade}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Courses - Mathematics & Physics */}
-                <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary">Mathematics & Physics</h3>
-                  <div className="space-y-3">
+                {/* Courses Taken - All Combined */}
+                <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary md:col-span-2">
+                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                    <BookOpen className="w-5 h-5" />
+                    Courses
+                  </h3>
+                  <div className="space-y-4">
+                    {/* Current Enrollment */}
                     <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-white/80 mb-2">Mathematics</h4>
-                      <div className="space-y-1 max-h-32 overflow-y-auto">
-                        {profileData.education.courses_taken.mathematics.map((course: any, index: number) => (
-                          <div key={index} className="flex justify-between text-xs sm:text-sm">
-                            <span className="text-white/70">{course.code}: {course.name}</span>
-                            <span className="text-primary font-semibold ml-2">{course.grade}</span>
+                      <h4 className="text-sm sm:text-base font-semibold text-primary mb-2">Current Enrollment (Spring 2025)</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {profileData.education.courses_taken.current_enrollment.map((course: any, index: number) => (
+                          <div key={index} className="border-l-2 border-primary/50 pl-2 py-1">
+                            <div className="flex justify-between items-start">
+                              <div className="flex-1">
+                                <span className="text-xs font-semibold text-white">{course.code}</span>
+                                <p className="text-xs text-white/60">{course.name}</p>
+                              </div>
+                              <span className="text-xs text-yellow-400 ml-1">In Progress</span>
+                            </div>
                           </div>
                         ))}
                       </div>
                     </div>
+
+                    {/* Completed Courses */}
                     <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-white/80 mb-2">Physics</h4>
-                      <div className="space-y-1 max-h-32 overflow-y-auto">
-                        {profileData.education.courses_taken.physics.map((course: any, index: number) => (
-                          <div key={index} className="flex justify-between text-xs sm:text-sm">
-                            <span className="text-white/70">{course.code}: {course.name}</span>
-                            <span className="text-primary font-semibold ml-2">{course.grade}</span>
+                      <h4 className="text-sm sm:text-base font-semibold text-primary mb-2">Completed Courses</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {/* Computer Science */}
+                        <div>
+                          <h5 className="text-xs sm:text-sm font-semibold text-primary/80 mb-2">Computer Science</h5>
+                          <div className="space-y-1 max-h-48 overflow-y-auto">
+                            {profileData.education.courses_taken.computer_science.map((course: any, index: number) => (
+                              <div key={index} className="border-b border-white/10 pb-1">
+                                <div className="flex justify-between items-start">
+                                  <div className="flex-1">
+                                    <span className="text-xs font-semibold text-white">{course.code}</span>
+                                    <p className="text-xs text-white/60">{course.name}</p>
+                                    {course.term && <p className="text-xs text-white/40">{course.term}</p>}
+                                  </div>
+                                  <span className="text-xs font-bold text-primary ml-1">{course.grade}</span>
+                                </div>
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
+
+                        {/* Mathematics */}
+                        <div>
+                          <h5 className="text-xs sm:text-sm font-semibold text-primary/80 mb-2">Mathematics</h5>
+                          <div className="space-y-1 max-h-48 overflow-y-auto">
+                            {profileData.education.courses_taken.mathematics.map((course: any, index: number) => (
+                              <div key={index} className="border-b border-white/10 pb-1">
+                                <div className="flex justify-between items-start">
+                                  <div className="flex-1">
+                                    <span className="text-xs font-semibold text-white">{course.code}</span>
+                                    <p className="text-xs text-white/60">{course.name}</p>
+                                    {course.term && <p className="text-xs text-white/40">{course.term}</p>}
+                                  </div>
+                                  <span className="text-xs font-bold text-primary ml-1">{course.grade}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Physics */}
+                        <div>
+                          <h5 className="text-xs sm:text-sm font-semibold text-primary/80 mb-2">Physics</h5>
+                          <div className="space-y-1 max-h-48 overflow-y-auto">
+                            {profileData.education.courses_taken.physics.map((course: any, index: number) => (
+                              <div key={index} className="border-b border-white/10 pb-1">
+                                <div className="flex justify-between items-start">
+                                  <div className="flex-1">
+                                    <span className="text-xs font-semibold text-white">{course.code}</span>
+                                    <p className="text-xs text-white/60">{course.name}</p>
+                                    {course.term && <p className="text-xs text-white/40">{course.term}</p>}
+                                  </div>
+                                  <span className="text-xs font-bold text-primary ml-1">{course.grade}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -336,7 +429,7 @@ export default function Home() {
 
             {/* Experiences section moved to top */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
                 <Briefcase className="w-5 h-5" />
                 {profileData.experiences.section_titles.experiences}
               </h3>
@@ -352,7 +445,10 @@ export default function Home() {
 
             {/* Skills section - Languages */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">{profileData.experiences.section_titles.languages}</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                <Code className="w-5 h-5" />
+                {profileData.experiences.section_titles.languages}
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <div>
                   <p className="text-sm font-medium mb-2">Primary</p>
@@ -392,7 +488,10 @@ export default function Home() {
 
             {/* Machine Learning section */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">{profileData.experiences.section_titles.ml_ai}</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                <Activity className="w-5 h-5" />
+                {profileData.experiences.section_titles.ml_ai}
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <div>
                   <p className="text-sm font-medium mb-2">Core</p>
@@ -438,7 +537,10 @@ export default function Home() {
 
             {/* Databases section */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">{profileData.experiences.section_titles.databases}</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                <GraduationCap className="w-5 h-5" />
+                {profileData.experiences.section_titles.databases}
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <div>
                   <p className="text-sm font-medium mb-2">Relational</p>
@@ -483,7 +585,10 @@ export default function Home() {
             </div>
 
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">{profileData.experiences.section_titles.full_stack}</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                <Code className="w-5 h-5" />
+                {profileData.experiences.section_titles.full_stack}
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <div>
                   <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.frontend}</p>
@@ -565,7 +670,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {interestCategories.map((category, idx) => (
                 <div key={idx} className="bg-transparent p-3 sm:p-4 rounded-xl border-2 border-primary">
-                  <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 flex items-center gap-2">
+                  <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-primary flex items-center gap-2">
                     {category.icon}
                     {category.title}
                   </h3>
@@ -584,7 +689,7 @@ export default function Home() {
             </div>
 
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-6 sm:mb-8">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-center">Visions of the Future Past</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-center text-primary">Visions of the Future Past</h3>
               <p className="text-center mb-4">
                 <span className="text-gradient" style={{ textDecoration: 'line-through', textDecorationColor: '#3c6e71', textDecorationThickness: '2px' }}>Small</span> Talk Only About:
               </p>

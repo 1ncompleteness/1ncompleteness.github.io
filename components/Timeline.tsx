@@ -28,6 +28,7 @@ export default function Timeline() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
+  const tooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Define time periods for display
   const timePeriods = [
@@ -157,16 +158,25 @@ export default function Timeline() {
   }
 
   const handleMouseEnter = (giant: GiantWithImage, event: React.MouseEvent) => {
+    // Clear any existing timeout
+    if (tooltipTimeoutRef.current) {
+      clearTimeout(tooltipTimeoutRef.current)
+      tooltipTimeoutRef.current = null
+    }
+
     setHoveredGiant(giant)
     const rect = event.currentTarget.getBoundingClientRect()
     setTooltipPosition({
-      x: rect.left + rect.width / 2,
-      y: rect.top
+      x: rect.right + 15,  // Position to the right of the icon with 15px gap
+      y: Math.max(rect.top + rect.height / 2, 100)  // Center vertically but ensure minimum distance from top
     })
   }
 
   const handleMouseLeave = () => {
-    setHoveredGiant(null)
+    // Add a small delay before hiding tooltip
+    tooltipTimeoutRef.current = setTimeout(() => {
+      setHoveredGiant(null)
+    }, 100)
   }
 
   const openWikipedia = (wikipedia: string) => {
@@ -473,12 +483,21 @@ export default function Timeline() {
       {/* Tooltip */}
       {hoveredGiant && (
         <div
-          className="fixed z-50 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg p-4 max-w-sm pointer-events-none"
+          className="fixed z-50 bg-black/95 backdrop-blur-sm border border-white/20 rounded-lg p-4 max-w-sm shadow-2xl"
           style={{
-            left: tooltipPosition.x,
-            top: tooltipPosition.y - 10,
-            transform: 'translate(-50%, -100%)'
+            left: Math.min(tooltipPosition.x, window.innerWidth - 400),  // Prevent overflow on right
+            top: tooltipPosition.y,
+            transform: 'translateY(-50%)',  // Center vertically
+            pointerEvents: 'auto'  // Allow interaction with tooltip
           }}
+          onMouseEnter={() => {
+            // Clear timeout to keep tooltip open
+            if (tooltipTimeoutRef.current) {
+              clearTimeout(tooltipTimeoutRef.current)
+              tooltipTimeoutRef.current = null
+            }
+          }}
+          onMouseLeave={handleMouseLeave}
         >
           <div className="flex items-start justify-between mb-2">
             <h4 className="font-bold text-white">{hoveredGiant.name}</h4>
