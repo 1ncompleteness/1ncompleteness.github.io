@@ -520,5 +520,410 @@
     "contributions": ["hard problem of consciousness", "philosophical zombies", "simulation hypothesis"],
     "works": ["The Conscious Mind", "Facing Up to the Problem of Consciousness"],
     "wikipedia": "David_Chalmers"
+  },
+  {
+    "name": "Homer",
+    "birth_year": -850,
+    "death_year": -750,
+    "fields": ["literature", "poetry"],
+    "contributions": ["epic poetry", "oral tradition", "Western literature foundation"],
+    "works": ["The Iliad", "The Odyssey"],
+    "wikipedia": "Homer"
+  },
+  {
+    "name": "Thales",
+    "birth_year": -624,
+    "death_year": -546,
+    "fields": ["philosophy", "mathematics", "astronomy"],
+    "contributions": ["first Western philosopher", "natural explanations for phenomena", "geometry theorems"],
+    "works": ["None surviving (teachings through secondary sources)"],
+    "wikipedia": "Thales_of_Miletus"
+  },
+  {
+    "name": "Pythagoras",
+    "birth_year": -570,
+    "death_year": -495,
+    "fields": ["mathematics", "philosophy", "music theory"],
+    "contributions": ["Pythagorean theorem", "mathematical harmony", "numerology"],
+    "works": ["None surviving (teachings through followers)"],
+    "wikipedia": "Pythagoras"
+  },
+  {
+    "name": "Confucius",
+    "birth_year": -551,
+    "death_year": -479,
+    "fields": ["philosophy", "ethics", "education"],
+    "contributions": ["Confucianism", "social harmony", "virtue ethics"],
+    "works": ["Analects (compiled by disciples)"],
+    "wikipedia": "Confucius"
+  },
+  {
+    "name": "Heraclitus",
+    "birth_year": -535,
+    "death_year": -475,
+    "fields": ["philosophy"],
+    "contributions": ["doctrine of flux", "unity of opposites", "logos concept"],
+    "works": ["On Nature (fragments)"],
+    "wikipedia": "Heraclitus"
+  },
+  {
+    "name": "Laozi",
+    "birth_year": -604,
+    "death_year": -531,
+    "fields": ["philosophy"],
+    "contributions": ["Taoism", "wu wei (non-action)", "yin-yang philosophy"],
+    "works": ["Tao Te Ching"],
+    "wikipedia": "Laozi"
+  },
+  {
+    "name": "Buddha",
+    "birth_year": -563,
+    "death_year": -483,
+    "fields": ["philosophy", "spirituality"],
+    "contributions": ["Buddhism", "Four Noble Truths", "Eightfold Path"],
+    "works": ["Teachings preserved in Buddhist scriptures"],
+    "wikipedia": "Gautama_Buddha"
+  },
+  {
+    "name": "Democritus",
+    "birth_year": -460,
+    "death_year": -370,
+    "fields": ["philosophy", "physics"],
+    "contributions": ["atomic theory", "void concept", "determinism"],
+    "works": ["Little World System", "On the Nature of Things (fragments)"],
+    "wikipedia": "Democritus"
+  },
+  {
+    "name": "Sun Tzu",
+    "birth_year": -544,
+    "death_year": -496,
+    "fields": ["military strategy", "philosophy"],
+    "contributions": ["strategic thinking", "warfare principles", "deception tactics"],
+    "works": ["The Art of War"],
+    "wikipedia": "Sun_Tzu"
+  },
+  {
+    "name": "Marcus Aurelius",
+    "birth_year": 121,
+    "death_year": 180,
+    "fields": ["philosophy", "leadership"],
+    "contributions": ["Stoic philosophy", "practical wisdom", "ethical leadership"],
+    "works": ["Meditations"],
+    "wikipedia": "Marcus_Aurelius"
+  },
+  {
+    "name": "Hypatia",
+    "birth_year": 350,
+    "death_year": 415,
+    "fields": ["mathematics", "astronomy", "philosophy"],
+    "contributions": ["neoplatonism", "astronomical calculations", "mathematical commentary"],
+    "works": ["Commentary on Diophantus", "Commentary on Apollonius"],
+    "wikipedia": "Hypatia"
+  },
+  {
+    "name": "Fibonacci",
+    "birth_year": 1170,
+    "death_year": 1250,
+    "fields": ["mathematics"],
+    "contributions": ["Fibonacci sequence", "Hindu-Arabic numerals to Europe", "practical mathematics"],
+    "works": ["Liber Abaci"],
+    "wikipedia": "Fibonacci"
+  },
+  {
+    "name": "Thomas Aquinas",
+    "birth_year": 1225,
+    "death_year": 1274,
+    "fields": ["philosophy", "theology"],
+    "contributions": ["scholasticism", "natural law theory", "five proofs of God"],
+    "works": ["Summa Theologica", "Summa Contra Gentiles"],
+    "wikipedia": "Thomas_Aquinas"
+  },
+  {
+    "name": "Roger Bacon",
+    "birth_year": 1219,
+    "death_year": 1292,
+    "fields": ["philosophy", "science"],
+    "contributions": ["scientific method", "empiricism", "optics"],
+    "works": ["Opus Majus"],
+    "wikipedia": "Roger_Bacon"
+  },
+  {
+    "name": "Nicolaus Copernicus",
+    "birth_year": 1473,
+    "death_year": 1543,
+    "fields": ["astronomy", "mathematics"],
+    "contributions": ["heliocentric model", "modern astronomy", "orbital mechanics"],
+    "works": ["De revolutionibus orbium coelestium"],
+    "wikipedia": "Nicolaus_Copernicus"
+  },
+  {
+    "name": "Johannes Kepler",
+    "birth_year": 1571,
+    "death_year": 1630,
+    "fields": ["astronomy", "mathematics", "physics"],
+    "contributions": ["laws of planetary motion", "elliptical orbits", "optics"],
+    "works": ["Astronomia nova", "Harmonices Mundi"],
+    "wikipedia": "Johannes_Kepler"
+  },
+  {
+    "name": "Francis Bacon",
+    "birth_year": 1561,
+    "death_year": 1626,
+    "fields": ["philosophy", "scientific method"],
+    "contributions": ["empiricism", "inductive methodology", "scientific revolution"],
+    "works": ["Novum Organum", "The Advancement of Learning"],
+    "wikipedia": "Francis_Bacon"
+  },
+  {
+    "name": "Leonhard Euler",
+    "birth_year": 1707,
+    "death_year": 1783,
+    "fields": ["mathematics", "physics"],
+    "contributions": ["graph theory", "topology", "number theory", "Euler's identity"],
+    "works": ["Introductio in analysin infinitorum"],
+    "wikipedia": "Leonhard_Euler"
+  },
+  {
+    "name": "Carl Linnaeus",
+    "birth_year": 1707,
+    "death_year": 1778,
+    "fields": ["biology", "taxonomy"],
+    "contributions": ["binomial nomenclature", "biological classification", "systematics"],
+    "works": ["Systema Naturae", "Species Plantarum"],
+    "wikipedia": "Carl_Linnaeus"
+  },
+  {
+    "name": "Mary Wollstonecraft",
+    "birth_year": 1759,
+    "death_year": 1797,
+    "fields": ["philosophy", "women's rights"],
+    "contributions": ["feminist philosophy", "women's education", "social reform"],
+    "works": ["A Vindication of the Rights of Woman"],
+    "wikipedia": "Mary_Wollstonecraft"
+  },
+  {
+    "name": "Michael Faraday",
+    "birth_year": 1791,
+    "death_year": 1867,
+    "fields": ["physics", "chemistry"],
+    "contributions": ["electromagnetic induction", "electrochemistry", "field theory"],
+    "works": ["Experimental Researches in Electricity"],
+    "wikipedia": "Michael_Faraday"
+  },
+  {
+    "name": "Ada Lovelace",
+    "birth_year": 1815,
+    "death_year": 1852,
+    "fields": ["mathematics", "computing"],
+    "contributions": ["first computer algorithm", "analytical engine concepts", "computing vision"],
+    "works": ["Notes on the Analytical Engine"],
+    "wikipedia": "Ada_Lovelace"
+  },
+  {
+    "name": "Gregor Mendel",
+    "birth_year": 1822,
+    "death_year": 1884,
+    "fields": ["genetics", "biology"],
+    "contributions": ["laws of inheritance", "genetics foundation", "dominant/recessive traits"],
+    "works": ["Experiments on Plant Hybridization"],
+    "wikipedia": "Gregor_Mendel"
+  },
+  {
+    "name": "James Clerk Maxwell",
+    "birth_year": 1831,
+    "death_year": 1879,
+    "fields": ["physics", "mathematics"],
+    "contributions": ["electromagnetic theory", "Maxwell's equations", "statistical mechanics"],
+    "works": ["A Treatise on Electricity and Magnetism"],
+    "wikipedia": "James_Clerk_Maxwell"
+  },
+  {
+    "name": "Dmitri Mendeleev",
+    "birth_year": 1834,
+    "death_year": 1907,
+    "fields": ["chemistry"],
+    "contributions": ["periodic table", "element prediction", "chemical periodicity"],
+    "works": ["The Principles of Chemistry"],
+    "wikipedia": "Dmitri_Mendeleev"
+  },
+  {
+    "name": "Nikola Tesla",
+    "birth_year": 1856,
+    "death_year": 1943,
+    "fields": ["electrical engineering", "physics"],
+    "contributions": ["AC electrical system", "Tesla coil", "wireless technology"],
+    "works": ["My Inventions"],
+    "wikipedia": "Nikola_Tesla"
+  },
+  {
+    "name": "Emmy Noether",
+    "birth_year": 1882,
+    "death_year": 1935,
+    "fields": ["mathematics", "physics"],
+    "contributions": ["Noether's theorem", "abstract algebra", "ring theory"],
+    "works": ["Idealtheorie in Ringbereichen"],
+    "wikipedia": "Emmy_Noether"
+  },
+  {
+    "name": "Erwin Schrödinger",
+    "birth_year": 1887,
+    "death_year": 1961,
+    "fields": ["physics"],
+    "contributions": ["wave mechanics", "Schrödinger equation", "quantum theory"],
+    "works": ["What Is Life?"],
+    "wikipedia": "Erwin_Schrödinger"
+  },
+  {
+    "name": "Edwin Hubble",
+    "birth_year": 1889,
+    "death_year": 1953,
+    "fields": ["astronomy"],
+    "contributions": ["expanding universe", "Hubble's law", "galaxy classification"],
+    "works": ["The Realm of the Nebulae"],
+    "wikipedia": "Edwin_Hubble"
+  },
+  {
+    "name": "Werner Heisenberg",
+    "birth_year": 1901,
+    "death_year": 1976,
+    "fields": ["physics"],
+    "contributions": ["uncertainty principle", "matrix mechanics", "quantum mechanics"],
+    "works": ["The Physical Principles of the Quantum Theory"],
+    "wikipedia": "Werner_Heisenberg"
+  },
+  {
+    "name": "Barbara McClintock",
+    "birth_year": 1902,
+    "death_year": 1992,
+    "fields": ["genetics"],
+    "contributions": ["genetic transposition", "jumping genes", "cytogenetics"],
+    "works": ["The Discovery and Characterization of Transposable Elements"],
+    "wikipedia": "Barbara_McClintock"
+  },
+  {
+    "name": "Grace Hopper",
+    "birth_year": 1906,
+    "death_year": 1992,
+    "fields": ["computer science", "mathematics"],
+    "contributions": ["COBOL", "computer compiler", "debugging"],
+    "works": ["The Education of a Computer"],
+    "wikipedia": "Grace_Hopper"
+  },
+  {
+    "name": "Rachel Carson",
+    "birth_year": 1907,
+    "death_year": 1964,
+    "fields": ["biology", "environmental science"],
+    "contributions": ["environmental movement", "pesticide awareness", "ecology"],
+    "works": ["Silent Spring", "The Sea Around Us"],
+    "wikipedia": "Rachel_Carson"
+  },
+  {
+    "name": "Hedy Lamarr",
+    "birth_year": 1914,
+    "death_year": 2000,
+    "fields": ["invention", "technology"],
+    "contributions": ["frequency hopping", "spread spectrum", "wireless communication"],
+    "works": ["Secret Communication System (patent)"],
+    "wikipedia": "Hedy_Lamarr"
+  },
+  {
+    "name": "Richard Feynman",
+    "birth_year": 1918,
+    "death_year": 1988,
+    "fields": ["physics"],
+    "contributions": ["quantum electrodynamics", "Feynman diagrams", "path integral formulation"],
+    "works": ["The Feynman Lectures on Physics"],
+    "wikipedia": "Richard_Feynman"
+  },
+  {
+    "name": "Rosalind Franklin",
+    "birth_year": 1920,
+    "death_year": 1958,
+    "fields": ["chemistry", "X-ray crystallography"],
+    "contributions": ["DNA structure", "Photo 51", "virus structure"],
+    "works": ["Evidence for 2-Chain Helix in Crystalline Structure of Sodium Deoxyribonucleate"],
+    "wikipedia": "Rosalind_Franklin"
+  },
+  {
+    "name": "James Watson",
+    "birth_year": 1928,
+    "death_year": null,
+    "fields": ["molecular biology"],
+    "contributions": ["DNA double helix", "molecular biology", "Human Genome Project"],
+    "works": ["The Double Helix"],
+    "wikipedia": "James_Watson"
+  },
+  {
+    "name": "Carl Sagan",
+    "birth_year": 1934,
+    "death_year": 1996,
+    "fields": ["astronomy", "astrophysics", "cosmology"],
+    "contributions": ["science communication", "SETI", "planetary science"],
+    "works": ["Cosmos", "The Demon-Haunted World"],
+    "wikipedia": "Carl_Sagan"
+  },
+  {
+    "name": "Jane Goodall",
+    "birth_year": 1934,
+    "death_year": null,
+    "fields": ["primatology", "ethology", "conservation"],
+    "contributions": ["chimpanzee behavior", "tool use in animals", "conservation"],
+    "works": ["In the Shadow of Man"],
+    "wikipedia": "Jane_Goodall"
+  },
+  {
+    "name": "Donald Knuth",
+    "birth_year": 1938,
+    "death_year": null,
+    "fields": ["computer science", "mathematics"],
+    "contributions": ["analysis of algorithms", "TeX typesetting", "literate programming"],
+    "works": ["The Art of Computer Programming"],
+    "wikipedia": "Donald_Knuth"
+  },
+  {
+    "name": "Stephen Hawking",
+    "birth_year": 1942,
+    "death_year": 2018,
+    "fields": ["physics", "cosmology"],
+    "contributions": ["Hawking radiation", "black hole thermodynamics", "quantum cosmology"],
+    "works": ["A Brief History of Time"],
+    "wikipedia": "Stephen_Hawking"
+  },
+  {
+    "name": "Vint Cerf",
+    "birth_year": 1943,
+    "death_year": null,
+    "fields": ["computer science"],
+    "contributions": ["TCP/IP protocols", "Internet architecture", "network design"],
+    "works": ["A Protocol for Packet Network Intercommunication"],
+    "wikipedia": "Vint_Cerf"
+  },
+  {
+    "name": "Tim Berners-Lee",
+    "birth_year": 1955,
+    "death_year": null,
+    "fields": ["computer science"],
+    "contributions": ["World Wide Web", "HTML", "HTTP", "URL"],
+    "works": ["Weaving the Web"],
+    "wikipedia": "Tim_Berners-Lee"
+  },
+  {
+    "name": "Yann LeCun",
+    "birth_year": 1960,
+    "death_year": null,
+    "fields": ["computer science", "artificial intelligence"],
+    "contributions": ["convolutional neural networks", "deep learning", "computer vision"],
+    "works": ["Gradient-Based Learning Applied to Document Recognition"],
+    "wikipedia": "Yann_LeCun"
+  },
+  {
+    "name": "Demis Hassabis",
+    "birth_year": 1976,
+    "death_year": null,
+    "fields": ["artificial intelligence", "neuroscience"],
+    "contributions": ["AlphaGo", "AlphaFold", "reinforcement learning"],
+    "works": ["Mastering the game of Go with deep neural networks"],
+    "wikipedia": "Demis_Hassabis"
   }
 ]

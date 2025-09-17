@@ -32,13 +32,15 @@ export default function Timeline() {
 
   // Define time periods for display
   const timePeriods = [
-    { start: -500, end: 0, label: 'Ancient Period' },
-    { start: 0, end: 1000, label: 'Classical to Medieval' },
-    { start: 1000, end: 2025, label: 'Modern Era' }
+    { start: -1000, end: -500, label: 'Ancient Era' },
+    { start: -500, end: 0, label: 'Classical Antiquity' },
+    { start: 0, end: 1000, label: 'Medieval Period' },
+    { start: 1000, end: 1500, label: 'Renaissance' },
+    { start: 1500, end: 2025, label: 'Modern Era' }
   ]
 
-  // Timeline range starting from -500
-  const minYear = -500
+  // Timeline range starting from -1000
+  const minYear = -1000
   const maxYear = 2025
   const yearRange = maxYear - minYear
 
@@ -78,7 +80,32 @@ export default function Timeline() {
     'neuroscience': '#FF00FF',      // Magenta
     'behaviorism': '#7FFF00',       // Chartreuse
     'philosophy of mind': '#DC143C', // Crimson
-    'philosophy of language': '#4B0082' // Indigo
+    'philosophy of language': '#4B0082', // Indigo
+    'poetry': '#E6E6FA',            // Lavender Web
+    'music theory': '#FF1493',      // Deep Pink
+    'ethics': '#228B22',            // Forest Green
+    'spirituality': '#9400D3',      // Violet
+    'military strategy': '#8B0000', // Dark Red
+    'leadership': '#4169E1',        // Royal Blue
+    'biology': '#00FF7F',           // Spring Green
+    'engineering': '#FF8C00',       // Dark Orange
+    'theology': '#DAA520',          // Goldenrod
+    'science': '#00CED1',           // Dark Turquoise
+    'scientific method': '#4682B4', // Steel Blue
+    'taxonomy': '#3CB371',          // Medium Sea Green
+    "women's rights": '#FF69B4',    // Hot Pink
+    'chemistry': '#FF6347',         // Tomato
+    'genetics': '#00FA9A',          // Medium Spring Green
+    'invention': '#FFD700',         // Gold
+    'technology': '#1E90FF',        // Dodger Blue
+    'X-ray crystallography': '#FF00FF', // Magenta
+    'molecular biology': '#32CD32', // Lime Green
+    'astrophysics': '#FF1493',      // Deep Pink
+    'cosmology': '#8A2BE2',         // Blue Violet
+    'primatology': '#228B22',       // Forest Green
+    'ethology': '#00CED1',          // Dark Turquoise
+    'conservation': '#3CB371',      // Medium Sea Green
+    'environmental science': '#00FF00' // Lime
   }
 
   // Fetch Wikipedia images for giants
