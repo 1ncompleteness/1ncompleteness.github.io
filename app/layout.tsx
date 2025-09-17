@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} text-foreground antialiased relative`}>
+      <body className={`${inter.className} text-foreground antialiased relative`} suppressHydrationWarning>
         <div className="fixed inset-0 bg-grid opacity-20 pointer-events-none"></div>
         <div className="fixed inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
         {children}

@@ -12,7 +12,7 @@ import { useRef, useState } from 'react'
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [currentPage, setCurrentPage] = useState(0)
-  const totalPages = 4
+  const totalPages = 5
 
   const scrollToPage = (pageIndex: number) => {
     if (scrollContainerRef.current) {
@@ -165,7 +165,168 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Page 2: Skills & Experiences */}
+        {/* Page 2: Research, Publications & Courses */}
+        <section className="min-w-full h-full snap-start relative overflow-hidden">
+          <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
+          <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
+          <div className="relative z-10 h-full p-8 overflow-y-auto">
+            <div className="px-4 max-w-6xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">
+                Research & Academic Profile
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                {/* Research Interests - merged with ML Focus */}
+                <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary">Research Interests</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      ...profileData.research.interests.primary,
+                      ...profileData.research.interests.detailed.machine_learning.subfields.nlp.areas.slice(0, 2),
+                      profileData.research.interests.detailed.machine_learning.subfields.game_theory.focus,
+                      "Algebraic Geometry",
+                      "Embedding Models"
+                    ].map((interest: string, index: number) => {
+                      // Title case each word
+                      const titleCased = interest.split(' ').map((word: string) =>
+                        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                      ).join(' ');
+
+                      return (
+                        <span
+                          key={index}
+                          className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white"
+                        >
+                          {titleCased}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Research Publications - 4 items */}
+                <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary">Research & Publications</h3>
+                  <div className="space-y-3 max-h-64 overflow-y-auto">
+                    {/* Alzheimer's Paper with Preprint */}
+                    <div className="border-l-2 border-primary/50 pl-3 py-1">
+                      <h4 className="text-sm sm:text-base font-semibold text-white">
+                        {profileData.research.projects.publications.medical_ai.alzheimers.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-white/60">
+                        {profileData.research.projects.publications.medical_ai.alzheimers.venue} • {profileData.research.projects.publications.medical_ai.alzheimers.status}
+                      </p>
+                      <a
+                        href={profileData.research.projects.publications.medical_ai.alzheimers.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs sm:text-sm text-primary hover:underline"
+                      >
+                        View Preprint →
+                      </a>
+                    </div>
+
+                    {/* Parkinson's Research */}
+                    <div className="border-l-2 border-primary/50 pl-3 py-1">
+                      <h4 className="text-sm sm:text-base font-semibold text-white">
+                        {profileData.research.projects.publications.medical_ai.parkinsons.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-white/60">
+                        UCI Parkinson's Dataset • {profileData.research.projects.publications.medical_ai.parkinsons.status}
+                      </p>
+                      <p className="text-xs sm:text-sm text-white/60">
+                        Echo State Networks for Voice Analysis
+                      </p>
+                      <a
+                        href="https://archive.ics.uci.edu/dataset/174/parkinsons"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs sm:text-sm text-primary hover:underline"
+                      >
+                        View Dataset →
+                      </a>
+                    </div>
+
+                    {/* Multi-Agent Geometric Project */}
+                    <div className="border-l-2 border-primary/50 pl-3 py-1">
+                      <h4 className="text-sm sm:text-base font-semibold text-white">
+                        {profileData.research.projects.active.multi_agent_geometric.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-white/60">
+                        Game Theory • Geometric Spaces • {profileData.research.projects.active.multi_agent_geometric.status}
+                      </p>
+                      <p className="text-xs sm:text-sm text-white/60">
+                        Memory-equipped agents on manifolds
+                      </p>
+                    </div>
+
+                    {/* Knowledge Graph Systems */}
+                    <div className="border-l-2 border-primary/50 pl-3 py-1">
+                      <h4 className="text-sm sm:text-base font-semibold text-white">
+                        Knowledge Graph & Base Systems
+                      </h4>
+                      <p className="text-xs sm:text-sm text-white/60">
+                        Graph Neural Networks • Embeddings • exploratory
+                      </p>
+                      <p className="text-xs sm:text-sm text-white/60">
+                        Entity linking and relation extraction
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Courses - Computer Science */}
+                <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary">Computer Science</h3>
+                  <div className="space-y-2 max-h-64 overflow-y-auto">
+                    {profileData.education.courses_taken.computer_science.map((course: any, index: number) => (
+                      <div key={index} className="border-b border-white/10 pb-1">
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1">
+                            <span className="text-xs sm:text-sm font-semibold text-white">{course.code}</span>
+                            <p className="text-xs sm:text-sm text-white/70">{course.name}</p>
+                          </div>
+                          <span className="text-xs sm:text-sm font-bold text-primary ml-2">{course.grade}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Courses - Mathematics & Physics */}
+                <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary">Mathematics & Physics</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <h4 className="text-sm sm:text-base font-semibold text-white/80 mb-2">Mathematics</h4>
+                      <div className="space-y-1 max-h-32 overflow-y-auto">
+                        {profileData.education.courses_taken.mathematics.map((course: any, index: number) => (
+                          <div key={index} className="flex justify-between text-xs sm:text-sm">
+                            <span className="text-white/70">{course.code}: {course.name}</span>
+                            <span className="text-primary font-semibold ml-2">{course.grade}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-sm sm:text-base font-semibold text-white/80 mb-2">Physics</h4>
+                      <div className="space-y-1 max-h-32 overflow-y-auto">
+                        {profileData.education.courses_taken.physics.map((course: any, index: number) => (
+                          <div key={index} className="flex justify-between text-xs sm:text-sm">
+                            <span className="text-white/70">{course.code}: {course.name}</span>
+                            <span className="text-primary font-semibold ml-2">{course.grade}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Page 3: Skills & Experiences */}
         <section className="min-w-full h-full snap-start relative overflow-hidden">
           <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
@@ -393,7 +554,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Page 3: Interests & Contact */}
+        {/* Page 4: Interests & Contact */}
         <section className="min-w-full h-full snap-start relative overflow-hidden">
           <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
@@ -479,7 +640,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Page 4: Shoulders of Giants Timeline */}
+        {/* Page 5: Shoulders of Giants Timeline */}
         <section className="min-w-full h-full snap-start relative overflow-hidden">
           <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
