@@ -30,19 +30,20 @@ export default function Timeline() {
   const timelineRef = useRef<HTMLDivElement>(null)
   const tooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+  // Timeline range starting from -1000
+  const minYear = -1000
+  const currentYear = new Date().getFullYear()
+  const maxYear = currentYear + 1 // Add 1 year padding for better visualization
+  const yearRange = maxYear - minYear
+
   // Define time periods for display
   const timePeriods = [
     { start: -1000, end: -500, label: 'Ancient Era' },
     { start: -500, end: 0, label: 'Classical Antiquity' },
     { start: 0, end: 1000, label: 'Medieval Period' },
     { start: 1000, end: 1500, label: 'Renaissance' },
-    { start: 1500, end: 2025, label: 'Modern Era' }
+    { start: 1500, end: maxYear, label: 'Modern Era' }
   ]
-
-  // Timeline range starting from -1000
-  const minYear = -1000
-  const maxYear = 2025
-  const yearRange = maxYear - minYear
 
   // Update current time every second
   useEffect(() => {
@@ -180,26 +181,43 @@ export default function Timeline() {
   const sortedGiants = [...giants].sort((a, b) => a.birth_year - b.birth_year)
 
   const getYPosition = (year: number) => {
-    // Top-left origin: older dates at top (0%), current time at bottom (100%)
-    // Apply scaling factor for modern era (1500+) to reduce density
-    if (year >= 1500) {
-      // Scale up spacing for modern era
-      const preModernRange = 1500 - minYear // -1000 to 1500 = 2500 years
-      const modernRange = maxYear - 1500 // 1500 to 2025 = 525 years
-      const preModernPercent = 40 // Use 40% of space for pre-1500
-      const modernPercent = 60 // Use 60% of space for post-1500
+    // Progressive linear scaling starting from 1500
+    // Each century gets progressively more space to avoid overlaps
 
-      if (year === 1500) {
-        return preModernPercent
+    if (year < 1500) {
+      // -1000 to 1500: Use 30% of total space (2500 years in 30%)
+      const range = 1500 - minYear
+      const progress = (year - minYear) / range
+      return progress * 30
+    } else {
+      // 1500+: Use 70% of space with progressive scaling
+      // Each century gets more space than the previous one
+      const basePosition = 30 // Starting position at year 1500
+
+      // Define century breakpoints and their cumulative space usage
+      const centuries = [
+        { year: 1600, spacePercent: 8 },   // 1500-1600: 8% of space
+        { year: 1700, spacePercent: 10 },  // 1600-1700: 10% of space
+        { year: 1800, spacePercent: 12 },  // 1700-1800: 12% of space
+        { year: 1900, spacePercent: 15 },  // 1800-1900: 15% of space
+        { year: 2000, spacePercent: 20 },  // 1900-2000: 20% of space
+        { year: maxYear, spacePercent: 5 } // 2000-current: 5% of space
+      ]
+
+      let cumulativePercent = basePosition
+      let prevYear = 1500
+
+      for (const century of centuries) {
+        if (year <= century.year) {
+          const centuryRange = century.year - prevYear
+          const yearProgress = (year - prevYear) / centuryRange
+          return cumulativePercent + (yearProgress * century.spacePercent)
+        }
+        cumulativePercent += century.spacePercent
+        prevYear = century.year
       }
 
-      const modernProgress = (year - 1500) / modernRange
-      return preModernPercent + (modernProgress * modernPercent)
-    } else {
-      // Regular spacing for ancient to medieval periods
-      const preModernRange = 1500 - minYear
-      const progress = (year - minYear) / preModernRange
-      return progress * 40 // Use first 40% of space
+      return 100 // Should not reach here
     }
   }
 
@@ -291,7 +309,7 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // Y-axis labels (years) - from -1000 to 2025
+      // Y-axis labels (years) - from -1000 to current year
       const years = []
       // Ancient period
       for (let year = -1000; year <= 0; year += 100) {
@@ -306,8 +324,12 @@ export default function Timeline() {
         years.push(year)
       }
       // Modern period - more detail
-      for (let year = 1500; year <= 2025; year += 50) {
+      for (let year = 1500; year <= maxYear; year += 50) {
         years.push(year)
+      }
+      // Add current year if not already included
+      if (!years.includes(currentYear)) {
+        years.push(currentYear)
       }
 
       years.forEach(year => {
@@ -338,7 +360,7 @@ export default function Timeline() {
         }
       }
       // Minor ticks for modern period
-      for (let year = 1500; year <= 2025; year += 10) {
+      for (let year = 1500; year <= maxYear; year += 10) {
         if (!years.includes(year)) {
           const yPercent = getYPosition(year) / 100
           const y = graphTop + yPercent * (graphBottom - graphTop)
@@ -355,7 +377,7 @@ export default function Timeline() {
       ctx.setLineDash([5, 5])
       years.forEach(year => {
         // Grid lines for centuries and major milestones
-        if (year % 100 === 0 || year === 1 || year === 2025) {
+        if (year % 100 === 0 || year === 1 || year === currentYear) {
           const yPercent = getYPosition(year) / 100
           const y = graphTop + yPercent * (graphBottom - graphTop)
           ctx.beginPath()
@@ -372,7 +394,7 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
       ctx.font = '12px monospace'
 
-      // Display current date and time at 2025 position on Y-axis
+      // Display current date and time at current year position on Y-axis
       const timeString = currentTime.toLocaleString('en-US', {
         year: 'numeric',
         month: 'short',
@@ -384,9 +406,9 @@ export default function Timeline() {
       })
       ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
       ctx.font = '12px monospace'
-      // Position at 2025 on the Y-axis
-      const year2025Y = graphTop + ((2025 - minYear) / yearRange) * (graphBottom - graphTop)
-      ctx.fillText(timeString, graphLeft + 10, year2025Y)
+      // Position at current year on the Y-axis
+      const currentYearY = graphTop + (getYPosition(currentYear) / 100) * (graphBottom - graphTop)
+      ctx.fillText(timeString, graphLeft + 10, currentYearY)
 
       ctx.save()
       ctx.translate(15, (graphTop + graphBottom) / 2)
