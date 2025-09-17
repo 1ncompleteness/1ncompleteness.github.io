@@ -319,12 +319,14 @@ export default function Home() {
                           "rag systems": 11,
                           "embedding models": 12,
                           "computational neuroscience": 13,
-                          "formal systems": 14,
-                          "formal methods": 15,
-                          "zsl (zero-shot learning)": 16,
-                          "tacs (transcranial alternating current stimulation)": 17,
-                          "tdcs (transcranial direct current stimulation)": 18,
-                          "tms (transcranial magnetic stimulation)": 19
+                          "consciousness": 14,
+                          "cosmology": 15,
+                          "formal systems": 16,
+                          "formal methods": 17,
+                          "zsl (zero-shot learning)": 18,
+                          "tacs (transcranial alternating current stimulation)": 19,
+                          "tdcs (transcranial direct current stimulation)": 20,
+                          "tms (transcranial magnetic stimulation)": 21
                         };
 
                         const aPriority = priority[a.toLowerCase()] || 99;

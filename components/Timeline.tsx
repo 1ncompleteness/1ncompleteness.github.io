@@ -22,7 +22,7 @@ export default function Timeline() {
   const [hoveredGiant, setHoveredGiant] = useState<GiantWithImage | null>(null)
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
   const [giantsWithImages, setGiantsWithImages] = useState<GiantWithImage[]>([])
-  const [currentTime, setCurrentTime] = useState(new Date())
+  const [currentTime, setCurrentTime] = useState<Date | null>(null)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [visiblePeriod, setVisiblePeriod] = useState('Ancient Period')
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -108,6 +108,15 @@ export default function Timeline() {
     'conservation': '#3CB371',      // Medium Sea Green
     'environmental science': '#00FF00' // Lime
   }
+
+  // Initialize current time on client side only
+  useEffect(() => {
+    setCurrentTime(new Date())
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
 
   // Fetch Wikipedia images for giants
   useEffect(() => {
@@ -460,14 +469,14 @@ export default function Timeline() {
           {/* Current date and time display */}
           <div className="text-center mb-4">
             <span className="text-sm text-white/60 font-mono">
-              {currentTime.toLocaleString('en-US', {
+              {currentTime ? currentTime.toLocaleString('en-US', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric',
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit'
-              })}
+              }) : ''}
             </span>
           </div>
         </div>
@@ -489,7 +498,7 @@ export default function Timeline() {
               // Simple left-to-right ordering based on index
               const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 95 + 2.5
               const startY = getYPosition(giant.birth_year)
-              const currentYearDecimal = currentTime.getFullYear() + currentTime.getMonth() / 12 + currentTime.getDate() / 365
+              const currentYearDecimal = currentTime ? (currentTime.getFullYear() + currentTime.getMonth() / 12 + currentTime.getDate() / 365) : currentYear
               const endY = getYPosition(giant.death_year || currentYearDecimal)
               const height = endY - startY
               const colorStyle = getGiantColor(giant.fields)
