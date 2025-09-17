@@ -394,21 +394,7 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
       ctx.font = '12px monospace'
 
-      // Display current date and time at current year position on Y-axis
-      const timeString = currentTime.toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      })
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
-      ctx.font = '12px monospace'
-      // Position at current year on the Y-axis
-      const currentYearY = graphTop + (getYPosition(currentYear) / 100) * (graphBottom - graphTop)
-      ctx.fillText(timeString, graphLeft + 10, currentYearY)
+      // Removed date/time display - now shown in UI above
 
       ctx.save()
       ctx.translate(15, (graphTop + graphBottom) / 2)
@@ -446,7 +432,7 @@ export default function Timeline() {
           </div>
 
           {/* Period progress bar */}
-          <div className="flex justify-center gap-2 mb-4">
+          <div className="flex justify-center gap-2 mb-2">
             {timePeriods.map((period, index) => {
               const periodStart = (period.start - minYear) / yearRange
               const periodEnd = (period.end - minYear) / yearRange
@@ -470,6 +456,20 @@ export default function Timeline() {
               )
             })}
           </div>
+
+          {/* Current date and time display */}
+          <div className="text-center mb-4">
+            <span className="text-sm text-white/60 font-mono">
+              {currentTime.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+              })}
+            </span>
+          </div>
         </div>
 
         {/* Legend with all unique fields */}
@@ -485,65 +485,9 @@ export default function Timeline() {
         <div className="relative" style={{ paddingLeft: '80px', paddingRight: '80px', paddingBottom: '80px', paddingTop: '20px', minHeight: '2500px' }}>
           {/* Timeline with vertical lines for each giant */}
           <div className="relative w-full" style={{ height: '2500px' }}>
-            {(() => {
-              // Group giants by time period to better distribute horizontally
-              const positionedGiants = new Map<string, { x: number, y: number }>()
-              const columns = 20 // More columns for better distribution
-              const columnWidth = 100 / columns
-              const minVerticalSpacing = 2 // Minimum 2% vertical spacing between icons
-
-              // Track occupied positions to prevent overlaps
-              const occupiedPositions: { x: number, y: number, endY: number }[] = []
-
-              sortedGiants.forEach((giant) => {
-                const y = getYPosition(giant.birth_year)
-                const currentYearDecimal = currentTime.getFullYear() + currentTime.getMonth() / 12 + currentTime.getDate() / 365
-                const endY = getYPosition(giant.death_year || currentYearDecimal)
-
-                // Find a column that doesn't have conflicts
-                let bestColumn = -1
-                let minConflictDistance = Infinity
-
-                for (let col = 0; col < columns; col++) {
-                  const x = col * columnWidth + columnWidth / 2
-                  let hasConflict = false
-                  let conflictDistance = Infinity
-
-                  // Check for conflicts with already placed giants
-                  for (const pos of occupiedPositions) {
-                    const xDiff = Math.abs(pos.x - x)
-                    const yOverlap = (y >= pos.y - minVerticalSpacing && y <= pos.endY + minVerticalSpacing) ||
-                                    (endY >= pos.y - minVerticalSpacing && endY <= pos.endY + minVerticalSpacing) ||
-                                    (y <= pos.y && endY >= pos.endY)
-
-                    if (xDiff < columnWidth * 1.5 && yOverlap) {
-                      hasConflict = true
-                      conflictDistance = Math.min(conflictDistance, Math.abs(y - pos.y))
-                    }
-                  }
-
-                  if (!hasConflict) {
-                    bestColumn = col
-                    break
-                  } else if (conflictDistance < minConflictDistance) {
-                    minConflictDistance = conflictDistance
-                    bestColumn = col
-                  }
-                }
-
-                // If no perfect column found, use the one with least conflict
-                if (bestColumn === -1) {
-                  bestColumn = Math.floor(Math.random() * columns)
-                }
-
-                const x = bestColumn * columnWidth + columnWidth / 2
-                positionedGiants.set(giant.name, { x, y })
-                occupiedPositions.push({ x, y, endY })
-              })
-
-              return sortedGiants.map((giant, index) => {
-              const position = positionedGiants.get(giant.name) || { x: 50, y: 50 }
-              const xPosition = position.x
+            {sortedGiants.map((giant, index) => {
+              // Simple left-to-right ordering based on index
+              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 95 + 2.5
               const startY = getYPosition(giant.birth_year)
               const currentYearDecimal = currentTime.getFullYear() + currentTime.getMonth() / 12 + currentTime.getDate() / 365
               const endY = getYPosition(giant.death_year || currentYearDecimal)
@@ -603,8 +547,7 @@ export default function Timeline() {
                   />
                 </div>
               )
-            })
-            })()}
+            })}
           </div>
         </div>
       </div>
