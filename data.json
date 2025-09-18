@@ -121,7 +121,8 @@
           "grade": "A-",
           "credits": 3,
           "term": "25SU",
-          "topics": ["Supervised Learning", "Unsupervised Learning", "Neural Networks", "Deep Learning"]
+          "topics": ["Supervised Learning", "Unsupervised Learning", "Neural Networks", "Deep Learning"],
+          "project": "https://github.com/1ncompleteness/CC"
         },
         {
           "code": "COMP 380",
@@ -129,14 +130,16 @@
           "grade": "A",
           "credits": 2,
           "term": "25SP",
-          "topics": ["Software Design", "Project Management", "Agile Development"]
+          "topics": ["Software Design", "Project Management", "Agile Development"],
+          "project": "https://github.com/1ncompleteness/Project-Scribe"
         },
         {
           "code": "COMP 380L",
           "name": "Software Engineering Lab",
           "grade": "A",
           "credits": 1,
-          "term": "25SP"
+          "term": "25SP",
+          "project": "https://github.com/1ncompleteness/Project-Scribe"
         },
         {
           "code": "COMP 310",
@@ -600,7 +603,7 @@
       "web": {
         "backend": {
           "apis": ["FastAPI", "Flask"],
-          "nodejs": ["Express", "NestJS"],
+          "nodejs": ["Express"],
           "authentication": ["JWT", "OAuth 2.0", "Session-based Auth"]
         },
         "frontend": {
@@ -635,7 +638,15 @@
     "tools": {
       "documentation": ["LaTeX", "Markdown", "Jupyter"],
       "version_control": ["Git", "GitHub", "GitLab"],
-      "deployment": ["Docker", "Kubernetes", "AWS", "Vercel"]
+      "development": ["VS Code", "IntelliJ IDEA", "Vim", "Neovim"],
+      "testing": ["Jest", "Pytest", "Selenium", "Cypress"],
+      "monitoring": ["Prometheus", "Grafana", "New Relic"],
+      "ci_cd": ["GitHub Actions", "Jenkins", "CircleCI"],
+      "package_managers": ["npm", "pip", "yarn", "conda"],
+      "api_tools": ["Postman", "Insomnia", "Swagger", "GraphQL Playground"],
+      "data_science": ["Jupyter Lab", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly"],
+      "collaboration": ["Slack", "Discord", "Microsoft Teams", "Zoom"],
+      "design": ["Figma", "Excalidraw", "Draw.io", "Mermaid"]
     }
   },
   "academic_service": {
@@ -646,6 +657,12 @@
         "computer_science": ["Data Structures", "Algorithms", "Programming"]
       }
     },
+    "coaching": [
+      "Basketball Assistant Coach",
+      "Basketball Instructor",
+      "Chess Coach",
+      "Chess Instructor"
+    ],
     "interests": {
       "theoretical": ["Formal Systems", "Complexity Theory", "Optimization"],
       "applied": ["Machine Learning", "Network Security", "Distributed Systems"],
@@ -656,6 +673,10 @@
       "Basketball: xPro, Assistant Coach",
       "Dota 2"
     ]
+  },
+  "section_titles": {
+    "interests_passions": "Interests & Passions",
+    "visions": "Visions of the Future Past"
   },
   "experiences": {
     "items": [
@@ -692,24 +713,24 @@
     "Network and Security Systems Administrator"
   ],
   "passionate_interests": [
-    "Formal Logic", "Formal Systems", "Formal Methods", "Automata", "Computation Theory",
+    "Formal Logic", "Automata", "Computation Theory",
     "Tarski's Undefinability Theorem", "Gödel's Incompleteness Theorems", "Turing's Halting Problem",
     "Lambda Calculus", "Turing Machines", "Time Complexities", "P vs NP", "Graphs", "Networking",
     "Cybersecurity", "Penetration Testing", "Signal Processing", "Semi-Conductor Technologies",
-    "Microprocessor", "Extreme Ultraviolet Lithography", "Game Theory", "Group Theory",
+    "Microprocessor", "Extreme Ultraviolet Lithography", "Group Theory",
     "Diagonal Arguments", "Number Theory", "Calculus", "Vector Analysis", "Vector Fields",
     "Cardinal and Ordinal Sets", "Infinities", "Divergence Series", "Complex Analysis",
-    "Analytic Continuation", "Abstract Algebra", "Algebraic Geometry", "Differentiable Manifolds",
-    "Tensor Calculus", "Robust Optimization", "Nash Equilibria", "Saddle Points",
+    "Analytic Continuation", "Abstract Algebra", "Differentiable Manifolds",
+    "Tensor Calculus", "Nash Equilibria", "Saddle Points",
     "Robustness", "Fairness", "Ethics", "Morality", "Literature", "Etymology", "Education", "Philosophy",
-    "Sociology", "Epistemology", "Cosmology", "Astrophysics", "Lagrangian", "Hamiltonian",
+    "Sociology", "Epistemology", "Astrophysics", "Lagrangian", "Hamiltonian",
     "General Relativity", "Spacetime Singularities", "Standard Model", "Higgs Field", "Symmetries",
     "Entropy", "Time Arrow", "Time", "Quantum Mechanics", "Collapse of the Wave Function",
-    "Consciousness", "Undefinability-Incompleteness-Undecidability", "Free Will", "Determinism",
+    "Undefinability-Incompleteness-Undecidability", "Free Will", "Determinism",
     "Orchestrated Objective Reduction", "Anesthesiology", "Microtubules", "Medicine", "Health",
     "Diagnostics", "Neuroimaging", "Neurodegenerative Diseases", "Autoimmune", "Neoplastic",
     "Pathology", "Psychiatry", "Psychotherapy", "Psychology", "Behavioral and Cognitive Sciences",
-    "Neuroscience", "Neuroanatomy", "Computational Neuroscience", "BCIs", "Prosthetics",
+    "Neuroscience", "Neuroanatomy", "BCIs", "Prosthetics",
     "Business", "Finance", "Stock Market", "Index Funding Investments", "Art", "Music",
     "Classical", "Rock", "Metal", "Progressive", "Psychedelic", "Art-Rock", "Grunge", "Indie",
     "Electronic", "Movies", "Directing", "Writing", "Producing", "Anime", "Manga", "Video Games"
@@ -727,6 +748,9 @@
         "Space Rock", "Symphonic Metal", "Trip Hop"
       ]
     },
+    "sports": [
+      "Chess", "FIDE ~2000 ELO Norm", "Basketball", "Basketball Pro League", "Basketball State Championship"
+    ],
     "games": [
       "Armored Core", "Assassin's Creed", "Beyond Two Souls", "BioShock", "Bloodborne", "Borderlands",
       "Counter Strike", "Cyberpunk 2077",

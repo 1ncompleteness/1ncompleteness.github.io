@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, BookOpen, Code, Briefcase, Sparkles, Zap, GraduationCap, FileText, FlaskConical, Activity, Music, Github, Linkedin } from 'lucide-react'
+import { Mail, BookOpen, Code, Briefcase, Sparkles, Zap, GraduationCap, FileText, FlaskConical, Activity, Music, Github } from 'lucide-react'
 import profileData from '@/data.json'
 import Timeline from '@/components/Timeline'
 import TopBar from '@/components/TopBar'
@@ -39,15 +39,7 @@ export default function Home() {
     const wikipediaMappings: { [key: string]: string } = profileData.wikipedia_mappings || {}
 
     // Items that don't have Wikipedia pages - use Google search instead
-    const googleSearchOnly: string[] = profileData.google_search_only || [
-      // Fallback if not in data.json
-      "Basketball Assistant Coach",
-      "Basketball Instructor",
-      "Chess Coach",
-      "Chess Instructor",
-      "Multimodal Agents",
-      "Embedding Models"
-    ]
+    const googleSearchOnly: string[] = profileData.google_search_only || []
 
     // If item should use Google search or has no Wikipedia mapping
     if (googleSearchOnly.includes(item)) {
@@ -70,7 +62,7 @@ export default function Home() {
       title: "Sports & Esports",
       icon: <Sparkles className="w-5 h-5" />,
       items: [
-        "Chess", "FIDE ~2000 ELO Norm", "Basketball", "Basketball Pro League", "Basketball State Championship",
+        ...(profileData.hobbies?.sports || []),
         ...(profileData.hobbies?.games || [])
       ].sort()
     }
@@ -141,7 +133,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="p-2 sm:p-3 bg-transparent border border-primary/30 rounded-full hover:bg-primary hover:scale-110 transition-all"
               >
-                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin w-5 h-5 sm:w-6 sm:h-6"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               </a>
               <a
                 href={`mailto:${profileData.personal.contact.email}`}
@@ -422,6 +414,11 @@ export default function Home() {
                                     <span className="text-xs font-semibold text-white">{course.code}</span>
                                     <p className="text-xs text-white/60">{course.name}</p>
                                     {course.term && <p className="text-xs text-white/40">{course.term}</p>}
+                                    {course.project && (
+                                      <a href={course.project} target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline">
+                                        View Project →
+                                      </a>
+                                    )}
                                   </div>
                                   <span className="text-xs font-bold text-primary ml-1">{course.grade}</span>
                                 </div>
@@ -441,6 +438,11 @@ export default function Home() {
                                     <span className="text-xs font-semibold text-white">{course.code}</span>
                                     <p className="text-xs text-white/60">{course.name}</p>
                                     {course.term && <p className="text-xs text-white/40">{course.term}</p>}
+                                    {course.project && (
+                                      <a href={course.project} target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline">
+                                        View Project →
+                                      </a>
+                                    )}
                                   </div>
                                   <span className="text-xs font-bold text-primary ml-1">{course.grade}</span>
                                 </div>
@@ -460,6 +462,11 @@ export default function Home() {
                                     <span className="text-xs font-semibold text-white">{course.code}</span>
                                     <p className="text-xs text-white/60">{course.name}</p>
                                     {course.term && <p className="text-xs text-white/40">{course.term}</p>}
+                                    {course.project && (
+                                      <a href={course.project} target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline">
+                                        View Project →
+                                      </a>
+                                    )}
                                   </div>
                                   <span className="text-xs font-bold text-primary ml-1">{course.grade}</span>
                                 </div>
@@ -479,6 +486,11 @@ export default function Home() {
                                     <span className="text-xs font-semibold text-white">{course.code}</span>
                                     <p className="text-xs text-white/60">{course.name}</p>
                                     {course.term && <p className="text-xs text-white/40">{course.term}</p>}
+                                    {course.project && (
+                                      <a href={course.project} target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline">
+                                        View Project →
+                                      </a>
+                                    )}
                                   </div>
                                   <span className="text-xs font-bold text-primary ml-1">{course.grade}</span>
                                 </div>
@@ -527,7 +539,7 @@ export default function Home() {
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {[...Object.values(profileData.academic_service.tutoring.subjects).flat(),
-                    "Basketball Assistant Coach", "Basketball Instructor", "Chess Coach", "Chess Instructor"
+                    ...(profileData.academic_service.coaching || [])
                   ].map((subject: any, idx: number) => (
                     <a
                       key={`teach-${subject}-${idx}`}
@@ -771,6 +783,17 @@ export default function Home() {
                         {client}
                       </a>
                     ))}
+                    {profileData.technical_skills.frameworks.web.frontend.ui?.map((ui: string, idx: number) => (
+                      <a
+                        key={ui}
+                        href={getSearchUrl(ui)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${120 + idx * 25}deg, #3c6e71, #353535)` }}>
+                        {ui}
+                      </a>
+                    ))}
                   </div>
                 </div>
                 <div>
@@ -850,7 +873,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">Interests & Passions</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">{profileData.section_titles?.interests_passions || "Interests & Passions"}</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {interestCategories.map((category, idx) => (
@@ -877,7 +900,7 @@ export default function Home() {
             </div>
 
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-6 sm:mb-8">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-center text-primary">Visions of the Future Past</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-center text-primary">{profileData.section_titles?.visions || "Visions of the Future Past"}</h3>
               <p className="text-center mb-4">
                 <span className="text-gradient" style={{ textDecoration: 'line-through', textDecorationColor: '#3c6e71', textDecorationThickness: '2px' }}>Small</span> Talk Only About:
               </p>
@@ -926,7 +949,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2"
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin w-5 h-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                   Connect
                 </a>
                 <a

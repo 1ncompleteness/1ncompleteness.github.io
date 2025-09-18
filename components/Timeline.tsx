@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { ExternalLink } from 'lucide-react'
 import giantsData from '@/SoG.json'
+import timelineConfig from '@/timeline-config.json'
 
 interface Giant {
   name: string
@@ -53,61 +54,8 @@ export default function Timeline() {
     return () => clearInterval(timer)
   }, [])
 
-  // Define distinct colors for each field
-  const fieldColors: Record<string, string> = {
-    'physics': '#00D9FF',           // Cyan
-    'mathematics': '#FF6B6B',       // Coral
-    'computer science': '#4ECDC4',  // Teal
-    'philosophy': '#95E77E',        // Light Green
-    'psychology': '#FFD93D',        // Yellow
-    'psychiatry': '#FFA500',        // Orange
-    'literature': '#B19CD9',        // Lavender
-    'astronomy': '#FF69B4',         // Hot Pink
-    'computing': '#00CED1',         // Dark Turquoise
-    'logic': '#FF1493',             // Deep Pink
-    'epistemology': '#32CD32',      // Lime Green
-    'education': '#FF8C00',         // Dark Orange
-    'philology': '#9370DB',         // Medium Purple
-    'physiology': '#20B2AA',        // Light Sea Green
-    'psychotherapy': '#FFB6C1',     // Light Pink
-    'psychoanalysis': '#DDA0DD',    // Plum
-    'cryptanalysis': '#00FA9A',     // Medium Spring Green
-    'electrical engineering': '#FF4500', // Orange Red
-    'artificial intelligence': '#1E90FF', // Dodger Blue
-    'ai ethics': '#FF69B4',         // Hot Pink
-    'economics': '#FFD700',         // Gold
-    'linguistics': '#8A2BE2',        // Blue Violet
-    'cognitive science': '#00BFFF', // Deep Sky Blue
-    'neuroscience': '#FF00FF',      // Magenta
-    'behaviorism': '#7FFF00',       // Chartreuse
-    'philosophy of mind': '#DC143C', // Crimson
-    'philosophy of language': '#4B0082', // Indigo
-    'poetry': '#E6E6FA',            // Lavender Web
-    'music theory': '#FF1493',      // Deep Pink
-    'ethics': '#228B22',            // Forest Green
-    'spirituality': '#9400D3',      // Violet
-    'military strategy': '#8B0000', // Dark Red
-    'leadership': '#4169E1',        // Royal Blue
-    'biology': '#00FF7F',           // Spring Green
-    'engineering': '#FF8C00',       // Dark Orange
-    'theology': '#DAA520',          // Goldenrod
-    'science': '#00CED1',           // Dark Turquoise
-    'scientific method': '#4682B4', // Steel Blue
-    'taxonomy': '#3CB371',          // Medium Sea Green
-    "women's rights": '#FF69B4',    // Hot Pink
-    'chemistry': '#FF6347',         // Tomato
-    'genetics': '#00FA9A',          // Medium Spring Green
-    'invention': '#FFD700',         // Gold
-    'technology': '#1E90FF',        // Dodger Blue
-    'X-ray crystallography': '#FF00FF', // Magenta
-    'molecular biology': '#32CD32', // Lime Green
-    'astrophysics': '#FF1493',      // Deep Pink
-    'cosmology': '#8A2BE2',         // Blue Violet
-    'primatology': '#228B22',       // Forest Green
-    'ethology': '#00CED1',          // Dark Turquoise
-    'conservation': '#3CB371',      // Medium Sea Green
-    'environmental science': '#00FF00' // Lime
-  }
+  // Get field colors from configuration
+  const fieldColors: Record<string, string> = timelineConfig.fieldColors
 
   // Initialize current time on client side only
   useEffect(() => {
