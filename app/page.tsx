@@ -896,6 +896,154 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Crawling & Scraping Section */}
+            <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                <Activity className="w-5 h-5" />
+                Web Crawling & Scraping
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                  <p className="text-sm font-medium mb-2">Web Scraping</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.frameworks.crawling?.web_scraping?.map((tool: string, idx: number) => (
+                      <a
+                        key={tool}
+                        href={getSearchUrl(tool)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${30 + idx * 45}deg, #FF6B6B, #4ECDC4)` }}>
+                        {tool}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">Browser Automation</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.frameworks.crawling?.browser_automation?.map((tool: string, idx: number) => (
+                      <a
+                        key={tool}
+                        href={getSearchUrl(tool)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${60 + idx * 40}deg, #4ECDC4, #95E77E)` }}>
+                        {tool}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">API Extraction</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.frameworks.crawling?.api_extraction?.map((tool: string, idx: number) => (
+                      <a
+                        key={tool}
+                        href={getSearchUrl(tool)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${90 + idx * 35}deg, #95E77E, #FFD93D)` }}>
+                        {tool}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">Data Parsing</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.frameworks.crawling?.data_parsing?.map((tool: string, idx: number) => (
+                      <a
+                        key={tool}
+                        href={getSearchUrl(tool)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${120 + idx * 30}deg, #FFD93D, #FF6B6B)` }}>
+                        {tool}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* MCPs & AI Tools Section */}
+            <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                <Zap className="w-5 h-5" />
+                Model Context Protocols (MCPs)
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                  <p className="text-sm font-medium mb-2">AI Assistance</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.frameworks.mcps?.ai_assistance?.map((tool: string, idx: number) => (
+                      <a
+                        key={tool}
+                        href={getSearchUrl(tool)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${15 + idx * 50}deg, #1E90FF, #FF69B4)` }}>
+                        {tool}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">MCP Servers</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.frameworks.mcps?.mcp_servers?.map((tool: string, idx: number) => (
+                      <a
+                        key={tool}
+                        href={getSearchUrl(tool)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${45 + idx * 40}deg, #FF69B4, #00CED1)` }}>
+                        {tool}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">Search & Research</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.frameworks.mcps?.search_research?.map((tool: string, idx: number) => (
+                      <a
+                        key={tool}
+                        href={getSearchUrl(tool)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${75 + idx * 35}deg, #00CED1, #32CD32)` }}>
+                        {tool}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">Integrations</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.frameworks.mcps?.integrations?.map((tool: string, idx: number) => (
+                      <a
+                        key={tool}
+                        href={getSearchUrl(tool)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${105 + idx * 30}deg, #32CD32, #1E90FF)` }}>
+                        {tool}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Tools Section */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">

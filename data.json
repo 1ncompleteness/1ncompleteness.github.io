@@ -623,6 +623,18 @@
         "containerization": ["Docker"],
         "orchestration": ["Kubernetes"],
         "cloud": ["AWS", "DigitalOcean", "Vercel"]
+      },
+      "crawling": {
+        "web_scraping": ["BeautifulSoup", "Scrapy", "Requests"],
+        "browser_automation": ["Selenium", "Playwright", "Puppeteer"],
+        "api_extraction": ["REST APIs", "GraphQL APIs", "WebSocket"],
+        "data_parsing": ["lxml", "html.parser", "regex", "XPath"]
+      },
+      "mcps": {
+        "ai_assistance": ["Claude Code", "Cursor", "GitHub Copilot"],
+        "mcp_servers": ["Smithery Toolbox", "Desktop Commander", "Context7", "DocFork"],
+        "search_research": ["Exa", "Firecrawl", "Web Search", "Sequential Thinking"],
+        "integrations": ["Hugeicons", "Upstash", "IDE Integration", "MCP Resources"]
       }
     },
     "architectures": {
