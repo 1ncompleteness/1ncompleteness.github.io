@@ -124,25 +124,24 @@ export default function Home() {
         "Chamber Music", "Classical Music", "Dark Ambient", "Electronic",
         "Experimental", "Gothic Rock", "Grunge", "Heavy Metal", "Impressionism",
         "Indie Rock", "Industrial", "Jazz", "Medieval Music", "Modern Classical",
-        "Neo-Classical", "New Wave", "Opera", "Orchestral", "Post-Punk",
+        "Neo-Classical", "Opera", "Orchestral", "Post-Punk",
         "Post-Rock", "Progressive Metal", "Progressive Rock", "Psychedelic Rock",
-        "Renaissance Music", "Romantic Era", "Shoegaze", "Soundtrack",
-        "Space Rock", "Symphonic Metal", "Synthwave", "Trip Hop"
+        "Renaissance Music", "Romantic Era", "Soundtrack",
+        "Space Rock", "Symphonic Metal", "Trip Hop"
       ].sort()
     },
     {
       title: "Sports & Esports",
       icon: <Sparkles className="w-5 h-5" />,
       items: [
-        "Armored Core", "Assassin's Creed", "Basketball",
-        "Basketball Pro League", "Basketball State Championship",
-        "Beyond Two Souls", "BioShock", "Bloodborne", "Borderlands", "Chess",
+        "Chess","FIDE ~2000 ELO Norm", "Basketball", "Basketball Pro League", "Basketball State Championship",
+        "Armored Core", "Assassin's Creed","Beyond Two Souls", "BioShock", "Bloodborne", "Borderlands", 
         "Counter Strike", "Cyberpunk 2077",
         "Dark Souls", "Devil May Cry", "Dota 2", "Dragon Age", "Elden Ring",
-        "Fallout", "FarCry", "FIDE ~2000 ELO Norm", "FIFA", "God of War",
+        "FarCry", "EA Sports FIFA", "God of War",
         "Guitar Hero", "Hades", "Half-Life", "Heavy Rain", "Max Payne",
-        "Mortal Kombat", "NBA 2K", "Persona", "Red Dead Redemption", "Rust",
-        "Sekiro", "The Last of Us", "The Legend of Zelda", "The Witcher",
+        "Mortal Kombat", "NBA 2K", "Red Dead Redemption", "Rust",
+        "Sekiro", "The Last of Us", "The Witcher",
         "Uncharted", "World of Warcraft"
       ].sort()
     }

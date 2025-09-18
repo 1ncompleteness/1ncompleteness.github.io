@@ -1,14 +1,14 @@
 # Behrouz Barati B - Portfolio
 
-Personal portfolio website with horizontal carousel design, built with Next.js 15 and React 19.
+Personal portfolio website with horizontal carousel design, built with Next.js.
 
 ## 🚀 Live Site
 [https://1ncompleteness.github.io](https://1ncompleteness.github.io)
 
 ## 🛠️ Tech Stack
-- **Framework:** Next.js 15.5.3
-- **UI:** React 19.0.0
-- **Styling:** Tailwind CSS
+- **Framework:** Next.js 15
+- **UI:** React 19
+- **Styling:** Tailwind CSS 3
 - **Animations:** Framer Motion
 - **Language:** TypeScript
 - **Icons:** Lucide React
