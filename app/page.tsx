@@ -35,73 +35,18 @@ export default function Home() {
 
   // Helper function to generate search URL (Wikipedia or Google fallback)
   const getSearchUrl = (item: string) => {
-    // Special mappings for items that need specific Wikipedia pages
-    const wikipediaMappings: { [key: string]: string } = {
-      // Research Interests
-      "NLP (Natural Language Processing)": "Natural_language_processing",
-      "LLMs (Large Language Models)": "Large_language_model",
-      "MAS (Multi-Agent Systems)": "Multi-agent_system",
-      "RAG (Retrieval-Augmented Generation) Systems": "Retrieval-augmented_generation",
-      "ZSL (Zero-Shot Learning)": "Zero-shot_learning",
-      "tACS (Transcranial Alternating Current Stimulation)": "Transcranial_alternating_current_stimulation",
-      "tDCS (Transcranial Direct Current Stimulation)": "Transcranial_direct-current_stimulation",
-      "TMS (Transcranial Magnetic Stimulation)": "Transcranial_magnetic_stimulation",
-      "Formal Systems": "Formal_system",
-      "Formal Methods": "Formal_methods",
-      "Multimodal Agents": "Multimodal_learning",
-      "Computational Neuroscience": "Computational_neuroscience",
-      "Embedding Models": "Word_embedding",
-      "Applied Machine Learning": "Machine_learning",
-      "Knowledge Graphs": "Knowledge_graph",
-      "Game Theory": "Game_theory",
-      "Robust Optimization": "Robust_optimization",
-      "Knowledge Base Systems": "Knowledge_base",
-      "Algebraic Geometry": "Algebraic_geometry",
-      // Sports & Esports
-      "FIDE ~2000 ELO Norm": "FIDE_titles",
-      "Basketball Assistant Coach": "Coach_(basketball)",
-      "Basketball Instructor": "Basketball",
-      "Basketball Pro League": "List_of_basketball_leagues",
-      "Basketball State Championship": "High_school_basketball",
-      "Chess Coach": "Chess",
-      "Chess Instructor": "Chess",
-      "Baroque Period": "Baroque_music",
-      "Romantic Era": "Romantic_music",
-      "Modern Classical": "Contemporary_classical_music",
-      "Alternative Rock": "Alternative_rock",
-      "Progressive Metal": "Progressive_metal",
-      "Assassin's Creed": "Assassin%27s_Creed",
-      "Beyond Two Souls": "Beyond:_Two_Souls",
-      "Counter Strike": "Counter-Strike",
-      "Cyberpunk 2077": "Cyberpunk_2077",
-      "Dark Souls": "Dark_Souls",
-      "Devil May Cry": "Devil_May_Cry",
-      "Dota 2": "Dota_2",
-      "Dragon Age": "Dragon_Age",
-      "Elden Ring": "Elden_Ring",
-      "God of War": "God_of_War_(franchise)",
-      "Guitar Hero": "Guitar_Hero",
-      "Half-Life": "Half-Life_(series)",
-      "Heavy Rain": "Heavy_Rain",
-      "Max Payne": "Max_Payne",
-      "Mortal Kombat": "Mortal_Kombat",
-      "NBA 2K": "NBA_2K",
-      "Red Dead Redemption": "Red_Dead_Redemption",
-      "Rust": "Rust_(video_game)",
-      "The Last of Us": "The_Last_of_Us",
-      "The Legend of Zelda": "The_Legend_of_Zelda",
-      "The Witcher": "The_Witcher_(video_game_series)",
-      "World of Warcraft": "World_of_Warcraft"
-    }
+    // Get mappings from data.json
+    const wikipediaMappings: { [key: string]: string } = profileData.wikipedia_mappings || {}
 
     // Items that don't have Wikipedia pages - use Google search instead
-    const googleSearchOnly: string[] = [
+    const googleSearchOnly: string[] = profileData.google_search_only || [
+      // Fallback if not in data.json
       "Basketball Assistant Coach",
       "Basketball Instructor",
       "Chess Coach",
       "Chess Instructor",
-      "Multimodal Agents", // Actually doesn't have a direct Wikipedia page
-      "Embedding Models" // Redirects to Word embedding but might be better as Google search
+      "Multimodal Agents",
+      "Embedding Models"
     ]
 
     // If item should use Google search or has no Wikipedia mapping
@@ -114,35 +59,19 @@ export default function Home() {
     return `https://en.wikipedia.org/wiki/${wikiPage}`
   }
 
-  // Categories for interests with icons
+  // Categories for interests with icons - data from data.json
   const interestCategories = [
     {
       title: "Art & Music",
       icon: <Music className="w-5 h-5" />,
-      items: [
-        "Alternative Rock", "Ambient", "Art Rock", "Baroque Period", "Blues",
-        "Chamber Music", "Classical Music", "Dark Ambient", "Electronic",
-        "Experimental", "Gothic Rock", "Grunge", "Heavy Metal", "Impressionism",
-        "Indie Rock", "Industrial", "Jazz", "Medieval Music", "Modern Classical",
-        "Neo-Classical", "Opera", "Orchestral", "Post-Punk",
-        "Post-Rock", "Progressive Metal", "Progressive Rock", "Psychedelic Rock",
-        "Renaissance Music", "Romantic Era", "Soundtrack",
-        "Space Rock", "Symphonic Metal", "Trip Hop"
-      ].sort()
+      items: (profileData.hobbies?.music?.genres || []).sort()
     },
     {
       title: "Sports & Esports",
       icon: <Sparkles className="w-5 h-5" />,
       items: [
-        "Chess","FIDE ~2000 ELO Norm", "Basketball", "Basketball Pro League", "Basketball State Championship",
-        "Armored Core", "Assassin's Creed","Beyond Two Souls", "BioShock", "Bloodborne", "Borderlands", 
-        "Counter Strike", "Cyberpunk 2077",
-        "Dark Souls", "Devil May Cry", "Dota 2", "Dragon Age", "Elden Ring",
-        "FarCry", "EA Sports FIFA", "God of War",
-        "Guitar Hero", "Hades", "Half-Life", "Heavy Rain", "Max Payne",
-        "Mortal Kombat", "NBA 2K", "Red Dead Redemption", "Rust",
-        "Sekiro", "The Last of Us", "The Witcher",
-        "Uncharted", "World of Warcraft"
+        "Chess", "FIDE ~2000 ELO Norm", "Basketball", "Basketball Pro League", "Basketball State Championship",
+        ...(profileData.hobbies?.games || [])
       ].sort()
     }
   ]
@@ -905,17 +834,6 @@ export default function Home() {
                         className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
                         style={{ background: `linear-gradient(${75 + idx * 35}deg, #3c6e71, #284b63)` }}>
                         {cloud}
-                      </a>
-                    ))}
-                    {profileData.technical_skills.frameworks.devops?.ci_cd?.map((ci: string, idx: number) => (
-                      <a
-                        key={ci}
-                        href={getSearchUrl(ci)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${180 + idx * 45}deg, #284b63, #353535)` }}>
-                        {ci}
                       </a>
                     ))}
                   </div>
