@@ -1,11 +1,16 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, BookOpen, Code, Briefcase, Sparkles, Zap, GraduationCap, FileText, FlaskConical, Activity, Music, Github } from 'lucide-react'
+import { Mail, BookOpen, Code, Briefcase, Sparkles, Zap, GraduationCap, FileText, FlaskConical, Activity, Music } from 'lucide-react'
 import profileData from '@/data.json'
-import Timeline from '@/components/Timeline'
 import TopBar from '@/components/TopBar'
 import { useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
+
+const Timeline = dynamic(() => import('@/components/Timeline'), {
+  loading: () => <div className="flex items-center justify-center h-full text-primary">Loading timeline...</div>,
+  ssr: false
+})
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -125,7 +130,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="p-2 sm:p-3 bg-transparent border border-primary/30 rounded-full hover:bg-primary hover:scale-110 transition-all"
               >
-                <Github className="w-5 h-5 sm:w-6 sm:h-6" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-github w-5 h-5 sm:w-6 sm:h-6"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
               </a>
               <a
                 href={profileData.personal.contact.social.linkedin.url}
@@ -679,6 +684,22 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">Data Analysis</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.frameworks.ml_ai.specialized?.data_analysis?.map((tool: string, idx: number) => (
+                      <a
+                        key={tool}
+                        href={getSearchUrl(tool)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${45 + idx * 40}deg, #3c6e71, #284b63)` }}>
+                        {tool}
+                      </a>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -848,6 +869,17 @@ export default function Home() {
                         {container}
                       </a>
                     ))}
+                    {profileData.technical_skills.frameworks.devops?.orchestration?.map((orch: string, idx: number) => (
+                      <a
+                        key={orch}
+                        href={getSearchUrl(orch)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${50 + idx * 50}deg, #284b63, #3c6e71)` }}>
+                        {orch}
+                      </a>
+                    ))}
                     {profileData.technical_skills.frameworks.devops?.cloud?.map((cloud: string, idx: number) => (
                       <a
                         key={cloud}
@@ -861,6 +893,34 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Tools Section */}
+            <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+                <Code className="w-5 h-5" />
+                Tools & Utilities
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {Object.entries(profileData.technical_skills.tools).map(([category, tools]: [string, any]) => (
+                  <div key={category}>
+                    <p className="text-sm font-medium mb-2 capitalize">{category.replace('_', ' ')}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {(tools as string[]).map((tool: string, idx: number) => (
+                        <a
+                          key={tool}
+                          href={getSearchUrl(tool)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                          style={{ background: `linear-gradient(${45 + idx * 30}deg, #3c6e71, #284b63)` }}>
+                          {tool}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             </div>

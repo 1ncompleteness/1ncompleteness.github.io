@@ -597,7 +597,8 @@
         "specialized": {
           "nlp": ["Transformers", "NLTK", "LangChain"],
           "graph": ["PyTorch Geometric"],
-          "visualization": ["Matplotlib"]
+          "visualization": ["Matplotlib", "Seaborn", "Plotly"],
+          "data_analysis": ["Pandas", "Jupyter Lab"]
         }
       },
       "web": {
@@ -608,7 +609,7 @@
         },
         "frontend": {
           "frameworks": ["React", "Next.js"],
-          "ui": ["Tailwind CSS", "Material-UI", "Bootstrap", "Framer Motion"],
+          "ui": ["Tailwind CSS", "Framer Motion"],
           "http_clients": ["Axios", "Fetch API", "GraphQL Client"]
         }
       },
@@ -638,15 +639,12 @@
     "tools": {
       "documentation": ["LaTeX", "Markdown", "Jupyter"],
       "version_control": ["Git", "GitHub", "GitLab"],
-      "development": ["VS Code", "IntelliJ IDEA", "Vim", "Neovim"],
-      "testing": ["Jest", "Pytest", "Selenium", "Cypress"],
-      "monitoring": ["Prometheus", "Grafana", "New Relic"],
-      "ci_cd": ["GitHub Actions", "Jenkins", "CircleCI"],
+      "development": ["VS Code", "IntelliJ IDEA", "Vim", "Neovim", "Cursor", "Claude Code", "Gemini"],
+      "monitoring": ["Prometheus", "Grafana"],
+      "ci_cd": ["GitHub Actions"],
       "package_managers": ["npm", "pip", "yarn", "conda"],
-      "api_tools": ["Postman", "Insomnia", "Swagger", "GraphQL Playground"],
-      "data_science": ["Jupyter Lab", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly"],
       "collaboration": ["Slack", "Discord", "Microsoft Teams", "Zoom"],
-      "design": ["Figma", "Excalidraw", "Draw.io", "Mermaid"]
+      "design": ["Figma", "Build.io", "Draw.io"]
     }
   },
   "academic_service": {
@@ -738,14 +736,14 @@
   "hobbies": {
     "music": {
       "genres": [
-        "Alternative Rock", "Ambient", "Art Rock", "Baroque Period", "Blues",
+        "Alternative Rock", "Ambient", "Art Rock", "Baroque Period",
         "Chamber Music", "Classical Music", "Dark Ambient", "Electronic",
         "Experimental", "Gothic Rock", "Grunge", "Heavy Metal", "Impressionism",
-        "Indie Rock", "Industrial", "Jazz", "Medieval Music", "Modern Classical",
+        "Indie Rock", "Industrial", "Medieval Music", "Modern Classical",
         "Neo-Classical", "Opera", "Orchestral", "Post-Punk",
         "Post-Rock", "Progressive Metal", "Progressive Rock", "Psychedelic Rock",
         "Renaissance Music", "Romantic Era", "Soundtrack",
-        "Space Rock", "Symphonic Metal", "Trip Hop"
+        "Space Rock", "Symphonic Metal"
       ]
     },
     "sports": [
