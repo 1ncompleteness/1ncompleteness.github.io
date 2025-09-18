@@ -410,12 +410,12 @@ export default function Timeline() {
         </div>
 
         {/* Container that matches canvas coordinate system exactly */}
-        <div className="absolute w-full" style={{ top: '100px', height: '2350px', left: '80px', right: '80px' }}>
+        <div className="absolute" style={{ top: '100px', height: '2350px', left: '80px', width: 'calc(100% - 160px)' }}>
           {/* Timeline with vertical lines for each giant */}
           <div className="relative w-full h-full">
             {sortedGiants.map((giant, index) => {
               // Simple left-to-right ordering based on index
-              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 95 + 2.5
+              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 85 + 5
 
               // Get raw Y position percentage
               const startYRaw = getYPosition(giant.birth_year)
@@ -445,7 +445,7 @@ export default function Timeline() {
                   {/* Profile picture at birth year position */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-3 -top-3 w-9 h-9 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 hover:z-50 transition-all z-30 shadow-lg"
+                      className="absolute -left-2 -top-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 hover:z-50 transition-all z-30 shadow-lg"
                       onClick={() => openWikipedia(giant.wikipedia)}
                       onMouseEnter={(e) => handleMouseEnter(giant, e)}
                       onMouseLeave={handleMouseLeave}
