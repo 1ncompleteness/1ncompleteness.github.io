@@ -623,18 +623,6 @@
         "containerization": ["Docker"],
         "orchestration": ["Kubernetes"],
         "cloud": ["AWS", "DigitalOcean", "Vercel"]
-      },
-      "crawling": {
-        "web_scraping": ["BeautifulSoup", "Scrapy", "Requests"],
-        "browser_automation": ["Selenium", "Playwright", "Puppeteer"],
-        "api_extraction": ["REST APIs", "GraphQL APIs", "WebSocket"],
-        "data_parsing": ["lxml", "html.parser", "regex", "XPath"]
-      },
-      "mcps": {
-        "ai_assistance": ["Claude Code", "Cursor", "GitHub Copilot"],
-        "mcp_servers": ["Smithery Toolbox", "Desktop Commander", "Context7", "DocFork"],
-        "search_research": ["Exa", "Firecrawl", "Web Search", "Sequential Thinking"],
-        "integrations": ["Hugeicons", "Upstash", "IDE Integration", "MCP Resources"]
       }
     },
     "architectures": {
@@ -656,7 +644,9 @@
       "ci_cd": ["GitHub Actions"],
       "package_managers": ["npm", "pip", "yarn", "conda"],
       "collaboration": ["Slack", "Discord", "Microsoft Teams", "Zoom"],
-      "design": ["Figma", "Build.io", "Draw.io"]
+      "design": ["Figma", "Build.io", "Draw.io"],
+      "spiders": ["BeautifulSoup", "Scrapy", "Requests", "Selenium", "Playwright", "Puppeteer", "lxml", "html.parser", "regex", "XPath", "REST APIs", "GraphQL APIs", "WebSocket"],
+      "mcps": ["Claude Code", "Cursor", "GitHub Copilot", "Smithery Toolbox", "Desktop Commander", "Context7", "DocFork", "Exa", "Firecrawl", "Web Search", "Sequential Thinking", "Hugeicons", "Upstash", "IDE Integration", "MCP Resources"]
     }
   },
   "academic_service": {
@@ -677,12 +667,7 @@
       "theoretical": ["Formal Systems", "Complexity Theory", "Optimization"],
       "applied": ["Machine Learning", "Network Security", "Distributed Systems"],
       "interdisciplinary": ["Consciousness Studies", "Computational Neuroscience", "Philosophy of Mind"]
-    },
-    "sports_esports": [
-      "Chess: xPro, Coach",
-      "Basketball: xPro, Assistant Coach",
-      "Dota 2"
-    ]
+    }
   },
   "section_titles": {
     "interests_passions": "Interests & Passions",
@@ -751,10 +736,10 @@
         "Alternative Rock", "Ambient", "Art Rock", "Baroque Period",
         "Chamber Music", "Classical Music", "Dark Ambient", "Electronic",
         "Experimental", "Gothic Rock", "Grunge", "Heavy Metal", "Impressionism",
-        "Indie Rock", "Industrial", "Medieval Music", "Modern Classical",
-        "Neo-Classical", "Opera", "Orchestral", "Post-Punk",
+        "Indie Rock", "Industrial", "Modern Classical",
+        "Neo-Classical", "Opera", "Orchestral",
         "Post-Rock", "Progressive Metal", "Progressive Rock", "Psychedelic Rock",
-        "Renaissance Music", "Romantic Era", "Soundtrack",
+        "Romantic Era", "Soundtrack",
         "Space Rock", "Symphonic Metal"
       ]
     },
