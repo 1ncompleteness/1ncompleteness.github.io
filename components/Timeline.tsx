@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink } from 'lucide-react'
 import giantsData from '@/SoG.json'
 import timelineConfig from '@/timeline-config.json'
@@ -21,7 +22,6 @@ interface GiantWithImage extends Giant {
 
 export default function Timeline() {
   const [hoveredGiant, setHoveredGiant] = useState<GiantWithImage | null>(null)
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
   const [giantsWithImages, setGiantsWithImages] = useState<GiantWithImage[]>([])
   const [currentTime, setCurrentTime] = useState<Date | null>(null)
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -31,20 +31,21 @@ export default function Timeline() {
   const timelineRef = useRef<HTMLDivElement>(null)
   const tooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Timeline range starting from -1000
-  const minYear = -1000
+  // Timeline range starting from -900
+  const minYear = -900
   const currentYear = new Date().getFullYear()
-  const maxYear = currentYear + 1 // Add 1 year padding for better visualization
+  const maxYear = currentYear // No padding - use current year as max
   const yearRange = maxYear - minYear
 
-  // Define time periods for display
-  const timePeriods = [
-    { start: -1000, end: -500, label: 'Ancient Era' },
+  // Define time periods for display - memoized to prevent infinite loop
+  const timePeriods = useMemo(() => [
+    { start: -900, end: -500, label: 'Ancient Era' },
     { start: -500, end: 0, label: 'Classical Antiquity' },
     { start: 0, end: 1000, label: 'Medieval Period' },
     { start: 1000, end: 1500, label: 'Renaissance' },
-    { start: 1500, end: maxYear, label: 'Modern Era' }
-  ]
+    { start: 1500, end: 1900, label: 'Early Modern Era' },
+    { start: 1900, end: maxYear, label: 'Modern Era' }
+  ], [maxYear])
 
   // Update current time every second
   useEffect(() => {
@@ -138,13 +139,35 @@ export default function Timeline() {
   const sortedGiants = [...giants].sort((a, b) => a.birth_year - b.birth_year)
 
   const getYPosition = (year: number) => {
-    // Simple linear scale from minYear to maxYear
-    const range = maxYear - minYear
-    const progress = (year - minYear) / range
-    return progress * 100 // Return percentage from 0 to 100
+    // Non-linear scale: give more space to crowded modern eras
+    // Cap year to not exceed maxYear
+    const cappedYear = Math.min(year, maxYear)
+
+    // Define era boundaries with allocated vertical space percentages
+    const eras = [
+      { start: -900, end: -500, percent: 15 },    // Ancient Era: 400 years
+      { start: -500, end: 0, percent: 15 },       // Classical: 500 years
+      { start: 0, end: 1000, percent: 20 },       // Medieval: 1000 years
+      { start: 1000, end: 1500, percent: 15 },    // Renaissance: 500 years
+      { start: 1500, end: 1900, percent: 15 },    // Early Modern: 400 years
+      { start: 1900, end: maxYear, percent: 20 }  // Modern: ~125 years (more space for density)
+    ]
+
+    let cumulativePercent = 0
+    for (const era of eras) {
+      if (cappedYear >= era.start && cappedYear <= era.end) {
+        // Position within this era
+        const eraProgress = (cappedYear - era.start) / (era.end - era.start)
+        const positionInEra = eraProgress * era.percent
+        return cumulativePercent + positionInEra
+      }
+      cumulativePercent += era.percent
+    }
+
+    return 100 // Fallback
   }
 
-  const handleMouseEnter = (giant: GiantWithImage, event: React.MouseEvent) => {
+  const handleMouseEnter = (giant: GiantWithImage) => {
     // Clear any existing timeout
     if (tooltipTimeoutRef.current) {
       clearTimeout(tooltipTimeoutRef.current)
@@ -152,11 +175,6 @@ export default function Timeline() {
     }
 
     setHoveredGiant(giant)
-    const rect = event.currentTarget.getBoundingClientRect()
-    setTooltipPosition({
-      x: rect.right + 15,  // Position to the right of the icon with 15px gap
-      y: Math.max(rect.top + rect.height / 2, 100)  // Center vertically but ensure minimum distance from top
-    })
   }
 
   const handleMouseLeave = () => {
@@ -196,8 +214,8 @@ export default function Timeline() {
     if (!canvas || !container) return
 
     const resizeCanvas = () => {
-      // Use fixed height for the scrollable area
-      const scrollableHeight = 2500
+      // Use fixed height for the scrollable area - scaled up 4x to prevent icon overlap
+      const scrollableHeight = 10000
       canvas.width = window.innerWidth
       canvas.height = scrollableHeight
 
@@ -216,8 +234,8 @@ export default function Timeline() {
       // Calculate graph area position (below title and legend)
       const graphTop = 100 // Space for title and legend
       const graphBottom = canvas.height - 50
-      const graphLeft = 70
-      const graphRight = canvas.width - 40
+      const graphLeft = 60  // Reduced for tighter left spacing
+      const graphRight = canvas.width - 30  // Reduced for tighter right spacing
 
       // Draw Y-axis (Time)
       ctx.beginPath()
@@ -232,27 +250,23 @@ export default function Timeline() {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
       ctx.font = '10px monospace'
 
-      // Y-axis labels (years) - from -1000 to current year
-      const years = []
-      // Ancient period
-      for (let year = -1000; year <= 0; year += 100) {
-        years.push(year)
-      }
-      // Classical to Medieval
-      for (let year = 100; year <= 900; year += 100) {
-        years.push(year)
-      }
-      // Early Modern
-      for (let year = 1000; year <= 1400; year += 100) {
-        years.push(year)
-      }
-      // Modern period - more detail
-      for (let year = 1500; year <= maxYear; year += 50) {
-        years.push(year)
-      }
-      // Add current year if not already included
-      if (!years.includes(currentYear)) {
-        years.push(currentYear)
+      // Y-axis labels - minimum 10-year spacing between consecutive labels
+      const giantYears = sortedGiants.map(g => g.birth_year)
+      const importantYears = [-900, -500, 0, 500, 1000, 1500, 2000, currentYear]
+
+      // Combine and sort all potential years
+      const allYears = [...new Set([...giantYears, ...importantYears])].sort((a, b) => a - b)
+
+      // Filter to ensure minimum 10-year spacing, prioritizing important years
+      const years: number[] = []
+      let lastYear = -Infinity
+
+      for (const year of allYears) {
+        // Always include important years if they're 10+ years from last, or include next available year
+        if (year - lastYear >= 10 || importantYears.includes(year) && years.length === 0) {
+          years.push(year)
+          lastYear = year
+        }
       }
 
 
@@ -263,7 +277,7 @@ export default function Timeline() {
         const y = graphTop + yPercent * (graphBottom - graphTop)
 
 
-        ctx.fillText(year.toString(), graphLeft - 35, y + 3)
+        ctx.fillText(year.toString(), graphLeft - 45, y + 3)
 
         // Draw tick marks
         ctx.beginPath()
@@ -272,12 +286,12 @@ export default function Timeline() {
         ctx.stroke()
       })
 
-      // Draw minor tick marks for centuries and decades
+      // Draw minor tick marks for intermediate years (every 50 years for ancient, every 10 for modern)
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
       ctx.lineWidth = 0.5
-      // Minor ticks for centuries in ancient period
-      for (let year = -900; year <= 1400; year += 50) {
-        if (!years.includes(year) && year <= 1400) {
+      // Ancient and medieval period minor ticks (every 50 years)
+      for (let year = minYear; year <= 1500; year += 50) {
+        if (!years.includes(year)) {
           const yPercent = getYPosition(year) / 100
           const y = graphTop + yPercent * (graphBottom - graphTop)
           ctx.beginPath()
@@ -286,8 +300,8 @@ export default function Timeline() {
           ctx.stroke()
         }
       }
-      // Minor ticks for modern period
-      for (let year = 1500; year <= maxYear; year += 10) {
+      // Modern period minor ticks (every 10 years)
+      for (let year = 1510; year <= maxYear; year += 10) {
         if (!years.includes(year)) {
           const yPercent = getYPosition(year) / 100
           const y = graphTop + yPercent * (graphBottom - graphTop)
@@ -317,17 +331,7 @@ export default function Timeline() {
       ctx.setLineDash([])
       ctx.lineWidth = 1
 
-      // Axis labels
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
-      ctx.font = '12px monospace'
-
-      // Removed date/time display - now shown in UI above
-
-      ctx.save()
-      ctx.translate(15, (graphTop + graphBottom) / 2)
-      ctx.rotate(-Math.PI / 2)
-      ctx.fillText('Time', -15, 0)
-      ctx.restore()
+      // Axis labels removed - year values are sufficient
     }
 
     resizeCanvas()
@@ -343,10 +347,13 @@ export default function Timeline() {
         <canvas
           ref={canvasRef}
           className="absolute left-0 top-0 pointer-events-none"
-          style={{ zIndex: 0, width: '100%', height: '2500px' }}
+          style={{ zIndex: 0, width: '100%', height: '10000px' }}
         />
         {/* Fixed header */}
-        <div className="sticky top-0 z-20 bg-transparent pb-4" ref={containerRef}>
+        <div className="sticky top-0 z-[100] pb-4 flex justify-center" ref={containerRef}>
+          <div className="w-fit px-6 rounded-lg" style={{
+            background: 'radial-gradient(ellipse at center, transparent 0%, #20262B 33%, #20262B 100%)'
+          }}>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-white font-lmodern">
             Standing on the Shoulders of Giants
           </h2>
@@ -385,7 +392,7 @@ export default function Timeline() {
           </div>
 
           {/* Current date and time display */}
-          <div className="text-center mb-4">
+          <div className="text-center mb-2">
             <span className="text-sm text-white/60 font-mono">
               {currentTime ? currentTime.toLocaleString('en-US', {
                 year: 'numeric',
@@ -397,30 +404,84 @@ export default function Timeline() {
               }) : ''}
             </span>
           </div>
-        </div>
 
-        {/* Legend with all unique fields */}
-        <div className="flex flex-wrap gap-3 text-xs text-white/70 justify-center mb-4">
-          {Object.entries(fieldColors).slice(0, 8).map(([field, color]) => (
-            <div key={field} className="flex items-center gap-2">
-              <div className="w-8 h-1" style={{ backgroundColor: color }}></div>
-              <span className="capitalize">{field}</span>
-            </div>
-          ))}
+          {/* Legend with field colors */}
+          <div className="flex flex-wrap gap-3 text-xs text-white/70 justify-center mb-4">
+            {Object.entries(fieldColors).slice(0, 8).map(([field, color]) => (
+              <div key={field} className="flex items-center gap-2">
+                <div className="w-8 h-1" style={{ backgroundColor: color }}></div>
+                <span className="capitalize">{field}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Tooltip display area - Fixed position below legend */}
+          <div className="relative h-0 mb-4">
+            <AnimatePresence mode="wait">
+              {hoveredGiant && (
+                <motion.div
+                  key={hoveredGiant.name}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute left-1/2 top-0 -translate-x-1/2 z-[110] bg-black/95 backdrop-blur-sm border border-white/20 rounded-lg p-4 max-w-sm shadow-2xl w-[400px]"
+                  onMouseEnter={() => {
+                    // Clear timeout to keep tooltip open
+                    if (tooltipTimeoutRef.current) {
+                      clearTimeout(tooltipTimeoutRef.current)
+                      tooltipTimeoutRef.current = null
+                    }
+                  }}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <h4 className="font-bold text-white">{hoveredGiant.name}</h4>
+                    <ExternalLink className="w-3 h-3 text-white/50" />
+                  </div>
+
+                  <p className="text-xs mb-2 text-white/70">
+                    {hoveredGiant.birth_year} - {hoveredGiant.death_year || 'Present'}
+                  </p>
+
+                  <div className="text-xs space-y-1 text-white/60">
+                    <p>
+                      <span className="font-semibold">Fields:</span> {hoveredGiant.fields.join(', ')}
+                    </p>
+
+                    {hoveredGiant.contributions.length > 0 && (
+                      <p>
+                        <span className="font-semibold">Key Contributions:</span> {hoveredGiant.contributions.slice(0, 2).join(', ')}
+                      </p>
+                    )}
+
+                    {hoveredGiant.works.length > 0 && (
+                      <p>
+                        <span className="font-semibold">Notable Works:</span> {hoveredGiant.works[0]}
+                      </p>
+                    )}
+                  </div>
+
+                  <p className="text-xs mt-2 text-white/50">Click to view Wikipedia page</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          </div>
         </div>
 
         {/* Container that matches canvas coordinate system exactly */}
-        <div className="absolute" style={{ top: '100px', height: '2350px', left: '80px', width: 'calc(100% - 160px)' }}>
+        <div className="absolute" style={{ top: '100px', height: '9850px', left: '60px', width: 'calc(100% - 90px)' }}>
           {/* Timeline with vertical lines for each giant */}
           <div className="relative w-full h-full">
             {sortedGiants.map((giant, index) => {
-              // Simple left-to-right ordering based on index
-              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 85 + 5
+              // Left-to-right ordering with 70% reduced margins (1.5% left, 3% right)
+              const xPosition = (index / Math.max(sortedGiants.length - 1, 1)) * 95.5 + 1.5
 
               // Get raw Y position percentage
               const startYRaw = getYPosition(giant.birth_year)
-              const currentYearDecimal = currentTime ? (currentTime.getFullYear() + currentTime.getMonth() / 12 + currentTime.getDate() / 365) : currentYear
-              const endYRaw = getYPosition(giant.death_year || currentYearDecimal)
+              // For living giants, use current year without decimal part
+              const endYRaw = getYPosition(giant.death_year || currentYear)
 
 
               // Use raw percentages directly
@@ -445,9 +506,9 @@ export default function Timeline() {
                   {/* Profile picture at birth year position */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-2 -top-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 hover:z-50 transition-all z-30 shadow-lg"
+                      className="absolute -left-2 -top-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 hover:z-[90] transition-all z-30 shadow-lg"
                       onClick={() => openWikipedia(giant.wikipedia)}
-                      onMouseEnter={(e) => handleMouseEnter(giant, e)}
+                      onMouseEnter={() => handleMouseEnter(giant)}
                       onMouseLeave={handleMouseLeave}
                     >
                       <img
@@ -463,7 +524,7 @@ export default function Timeline() {
 
                   {/* Timeline line (vertical) */}
                   <div
-                    className="absolute cursor-pointer transition-all hover:z-20"
+                    className="absolute cursor-pointer transition-all hover:z-[40]"
                     style={{
                       top: 0,
                       height: '100%',
@@ -477,7 +538,7 @@ export default function Timeline() {
                         : `0 2px 8px rgba(0,0,0,0.3)`,
                       filter: hoveredGiant?.name === giant.name ? 'brightness(1.5)' : 'brightness(1.1)'
                     }}
-                    onMouseEnter={(e) => handleMouseEnter(giant, e)}
+                    onMouseEnter={() => handleMouseEnter(giant)}
                     onMouseLeave={handleMouseLeave}
                     onClick={() => openWikipedia(giant.wikipedia)}
                   />
@@ -487,56 +548,6 @@ export default function Timeline() {
           </div>
         </div>
       </div>
-
-      {/* Tooltip */}
-      {hoveredGiant && (
-        <div
-          className="fixed z-50 bg-black/95 backdrop-blur-sm border border-white/20 rounded-lg p-4 max-w-sm shadow-2xl"
-          style={{
-            left: Math.min(tooltipPosition.x, window.innerWidth - 400),  // Prevent overflow on right
-            top: tooltipPosition.y,
-            transform: 'translateY(-50%)',  // Center vertically
-            pointerEvents: 'auto'  // Allow interaction with tooltip
-          }}
-          onMouseEnter={() => {
-            // Clear timeout to keep tooltip open
-            if (tooltipTimeoutRef.current) {
-              clearTimeout(tooltipTimeoutRef.current)
-              tooltipTimeoutRef.current = null
-            }
-          }}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="flex items-start justify-between mb-2">
-            <h4 className="font-bold text-white">{hoveredGiant.name}</h4>
-            <ExternalLink className="w-3 h-3 text-white/50" />
-          </div>
-
-          <p className="text-xs mb-2 text-white/70">
-            {hoveredGiant.birth_year} - {hoveredGiant.death_year || 'Present'}
-          </p>
-
-          <div className="text-xs space-y-1 text-white/60">
-            <p>
-              <span className="font-semibold">Fields:</span> {hoveredGiant.fields.join(', ')}
-            </p>
-
-            {hoveredGiant.contributions.length > 0 && (
-              <p>
-                <span className="font-semibold">Key Contributions:</span> {hoveredGiant.contributions.slice(0, 2).join(', ')}
-              </p>
-            )}
-
-            {hoveredGiant.works.length > 0 && (
-              <p>
-                <span className="font-semibold">Notable Works:</span> {hoveredGiant.works[0]}
-              </p>
-            )}
-          </div>
-
-          <p className="text-xs mt-2 text-white/50">Click to view Wikipedia page</p>
-        </div>
-      )}
     </div>
   )
 }
