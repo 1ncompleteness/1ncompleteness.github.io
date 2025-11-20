@@ -347,7 +347,7 @@ export default function Timeline() {
         />
         {/* Fixed header */}
         <div className="sticky top-0 z-20 bg-transparent pb-4" ref={containerRef}>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-white font-lmodern">
             Standing on the Shoulders of Giants
           </h2>
 

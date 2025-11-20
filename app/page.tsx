@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, BookOpen, Code, Briefcase, Sparkles, GraduationCap, FileText, FlaskConical, Music } from 'lucide-react'
+import { Mail, BookOpen, Code, Briefcase, Sparkles, GraduationCap, FileText, Brain, Music, Database, Layers, Instagram } from 'lucide-react'
+import Image from 'next/image'
 import profileData from '@/data.json'
 import TopBar from '@/components/TopBar'
 import { useRef, useState } from 'react'
@@ -97,7 +98,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 font-sf-pro"
             >
-              <span style={{ color: '#ffffff' }}>{profileData.personal.name.display}</span>
+              <span className="font-lmodern" style={{ color: '#ffffff' }}>{profileData.personal.name.display}</span>
             </motion.h1>
 
             <motion.p
@@ -156,19 +157,18 @@ export default function Home() {
             >
               <div className="bg-transparent p-3 sm:p-4 rounded-xl border border-primary">
                 <h3 className="text-base sm:text-lg font-semibold mb-2 text-primary flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-primary" />
+                  <GraduationCap className="w-4 h-4 text-primary" />
                   Education
                 </h3>
                 <p className="text-xs sm:text-sm">B.S. Computer Science, Math Minor, 2026 Class</p>
-                <p className="text-xs text-primary mt-1">Associate's Degree in Software Engineering</p>
+                <p className="text-xs sm:text-sm">Associate's Degree in Software Engineering</p>
               </div>
 
               <div className="bg-transparent p-3 sm:p-4 rounded-xl border border-primary">
-                <h3 className="text-base sm:text-lg font-semibold mb-2 text-primary flex items-center gap-2">
-                  <Briefcase className="w-4 h-4 text-primary" />
-                  Entelligent
-                </h3>
-                <p className="text-xs sm:text-sm">Co-Founder, Research and Development (R&D)</p>
+                <div className="mb-2">
+                  <Image src="/logo-entelligent-white.svg" alt="Entelligent" width={150} height={22} className="h-5 w-auto" />
+                </div>
+                <p className="text-xs sm:text-sm">Co-Founder; Software Development, System Design</p>
                 <a href={profileData.entrepreneurship.company.deployments.production[0].url}
                    target="_blank"
                    rel="noopener noreferrer"
@@ -187,7 +187,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white font-lmodern">
                 Research & Academia
               </h2>
 
@@ -195,7 +195,7 @@ export default function Home() {
                 {/* Research Interests - merged with ML Focus */}
                 <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
                   <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
-                    <FlaskConical className="w-5 h-5" />
+                    <Sparkles className="w-5 h-5" />
                     Research Interests
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -230,18 +230,16 @@ export default function Home() {
                           "multi-agent systems": 8,
                           "multimodal agents": 9,
                           "knowledge base systems": 10,
-                          "rag (retrieval-augmented generation) systems": 11,
-                          "rag systems": 11,
+                          "tensors": 10.5,
+                          "rag (retrieval-augmented generation)": 11,
+                          "rag": 11,
                           "embedding models": 12,
                           "formal systems": 13,
                           "formal methods": 14,
                           "zsl (zero-shot learning)": 15,
                           "computational neuroscience": 16,
                           "consciousness": 17,
-                          "cosmology": 18,
-                          "tacs (transcranial alternating current stimulation)": 19,
-                          "tdcs (transcranial direct current stimulation)": 20,
-                          "tms (transcranial magnetic stimulation)": 21
+                          "cosmology": 18
                         };
 
                         const aPriority = priority[a.toLowerCase()] || 99;
@@ -259,11 +257,8 @@ export default function Home() {
                           "natural language processing": "NLP (Natural Language Processing)",
                           "large language models": "LLMs (Large Language Models)",
                           "multi-agent systems": "MAS (Multi-Agent Systems)",
-                          "rag systems": "RAG (Retrieval-Augmented Generation) Systems",
-                          "zsl (zero-shot learning)": "ZSL (Zero-Shot Learning)",
-                          "tacs (transcranial alternating current stimulation)": "tACS (Transcranial Alternating Current Stimulation)",
-                          "tdcs (transcranial direct current stimulation)": "tDCS (Transcranial Direct Current Stimulation)",
-                          "tms (transcranial magnetic stimulation)": "TMS (Transcranial Magnetic Stimulation)"
+                          "rag": "RAG (Retrieval-Augmented Generation)",
+                          "zsl (zero-shot learning)": "ZSL (Zero-Shot Learning)"
                         };
 
                         const lowerInterest = interest.toLowerCase();
@@ -296,7 +291,7 @@ export default function Home() {
                 <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
                   <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
                     <FileText className="w-5 h-5" />
-                    Research & Publications
+                    Publications
                   </h3>
                   <div className="space-y-3 max-h-64 overflow-y-auto">
                     {/* Alzheimer's Paper with Preprint */}
@@ -518,7 +513,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">{profileData.experiences.section_titles.main}</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white font-lmodern">{profileData.experiences.section_titles.main}</h2>
 
             {/* Experiences and Teaching sections side by side */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
@@ -539,7 +534,7 @@ export default function Home() {
 
               <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
                 <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
-                  <BookOpen className="w-5 h-5" />
+                  <GraduationCap className="w-5 h-5" />
                   Teaching
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -621,10 +616,58 @@ export default function Home() {
             {/* Machine Learning section */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
-                <FlaskConical className="w-5 h-5" />
+                <Brain className="w-5 h-5" />
                 {profileData.experiences.section_titles.ml_ai}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                <div>
+                  <p className="text-sm font-medium mb-2">Classical</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.architectures.ml_pipelines?.classical?.map((arch: string, idx: number) => (
+                      <a
+                        key={arch}
+                        href={getSearchUrl(arch)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${30 + idx * 35}deg, #284b63, #353535)` }}>
+                        {arch}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">Deep Learning</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.architectures.ml_pipelines?.deep_learning?.map((arch: string, idx: number) => (
+                      <a
+                        key={arch}
+                        href={getSearchUrl(arch)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${80 + idx * 45}deg, #3c6e71, #284b63)` }}>
+                        {arch}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">Reinforcement Learning</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.architectures.ml_pipelines?.reinforcement?.map((arch: string, idx: number) => (
+                      <a
+                        key={arch}
+                        href={getSearchUrl(arch)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${120 + idx * 50}deg, #353535, #3c6e71)` }}>
+                        {arch}
+                      </a>
+                    ))}
+                  </div>
+                </div>
                 <div>
                   <p className="text-sm font-medium mb-2">Core</p>
                   <div className="flex flex-wrap gap-2">
@@ -706,7 +749,7 @@ export default function Home() {
             {/* Databases section */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
-                <GraduationCap className="w-5 h-5" />
+                <Database className="w-5 h-5" />
                 {profileData.experiences.section_titles.databases}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
@@ -775,7 +818,7 @@ export default function Home() {
 
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
-                <Code className="w-5 h-5" />
+                <Layers className="w-5 h-5" />
                 {profileData.experiences.section_titles.full_stack}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
@@ -919,7 +962,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-entelligent-gradient opacity-30 pointer-events-none"></div>
           <div className="relative z-10 h-full p-8 overflow-y-auto">
             <div className="px-4 max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white">{profileData.section_titles?.interests_passions || "Interests & Passions"}</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center text-white font-lmodern">{profileData.section_titles?.interests_passions || "Interests & Passions"}</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {interestCategories.map((category, idx) => (
@@ -983,29 +1026,28 @@ export default function Home() {
             <div className="text-center">
               <div className="flex justify-center gap-4 mb-6">
                 <a
-                  href={`mailto:${profileData.personal.contact.email}`}
-                  className="px-6 py-3 bg-entelligent text-white rounded-lg hover:scale-105 transition-all flex items-center gap-2"
-                >
-                  <Mail className="w-5 h-5" />
-                  Email Me
-                </a>
-                <a
-                  href={profileData.personal.contact.social.linkedin.url}
+                  href="https://www.instagram.com/b3hr0uz/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2"
+                  className="p-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin w-5 h-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                  Connect
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://x.com/b3hr0uz_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
                 </a>
                 <a
                   href="https://open.spotify.com/user/12100413470?si=f0f77136f72f4cef"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all flex items-center gap-2"
+                  className="p-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all"
                 >
-                  <Music className="w-5 h-5" />
-                  Spotify
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
                 </a>
               </div>
               <p className="text-sm">© 2025 {profileData.personal.name.display}</p>

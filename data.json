@@ -488,12 +488,12 @@
   },
   "research": {
     "interests": {
-      "primary": ["Applied Machine Learning", "Natural Language Processing", "Robust Optimization", "Knowledge Graphs", "Knowledge Base Systems", "Game Theory", "Algebraic Geometry", "Multimodal Agents", "Embedding Models", "Formal Systems", "Formal Methods", "ZSL (Zero-Shot Learning)", "Computational Neuroscience", "Consciousness", "Cosmology", "tACS (Transcranial Alternating Current Stimulation)", "tDCS (Transcranial Direct Current Stimulation)", "TMS (Transcranial Magnetic Stimulation)"],
+      "primary": ["Applied Machine Learning", "Natural Language Processing", "Robust Optimization", "Knowledge Graphs", "Knowledge Base Systems", "Tensors", "Game Theory", "Algebraic Geometry", "Multimodal Agents", "Embedding Models", "Formal Systems", "Formal Methods", "ZSL (Zero-Shot Learning)", "Computational Neuroscience", "Consciousness", "Cosmology"],
       "detailed": {
         "machine_learning": {
           "subfields": {
             "nlp": {
-              "areas": ["Large Language Models", "Knowledge Graphs", "RAG Systems"],
+              "areas": ["Large Language Models", "Knowledge Graphs", "RAG"],
               "technologies": ["Transformers", "BERT", "GPT", "Graph Neural Networks"]
             },
             "game_theory": {
@@ -527,7 +527,7 @@
       "publications": {
         "medical_ai": {
           "alzheimers": {
-            "title": "Alzheimer's Disease Diagnosis using Machine Learning",
+            "title": "Task-Optimized Approach for High-Accuracy Alzheimer’s Diagnosis from Handwriting Data",
             "venue": "medRxiv",
             "url": "https://www.medrxiv.org/content/10.1101/2024.12.17.24319146v2",
             "dataset": "UCI Darwin Handwriting Dataset",
@@ -587,7 +587,7 @@
         "specialized": {
           "nlp": ["Transformers", "NLTK", "LangChain", "Hugging Face"],
           "graph": ["PyTorch Geometric"],
-          "visualization": ["Matplotlib", "Seaborn", "Plotly"],
+          "visualization": ["Matplotlib", "Seaborn"],
           "data_analysis": ["Pandas", "Jupyter Lab"]
         }
       },
@@ -633,7 +633,7 @@
       "package_managers": ["npm", "pip", "conda"],
       "collaboration": ["Overleaf", "Slack", "Discord", "Microsoft Teams", "Zoom"],
       "design": ["Figma", "Build.io", "Draw.io"],
-      "spiders": ["BeautifulSoup", "Requests", "Selenium", "Playwright", "html.parser", "regex", "XPath", "REST APIs"]
+      "scraping": ["BeautifulSoup", "Requests", "Selenium", "Playwright", "html.parser", "regex", "XPath"]
     }
   },
   "academic_service": {
@@ -668,7 +668,7 @@
       },
       {
         "title": "Software as a Service (SaaS)",
-        "description": "Entelligent Co-Founder • Knowledge Base Systems"
+        "description": "Entelligent Co-Founder • Software Development & System Design"
       },
       {
         "title": "Network & Security Systems Administrator",
@@ -698,10 +698,10 @@
     "Formal Logic", "Automata", "Computation Theory",
     "Tarski's Undefinability Theorem", "Gödel's Incompleteness Theorems", "Turing's Halting Problem",
     "Lambda Calculus", "Turing Machines", "Time Complexities", "P vs NP", "Graphs", "Networking",
-    "Cybersecurity", "Penetration Testing", "Signal Processing", "Semi-Conductor Technologies",
+    "Cybersecurity", "Penetration Testing", "Signal Processing", "Semiconductor",
     "Microprocessor", "Extreme Ultraviolet Lithography", "Group Theory",
-    "Diagonal Arguments", "Number Theory", "Calculus", "Vector Analysis", "Vector Fields",
-    "Cardinal and Ordinal Sets", "Infinities", "Divergence Series", "Complex Analysis",
+    "Diagonal Argument", "Number Theory", "Calculus", "Vector Analysis", "Vector Field",
+    "Cardinal and Ordinal Sets", "Infinities", "Divergent Series", "Complex Analysis",
     "Analytic Continuation", "Abstract Algebra", "Differentiable Manifolds",
     "Tensor Calculus", "Nash Equilibria", "Saddle Points",
     "Robustness", "Fairness", "Ethics", "Morality", "Literature", "Etymology", "Education", "Philosophy",
@@ -734,7 +734,7 @@
       "Chess", "FIDE ~2000 ELO Norm", "Basketball", "Basketball Pro League", "Basketball State Championship"
     ],
     "games": [
-      "Armored Core", "Assassin's Creed", "Beyond Two Souls", "BioShock", "Bloodborne", "Borderlands",
+      "Assassin's Creed", "Beyond Two Souls", "BioShock", "Bloodborne", "Borderlands",
       "Counter Strike", "Cyberpunk 2077",
       "Dark Souls", "Devil May Cry", "Dota 2", "Dragon Age", "Elden Ring",
       "FarCry", "EA Sports FIFA", "God of War",
@@ -748,11 +748,8 @@
     "NLP (Natural Language Processing)": "Natural_language_processing",
     "LLMs (Large Language Models)": "Large_language_model",
     "MAS (Multi-Agent Systems)": "Multi-agent_system",
-    "RAG (Retrieval-Augmented Generation) Systems": "Retrieval-augmented_generation",
+    "RAG (Retrieval-Augmented Generation)": "Retrieval-augmented_generation",
     "ZSL (Zero-Shot Learning)": "Zero-shot_learning",
-    "tACS (Transcranial Alternating Current Stimulation)": "Transcranial_alternating_current_stimulation",
-    "tDCS (Transcranial Direct Current Stimulation)": "Transcranial_direct-current_stimulation",
-    "TMS (Transcranial Magnetic Stimulation)": "Transcranial_magnetic_stimulation",
     "Formal Systems": "Formal_system",
     "Formal Methods": "Formal_methods",
     "Multimodal Agents": "Multimodal_learning",
@@ -763,6 +760,7 @@
     "Game Theory": "Game_theory",
     "Robust Optimization": "Robust_optimization",
     "Knowledge Base Systems": "Knowledge_base",
+    "Tensors": "Tensor",
     "Algebraic Geometry": "Algebraic_geometry",
     "FIDE ~2000 ELO Norm": "FIDE_titles",
     "Basketball Assistant Coach": "Coach_(basketball)",
@@ -802,10 +800,13 @@
     "The Witcher": "The_Witcher_(video_game_series)",
     "Uncharted": "Uncharted",
     "World of Warcraft": "World_of_Warcraft",
-    "Armored Core": "Armored_Core",
     "BioShock": "BioShock",
     "Bloodborne": "Bloodborne",
-    "Borderlands": "Borderlands_(series)"
+    "Borderlands": "Borderlands_(series)",
+    "Extreme Ultraviolet Lithography": "Extreme_ultraviolet_lithography",
+    "Tarski's Undefinability Theorem": "Tarski%27s_undefinability_theorem",
+    "Diagonal Arguments": "Diagonal_argument"
+
   },
   "google_search_only": [
     "Basketball Assistant Coach",
@@ -813,7 +814,11 @@
     "Chess Coach",
     "Chess Instructor",
     "Multimodal Agents",
-    "Embedding Models"
+    "Embedding Models",
+    "Turing's Halting Problem",
+    "Time Complexities",
+    ""
+
   ],
   "metadata": {
     "last_updated": "2025-09-13",

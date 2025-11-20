@@ -190,6 +190,7 @@ out/
 .npm/
 .eslintcache
 .turbo
+*.tsbuildinfo
 
 # Environment files
 .env.local

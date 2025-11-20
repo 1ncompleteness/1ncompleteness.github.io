@@ -1,5 +1,37 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/font/lmroman-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/font/lmroman-bold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/font/lmroman-italic-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/font/lmroman-bolditalic-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 @theme {
   --color-primary: #3c6e71;
   --color-primary-foreground: #ffffff;
@@ -19,17 +51,12 @@
   --color-entelligent-green: #3c6e71;
   --color-entelligent-blue: #284b63;
   --color-entelligent-dark: #353535;
+  --entelligent-gradient: linear-gradient(135deg, #3c6e71, #284b63 50%, #353535);
 }
 
 @layer base {
-  :root {
-    --font-sf-pro: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
-    --entelligent-gradient: linear-gradient(135deg, #3c6e71, #284b63 50%, #353535);
-  }
-
   html {
     @apply scroll-smooth;
-    font-family: var(--font-sf-pro);
   }
 
   body {
@@ -119,5 +146,9 @@
 
   .scrollbar-track-surface {
     scrollbar-color: #3c6e71 transparent;
+  }
+
+  .font-lmodern {
+    font-family: "Latin Modern Roman", serif;
   }
 }
