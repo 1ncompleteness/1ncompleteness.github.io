@@ -585,7 +585,7 @@
       "ml_ai": {
         "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "XGBoost"],
         "specialized": {
-          "nlp": ["Transformers", "NLTK", "LangChain", "Hugging Face"],
+          "nlp": ["NLTK", "LangChain", "Hugging Face"],
           "graph": ["PyTorch Geometric"],
           "visualization": ["Matplotlib", "Seaborn"],
           "data_analysis": ["Pandas", "Jupyter Lab"]
