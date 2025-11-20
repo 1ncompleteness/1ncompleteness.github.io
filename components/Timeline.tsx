@@ -506,7 +506,7 @@ export default function Timeline() {
                   {/* Profile picture at birth year position */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-2 -top-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-125 hover:z-[90] transition-all z-30 shadow-lg"
+                      className="absolute -left-2 -top-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-[4] hover:z-[90] transition-all z-30 shadow-lg"
                       onClick={() => openWikipedia(giant.wikipedia)}
                       onMouseEnter={() => handleMouseEnter(giant)}
                       onMouseLeave={handleMouseLeave}
@@ -524,7 +524,7 @@ export default function Timeline() {
 
                   {/* Timeline line (vertical) */}
                   <div
-                    className="absolute cursor-pointer transition-all hover:z-[40]"
+                    className="absolute cursor-pointer transition-all z-10 hover:z-20"
                     style={{
                       top: 0,
                       height: '100%',
