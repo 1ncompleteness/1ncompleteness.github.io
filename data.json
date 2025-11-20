@@ -561,18 +561,8 @@
       "deployments": {
         "production": [
           {
-            "url": "https://strategii.ai/",
-            "stack": "Production Stack A",
-            "status": "active"
-          },
-          {
-            "url": "https://www.strategii.ai/",
-            "stack": "Production Stack B",
-            "status": "active"
-          },
-	  {
-            "url": "http://64.23.243.69/",
-            "stack": "Development Stack Blog",
+            "url": "https://entelligent.co/",
+            "stack": "Production Stack",
             "status": "active"
           }
         ]
