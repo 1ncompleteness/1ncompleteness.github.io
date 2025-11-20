@@ -350,8 +350,8 @@ export default function Timeline() {
           style={{ zIndex: 0, width: '100%', height: '10000px' }}
         />
         {/* Fixed header */}
-        <div className="sticky top-0 z-[100] pb-4 flex justify-center" ref={containerRef}>
-          <div className="w-fit px-6 rounded-lg" style={{
+        <div className="sticky top-0 z-[100] pb-4 flex justify-center pointer-events-none" ref={containerRef}>
+          <div className="w-fit px-6 rounded-lg pointer-events-auto" style={{
             background: 'radial-gradient(ellipse at center, transparent 0%, #20262B 33%, #20262B 100%)'
           }}>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-white font-lmodern">
@@ -506,7 +506,7 @@ export default function Timeline() {
                   {/* Profile picture at birth year position */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-2 -top-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-[4] hover:z-[90] transition-all z-30 shadow-lg"
+                      className="absolute -left-2 -top-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-[4] hover:z-[120] transition-all z-30 shadow-lg"
                       onClick={() => openWikipedia(giant.wikipedia)}
                       onMouseEnter={() => handleMouseEnter(giant)}
                       onMouseLeave={handleMouseLeave}
