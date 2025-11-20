@@ -17,4 +17,4 @@ const nextConfig = {
   allowedDevOrigins: ['*.local', 'localhost'],
 }
 
-module.exports = nextConfig
+export default nextConfig

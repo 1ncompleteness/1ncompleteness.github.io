@@ -585,7 +585,7 @@
       "ml_ai": {
         "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "XGBoost"],
         "specialized": {
-          "nlp": ["Transformers", "NLTK", "LangChain"],
+          "nlp": ["Transformers", "NLTK", "LangChain", "Hugging Face"],
           "graph": ["PyTorch Geometric"],
           "visualization": ["Matplotlib", "Seaborn", "Plotly"],
           "data_analysis": ["Pandas", "Jupyter Lab"]
@@ -593,21 +593,20 @@
       },
       "web": {
         "backend": {
-          "apis": ["FastAPI", "Flask"],
-          "nodejs": ["Express"],
+          "apis": ["FastAPI"],
           "authentication": ["JWT", "OAuth 2.0", "Session-based Auth"]
         },
         "frontend": {
           "frameworks": ["React", "Next.js"],
           "ui": ["Tailwind CSS", "Framer Motion"],
-          "http_clients": ["Axios", "Fetch API", "GraphQL Client"]
+          "http_clients": ["Axios", "Fetch API"]
         }
       },
       "databases": {
         "relational": ["PostgreSQL", "MySQL", "SQLite"],
         "graph": ["Neo4j"],
         "vector": ["ChromaDB"],
-        "nosql": ["MongoDB", "Redis"]
+        "nosql": ["Redis"]
       },
       "devops": {
         "containerization": ["Docker"],
@@ -626,17 +625,15 @@
         "reinforcement": ["Policy Gradient", "Q-Learning", "Experience Replay", "Actor-Critic"]
       }
     },
-    "tools": {
+    "full_stack_development": {
       "documentation": ["LaTeX", "Markdown", "Jupyter"],
       "version_control": ["Git", "GitHub", "GitLab"],
-      "development": ["VS Code", "IntelliJ IDEA", "Vim", "Neovim", "Cursor", "Claude Code", "Gemini"],
+      "development": ["VS Code", "Vim", "Neovim", "Cursor", "Claude Code", "MCP", "Gemini"],
       "monitoring": ["Prometheus", "Grafana"],
-      "ci_cd": ["GitHub Actions"],
-      "package_managers": ["npm", "pip", "yarn", "conda"],
-      "collaboration": ["Slack", "Discord", "Microsoft Teams", "Zoom"],
+      "package_managers": ["npm", "pip", "conda"],
+      "collaboration": ["Overleaf", "Slack", "Discord", "Microsoft Teams", "Zoom"],
       "design": ["Figma", "Build.io", "Draw.io"],
-      "spiders": ["BeautifulSoup", "Scrapy", "Requests", "Selenium", "Playwright", "Puppeteer", "lxml", "html.parser", "regex", "XPath", "REST APIs", "GraphQL APIs", "WebSocket"],
-      "mcps": ["Claude Code", "Cursor", "GitHub Copilot", "Smithery Toolbox", "Desktop Commander", "Context7", "DocFork", "Exa", "Firecrawl", "Web Search", "Sequential Thinking", "Hugeicons", "Upstash", "IDE Integration", "MCP Resources"]
+      "spiders": ["BeautifulSoup", "Requests", "Selenium", "Playwright", "html.parser", "regex", "XPath", "REST APIs"]
     }
   },
   "academic_service": {
@@ -684,7 +681,7 @@
       "languages": "Languages",
       "ml_ai": "Machine Learning",
       "databases": "Databases",
-      "full_stack": "Full Stack Development & DevOps",
+      "full_stack": "Full Stack Development",
       "frontend": "Frontend",
       "backend": "Backend",
       "devops": "DevOps"

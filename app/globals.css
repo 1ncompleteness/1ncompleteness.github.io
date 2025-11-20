@@ -1,29 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #3c6e71;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #ffffff;
+  --color-secondary-foreground: #1a1a1a;
+  --color-accent: #3c6e71;
+  --color-accent-foreground: #ffffff;
+  --color-background: #1a1a1a;
+  --color-foreground: #ffffff;
+  --color-surface: #2d2d2d;
+  --color-border: #3c6e71;
+  --color-muted: #2d2d2d;
+  --color-muted-foreground: #ffffff;
+  --color-card: #2d2d2d;
+  --color-card-foreground: #ffffff;
+  --color-text-light: #ffffff;
+  --color-entelligent-green: #3c6e71;
+  --color-entelligent-blue: #284b63;
+  --color-entelligent-dark: #353535;
+}
 
 @layer base {
   :root {
-    --primary: #3c6e71;
-    --secondary: #ffffff;
-    --accent: #3c6e71;
-    --background: #1a1a1a;
-    --surface: #2d2d2d;
-    --foreground: #ffffff;
-    --text-light: #ffffff;
-    --border: #3c6e71;
-    --muted: #ffffff;
-
-    /* Entelligent brand colors */
-    --entelligent-green: #3c6e71;
-    --entelligent-blue: #284b63;
-    --entelligent-dark: #353535;
-
-    /* Gradients */
-    --entelligent-gradient: linear-gradient(135deg, #3c6e71, #284b63 50%, #353535);
-
-    /* Fonts */
     --font-sf-pro: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+    --entelligent-gradient: linear-gradient(135deg, #3c6e71, #284b63 50%, #353535);
   }
 
   html {

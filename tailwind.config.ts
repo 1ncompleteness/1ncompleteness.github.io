@@ -6,40 +6,8 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        // Entelligent color palette
-        primary: {
-          DEFAULT: '#3c6e71',
-          foreground: '#ffffff',
-        },
-        secondary: {
-          DEFAULT: '#ffffff',
-          foreground: '#1a1a1a',
-        },
-        accent: {
-          DEFAULT: '#3c6e71',
-          foreground: '#ffffff',
-        },
-        background: '#1a1a1a',
-        foreground: '#ffffff',
-        surface: '#2d2d2d',
-        border: '#3c6e71',
-        muted: {
-          DEFAULT: '#2d2d2d',
-          foreground: '#ffffff',
-        },
-        card: {
-          DEFAULT: '#2d2d2d',
-          foreground: '#ffffff',
-        },
-        'text-light': '#ffffff',
-        'entelligent-green': '#3c6e71',
-        'entelligent-blue': '#284b63',
-        'entelligent-dark': '#353535',
-      },
       animation: {
         'gradient': 'gradient 8s linear infinite',
         'float': 'float 6s ease-in-out infinite',
@@ -89,4 +57,5 @@ const config: Config = {
   },
   plugins: [],
 }
+
 export default config

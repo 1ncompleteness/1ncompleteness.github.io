@@ -169,7 +169,7 @@ export default function Home() {
                   Entelligent
                 </h3>
                 <p className="text-xs sm:text-sm">Co-Founder, Research and Development (R&D)</p>
-                <a href={profileData.entrepreneurship.company.deployments.production[1].url}
+                <a href={profileData.entrepreneurship.company.deployments.production[0].url}
                    target="_blank"
                    rel="noopener noreferrer"
                    className="text-xs text-primary hover:underline">
@@ -203,7 +203,7 @@ export default function Home() {
                       // Collect all interests from data.json
                       const allInterests = [
                         ...profileData.research.interests.primary,
-                        ...profileData.research.interests.detailed.machine_learning.subfields.nlp.areas.slice(0, 2),
+                        ...profileData.research.interests.detailed.machine_learning.subfields.nlp.areas,
                         profileData.research.interests.detailed.machine_learning.subfields.game_theory.focus
                       ];
 
@@ -388,7 +388,7 @@ export default function Home() {
                   <div className="space-y-4">
                     {/* Current Enrollment */}
                     <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-primary mb-2">Current Enrollment (Spring 2025)</h4>
+                      <h4 className="text-sm sm:text-base font-semibold text-primary mb-2">Current Enrollment (Fall 2025)</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         {profileData.education.courses_taken.current_enrollment.map((course: any, index: number) => (
                           <div key={`current-${course.code}-${course.name}-${index}`} className="border-l-2 border-primary/50 pl-2 py-1">
@@ -570,7 +570,7 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">Primary</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.primary.slice(0, 3).map((lang: string, idx: number) => (
+                    {profileData.technical_skills.languages.programming.primary.map((lang: string, idx: number) => (
                       <a
                         key={lang}
                         href={getSearchUrl(lang)}
@@ -584,25 +584,9 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-2">System</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.primary.slice(3).map((lang: string, idx: number) => (
-                      <a
-                        key={lang}
-                        href={getSearchUrl(lang)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${90 + idx * 30}deg, #284b63, #353535)` }}>
-                        {lang}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div>
                   <p className="text-sm font-medium mb-2">Scripting</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.scripting?.slice(0, 3).map((lang: string, idx: number) => (
+                    {profileData.technical_skills.languages.programming.scripting?.map((lang: string, idx: number) => (
                       <a
                         key={lang}
                         href={getSearchUrl(lang)}
@@ -610,6 +594,22 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
                         style={{ background: `linear-gradient(${135 + idx * 30}deg, #353535, #3c6e71)` }}>
+                        {lang}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">Web</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.languages.programming.web?.map((lang: string, idx: number) => (
+                      <a
+                        key={lang}
+                        href={getSearchUrl(lang)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${90 + idx * 30}deg, #284b63, #353535)` }}>
                         {lang}
                       </a>
                     ))}
@@ -779,6 +779,7 @@ export default function Home() {
                 {profileData.experiences.section_titles.full_stack}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                {/* Frontend */}
                 <div>
                   <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.frontend}</p>
                   <div className="flex flex-wrap gap-2">
@@ -817,6 +818,8 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+
+                {/* Backend */}
                 <div>
                   <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.backend}</p>
                   <div className="flex flex-wrap gap-2">
@@ -829,17 +832,6 @@ export default function Home() {
                         className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
                         style={{ background: `linear-gradient(${45 + idx * 60}deg, #284b63, #353535)` }}>
                         {api}
-                      </a>
-                    ))}
-                    {profileData.technical_skills.frameworks.web.backend.nodejs?.map((node: string, idx: number) => (
-                      <a
-                        key={node}
-                        href={getSearchUrl(node)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${90 + idx * 60}deg, #353535, #284b63)` }}>
-                        {node}
                       </a>
                     ))}
                     {profileData.technical_skills.frameworks.web.backend.authentication?.map((auth: string, idx: number) => (
@@ -855,6 +847,8 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+
+                {/* DevOps */}
                 <div>
                   <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.devops}</p>
                   <div className="flex flex-wrap gap-2">
@@ -893,20 +887,11 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
-              </div>
-            </div>
 
-
-            {/* Tools Section */}
-            <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
-                <Code className="w-5 h-5" />
-                Tools
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {Object.entries(profileData.technical_skills.tools).map(([category, tools]: [string, any]) => (
+                {/* All other full_stack_development categories */}
+                {Object.entries(profileData.technical_skills.full_stack_development).map(([category, tools]: [string, any]) => (
                   <div key={category}>
-                    <p className="text-sm font-medium mb-2 capitalize">{category.replace('_', ' ')}</p>
+                    <p className="text-sm font-medium mb-2 capitalize">{category.replace(/_/g, ' ')}</p>
                     <div className="flex flex-wrap gap-2">
                       {(tools as string[]).map((tool: string, idx: number) => (
                         <a
