@@ -246,3 +246,6 @@ Desktop.ini
 *.lot
 *.fdb_latexmk
 *.pdf
+
+# Directories
+phd/**

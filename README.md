@@ -1,8 +1,6 @@
-# Behrouz Barati B - Portfolio
+# Behrouz Barati B
 
-Personal portfolio website with horizontal carousel design, built with Next.js.
-
-## 🚀 Live Site
+Personal portfolio website.
 [https://1ncompleteness.github.io](https://1ncompleteness.github.io)
 
 ## 🛠️ Tech Stack
@@ -15,4 +13,4 @@ Personal portfolio website with horizontal carousel design, built with Next.js.
 - **Deployment:** GitHub Pages
 
 ## 📄 License
-© 2025 Behrouz Barati B
+© 2026 Behrouz Barati B
