@@ -26,6 +26,7 @@ export default function Timeline() {
   const [currentTime, setCurrentTime] = useState<Date | null>(null)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [visiblePeriod, setVisiblePeriod] = useState('Ancient Period')
+  const [hoveredLine, setHoveredLine] = useState<string | null>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
@@ -178,10 +179,13 @@ export default function Timeline() {
   }
 
   const handleMouseLeave = () => {
-    // Add a small delay before hiding tooltip
+    if (tooltipTimeoutRef.current) {
+      clearTimeout(tooltipTimeoutRef.current)
+      tooltipTimeoutRef.current = null
+    }
     tooltipTimeoutRef.current = setTimeout(() => {
       setHoveredGiant(null)
-    }, 100)
+    }, 5000)
   }
 
   const openWikipedia = (wikipedia: string) => {
@@ -415,58 +419,108 @@ export default function Timeline() {
             ))}
           </div>
 
-          {/* Tooltip display area - Fixed position below legend */}
-          <div className="relative h-0 mb-4">
-            <AnimatePresence mode="wait">
-              {hoveredGiant && (
+          {/* Tooltip display area - seamless within header */}
+          <AnimatePresence mode="wait">
+            {hoveredGiant && (() => {
+              const fieldColorsList = hoveredGiant.fields
+                .map(f => fieldColors[f.toLowerCase()] || '#808080')
+                .filter((c, i, s) => s.indexOf(c) === i)
+              const accentColor = fieldColorsList[0] || '#808080'
+
+              return (
                 <motion.div
                   key={hoveredGiant.name}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="absolute left-1/2 top-0 -translate-x-1/2 z-[110] bg-black/95 backdrop-blur-sm border border-white/20 rounded-lg p-4 max-w-sm shadow-2xl w-[400px]"
-                  onMouseEnter={() => {
-                    // Clear timeout to keep tooltip open
-                    if (tooltipTimeoutRef.current) {
-                      clearTimeout(tooltipTimeoutRef.current)
-                      tooltipTimeoutRef.current = null
-                    }
-                  }}
-                  onMouseLeave={handleMouseLeave}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto', transition: { duration: 0.5, ease: 'easeOut' } }}
+                  exit={{ opacity: 0, height: 0, transition: { duration: 0.5, ease: 'easeIn' } }}
+                  className="overflow-hidden"
                 >
-                  <div className="flex items-start justify-between mb-2">
-                    <h4 className="font-bold text-white">{hoveredGiant.name}</h4>
-                    <ExternalLink className="w-3 h-3 text-white/50" />
+                  <div
+                    className="mb-2 pt-3"
+                  >
+                    {/* Accent line using field colors */}
+                    <motion.div
+                      className="h-px mx-auto mb-3 w-3/4"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      style={{ background: fieldColorsList.length > 1
+                        ? `linear-gradient(90deg, transparent, ${fieldColorsList.join(', ')}, transparent)`
+                        : `linear-gradient(90deg, transparent, ${accentColor}, transparent)`
+                      }}
+                    />
+
+                    <div className="flex items-center justify-center gap-4 px-4 py-3">
+                      {/* Image */}
+                      {hoveredGiant.imageUrl && (
+                        <motion.a
+                          href={`https://en.wikipedia.org/wiki/${hoveredGiant.wikipedia}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{ duration: 0.3, delay: 0.1 }}
+                          className="flex-shrink-0 hover:opacity-80"
+                        >
+                          <img
+                            src={hoveredGiant.imageUrl}
+                            alt={hoveredGiant.name}
+                            className="w-[67px] h-[67px] rounded-full object-cover border-2"
+                            style={{ borderColor: `${accentColor}80` }}
+                          />
+                        </motion.a>
+                      )}
+
+                      {/* Info */}
+                      <motion.div
+                        initial={{ x: -8, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.25, delay: 0.05 }}
+                        className="text-center"
+                      >
+                        <div className="flex items-center justify-center gap-2 mb-1">
+                          <a
+                            href={`https://en.wikipedia.org/wiki/${hoveredGiant.wikipedia}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-bold text-white text-sm hover:text-white/80 flex items-center gap-1.5"
+                          >
+                            {hoveredGiant.name}
+                            <ExternalLink className="w-3 h-3 text-white/30" />
+                          </a>
+                          <span className="text-white/40 text-xs">{hoveredGiant.birth_year} &ndash; {hoveredGiant.death_year || 'Present'}</span>
+                        </div>
+
+                        {/* Field tags */}
+                        <div className="flex flex-wrap justify-center gap-1.5 mb-1.5">
+                          {hoveredGiant.fields.map((field, i) => (
+                            <span
+                              key={field}
+                              className="px-2 py-0.5 rounded-full text-[10px] font-medium text-white/90"
+                              style={{ backgroundColor: `${fieldColorsList[i] || accentColor}40` }}
+                            >
+                              {field}
+                            </span>
+                          ))}
+                        </div>
+
+                        {hoveredGiant.contributions.length > 0 && (
+                          <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.15 }}
+                            className="text-[11px] text-white/50 leading-relaxed"
+                          >
+                            {hoveredGiant.contributions.slice(0, 2).join(' · ')}
+                          </motion.p>
+                        )}
+                      </motion.div>
+                    </div>
                   </div>
-
-                  <p className="text-xs mb-2 text-white/70">
-                    {hoveredGiant.birth_year} - {hoveredGiant.death_year || 'Present'}
-                  </p>
-
-                  <div className="text-xs space-y-1 text-white/60">
-                    <p>
-                      <span className="font-semibold">Fields:</span> {hoveredGiant.fields.join(', ')}
-                    </p>
-
-                    {hoveredGiant.contributions.length > 0 && (
-                      <p>
-                        <span className="font-semibold">Key Contributions:</span> {hoveredGiant.contributions.slice(0, 2).join(', ')}
-                      </p>
-                    )}
-
-                    {hoveredGiant.works.length > 0 && (
-                      <p>
-                        <span className="font-semibold">Notable Works:</span> {hoveredGiant.works[0]}
-                      </p>
-                    )}
-                  </div>
-
-                  <p className="text-xs mt-2 text-white/50">Click to view Wikipedia page</p>
                 </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+              )
+            })()}
+          </AnimatePresence>
           </div>
         </div>
 
@@ -499,17 +553,24 @@ export default function Timeline() {
                   style={{
                     left: `${xPosition}%`,
                     top: `${startY}%`,
-                    height: `${Math.max(Math.abs(height), 3)}%`, // Minimum height to exceed icon
-                    width: '12px'
+                    height: `${Math.max(Math.abs(height), 3)}%`,
+                    width: '12px',
+                    opacity: hoveredLine === giant.name ? 0 : 1,
+                    transition: 'opacity 0.5s ease'
+                  }}
+                  onMouseEnter={() => {
+                    handleMouseEnter(giant)
+                    setHoveredLine(giant.name)
+                  }}
+                  onMouseLeave={() => {
+                    handleMouseLeave()
+                    setHoveredLine(null)
                   }}
                 >
                   {/* Profile picture at birth year position */}
                   {giant.imageUrl && (
                     <div
-                      className="absolute -left-2 -top-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/70 cursor-pointer hover:scale-[4] hover:z-[120] transition-all z-30 shadow-lg"
-                      onClick={() => openWikipedia(giant.wikipedia)}
-                      onMouseEnter={() => handleMouseEnter(giant)}
-                      onMouseLeave={handleMouseLeave}
+                      className="absolute -left-2 -top-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/70 z-30 shadow-lg"
                     >
                       <img
                         src={giant.imageUrl}
@@ -524,7 +585,7 @@ export default function Timeline() {
 
                   {/* Timeline line (vertical) */}
                   <div
-                    className="absolute cursor-pointer transition-all z-10 hover:z-20"
+                    className="absolute z-10"
                     style={{
                       top: 0,
                       height: '100%',
@@ -533,14 +594,8 @@ export default function Timeline() {
                       background: isGradient ? colorStyle : undefined,
                       backgroundColor: !isGradient ? colorStyle : undefined,
                       opacity: 0.9,
-                      boxShadow: hoveredGiant?.name === giant.name
-                        ? `0 0 20px ${isGradient ? 'rgba(255,255,255,0.9)' : colorStyle}, 0 0 40px ${isGradient ? 'rgba(255,255,255,0.5)' : colorStyle}`
-                        : `0 2px 8px rgba(0,0,0,0.3)`,
-                      filter: hoveredGiant?.name === giant.name ? 'brightness(1.5)' : 'brightness(1.1)'
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
                     }}
-                    onMouseEnter={() => handleMouseEnter(giant)}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={() => openWikipedia(giant.wikipedia)}
                   />
                 </div>
               )
