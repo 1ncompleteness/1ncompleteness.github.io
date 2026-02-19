@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, BookOpen, Code, Briefcase, Sparkles, GraduationCap, FileText, Brain, Music, Database, Layers, Instagram } from 'lucide-react'
+import { Mail, BookOpen, Code, Briefcase, Sparkles, GraduationCap, FileText, Brain, Music, Database, Layers } from 'lucide-react'
 import Image from 'next/image'
 import profileData from '@/data.json'
 import TopBar from '@/components/TopBar'
@@ -160,15 +160,16 @@ export default function Home() {
                   <GraduationCap className="w-4 h-4 text-primary" />
                   Education
                 </h3>
-                <p className="text-xs sm:text-sm">B.S. Computer Science, Math Minor, 2026 Class</p>
-                <p className="text-xs sm:text-sm">Associate's Degree in Software Engineering</p>
+                {profileData.education.summary.map((line: string, i: number) => (
+                  <p key={i} className="text-xs sm:text-sm">{line}</p>
+                ))}
               </div>
 
               <div className="bg-transparent p-3 sm:p-4 rounded-xl border border-primary">
                 <div className="mb-2">
                   <Image src="/logo-entelligent-white.svg" alt="Entelligent" width={150} height={22} className="h-5 w-auto" />
                 </div>
-                <p className="text-xs sm:text-sm">Co-Founder; Software Development, System Design</p>
+                <p className="text-xs sm:text-sm">{profileData.entrepreneurship.company.hero_description}</p>
                 <a href={profileData.entrepreneurship.company.deployments.production[0].url}
                    target="_blank"
                    rel="noopener noreferrer"
@@ -199,178 +200,61 @@ export default function Home() {
                     Research Interests
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {(() => {
-                      // Collect all interests from data.json
-                      const allInterests = [
-                        ...profileData.research.interests.primary,
-                        ...profileData.research.interests.detailed.machine_learning.subfields.nlp.areas,
-                        profileData.research.interests.detailed.machine_learning.subfields.game_theory.focus
-                      ];
-
-                      // Remove duplicates (case-insensitive)
-                      const uniqueInterests = Array.from(new Set(
-                        allInterests.map(interest => interest.toLowerCase())
-                      )).map(lowerInterest =>
-                        allInterests.find(original => original.toLowerCase() === lowerInterest) || lowerInterest
-                      );
-
-                      // Sort based on your profile focus
-                      const sortedInterests = uniqueInterests.sort((a, b) => {
-                        const priority: Record<string, number> = {
-                          "applied machine learning": 1,
-                          "nlp (natural language processing)": 2,
-                          "natural language processing": 2,
-                          "llms (large language models)": 3,
-                          "large language models": 3,
-                          "knowledge graphs": 4,
-                          "game theory": 5,
-                          "robust optimization": 6,
-                          "algebraic geometry": 7,
-                          "mas (multi-agent systems)": 8,
-                          "multi-agent systems": 8,
-                          "multimodal agents": 9,
-                          "knowledge base systems": 10,
-                          "tensors": 10.5,
-                          "rag (retrieval-augmented generation)": 11,
-                          "rag": 11,
-                          "embedding models": 12,
-                          "formal systems": 13,
-                          "formal methods": 14,
-                          "zsl (zero-shot learning)": 15,
-                          "computational neuroscience": 16,
-                          "consciousness": 17,
-                          "cosmology": 18
-                        };
-
-                        const aPriority = priority[a.toLowerCase()] || 99;
-                        const bPriority = priority[b.toLowerCase()] || 99;
-
-                        return aPriority - bPriority;
-                      });
-
-                      return sortedInterests.map((interest: string, index: number) => {
-                        // Format with proper acronyms and title case
-                        let formatted = interest;
-
-                        // Map to proper acronym format
-                        const acronymMappings: Record<string, string> = {
-                          "natural language processing": "NLP (Natural Language Processing)",
-                          "large language models": "LLMs (Large Language Models)",
-                          "multi-agent systems": "MAS (Multi-Agent Systems)",
-                          "rag": "RAG (Retrieval-Augmented Generation)",
-                          "zsl (zero-shot learning)": "ZSL (Zero-Shot Learning)"
-                        };
-
-                        const lowerInterest = interest.toLowerCase();
-                        if (acronymMappings[lowerInterest]) {
-                          formatted = acronymMappings[lowerInterest];
-                        } else if (!interest.includes('(')) {
-                          // Title case if not already formatted with acronym
-                          formatted = interest.split(' ').map((word: string) =>
-                            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                          ).join(' ');
-                        }
-
-                        return (
-                          <a
-                            key={index}
-                            href={getSearchUrl(formatted)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white hover:opacity-80 transition-opacity"
-                          >
-                            {formatted}
-                          </a>
-                        );
-                      });
-                    })()}
+                    {(profileData.research_interest_priority as string[]).map((interest: string, index: number) => (
+                      <a
+                        key={index}
+                        href={getSearchUrl(interest)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-xs rounded-full bg-entelligent-gradient text-white hover:opacity-80 transition-opacity"
+                      >
+                        {interest}
+                      </a>
+                    ))}
                   </div>
                 </div>
 
-                {/* Research Publications - 4 items */}
+                {/* Publications */}
                 <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
                   <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
                     <FileText className="w-5 h-5" />
                     Publications
                   </h3>
                   <div className="space-y-3 max-h-64 overflow-y-auto">
-                    {/* Alzheimer's Paper with Preprint */}
-                    <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white">
-                        {profileData.research.projects.publications.medical_ai.alzheimers.title}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-white/60">
-                        UCI DARWIN Dataset • {profileData.research.projects.publications.medical_ai.alzheimers.venue} • {profileData.research.projects.publications.medical_ai.alzheimers.status}
-                      </p>
-                      <p className="text-xs sm:text-sm text-white/60">
-                        XGBoost Baseline with Cross-Validation
-                      </p>
-                      <div className="flex gap-4">
-                        <a
-                          href={profileData.research.projects.publications.medical_ai.alzheimers.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs sm:text-sm text-primary hover:underline"
-                        >
-                          View Preprint →
-                        </a>
-                        <a
-                          href="https://archive.ics.uci.edu/dataset/732/darwin"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs sm:text-sm text-primary hover:underline"
-                        >
-                          View Dataset →
-                        </a>
+                    {profileData.research.publications.map((pub: any, index: number) => (
+                      <div key={`pub-${index}`} className="border-l-2 border-primary/50 pl-3 py-1">
+                        <h4 className="text-sm sm:text-base font-semibold text-white">
+                          {pub.title}
+                        </h4>
+                        <p className="text-xs sm:text-sm text-white/60">
+                          {pub.authors && `${pub.authors} • `}{pub.status}{pub.venue && ` • ${pub.venue}`}
+                        </p>
+                        {pub.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {pub.tags.map((tag: string, i: number) => (
+                              <span key={i} className="px-2 py-0.5 text-xs rounded-full bg-primary/20 text-white/70">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                        {pub.links.length > 0 && (
+                          <div className="flex gap-4 mt-1">
+                            {pub.links.map((link: any, i: number) => (
+                              <a
+                                key={i}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs sm:text-sm text-primary hover:underline"
+                              >
+                                {link.label} →
+                              </a>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                    </div>
-
-                    {/* Parkinson's Research */}
-                    <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white">
-                        {profileData.research.projects.publications.medical_ai.parkinsons.title}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-white/60">
-                        UCI Parkinson's Dataset • {profileData.research.projects.publications.medical_ai.parkinsons.status}
-                      </p>
-                      <p className="text-xs sm:text-sm text-white/60">
-                        Gradient Boosting Baseline
-                      </p>
-                      <a
-                        href="https://archive.ics.uci.edu/dataset/174/parkinsons"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs sm:text-sm text-primary hover:underline"
-                      >
-                        View Dataset →
-                      </a>
-                    </div>
-
-                    {/* Multi-Agent Geometric Project */}
-                    <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white">
-                        {profileData.research.projects.active.multi_agent_geometric.title}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-white/60">
-                        Game Theory • Geometric Spaces • {profileData.research.projects.active.multi_agent_geometric.status}
-                      </p>
-                      <p className="text-xs sm:text-sm text-white/60">
-                        Memory-equipped agents on manifolds
-                      </p>
-                    </div>
-
-                    {/* Knowledge Graph Systems */}
-                    <div className="border-l-2 border-primary/50 pl-3 py-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white">
-                        Knowledge Graph & Base Systems
-                      </h4>
-                      <p className="text-xs sm:text-sm text-white/60">
-                        Graph Neural Networks • Embeddings • exploratory
-                      </p>
-                      <p className="text-xs sm:text-sm text-white/60">
-                        Entity linking and relation extraction
-                      </p>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
@@ -383,7 +267,7 @@ export default function Home() {
                   <div className="space-y-4">
                     {/* Current Enrollment */}
                     <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-primary mb-2">Current Enrollment (Fall 2025)</h4>
+                      <h4 className="text-sm sm:text-base font-semibold text-primary mb-2">Current Enrollment ({profileData.education.enrollment_term})</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         {profileData.education.courses_taken.current_enrollment.map((course: any, index: number) => (
                           <div key={`current-${course.code}-${course.name}-${index}`} className="border-l-2 border-primary/50 pl-2 py-1">
@@ -561,7 +445,7 @@ export default function Home() {
                 <Code className="w-5 h-5" />
                 {profileData.experiences.section_titles.languages}
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
                 <div>
                   <p className="text-sm font-medium mb-2">Primary</p>
                   <div className="flex flex-wrap gap-2">
@@ -579,6 +463,22 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
+                  <p className="text-sm font-medium mb-2">Secondary</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.languages.programming.secondary?.map((lang: string, idx: number) => (
+                      <a
+                        key={lang}
+                        href={getSearchUrl(lang)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${90 + idx * 30}deg, #284b63, #3c6e71)` }}>
+                        {lang}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
                   <p className="text-sm font-medium mb-2">Scripting</p>
                   <div className="flex flex-wrap gap-2">
                     {profileData.technical_skills.languages.programming.scripting?.map((lang: string, idx: number) => (
@@ -589,6 +489,22 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
                         style={{ background: `linear-gradient(${135 + idx * 30}deg, #353535, #3c6e71)` }}>
+                        {lang}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-2">Query</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profileData.technical_skills.languages.programming.query?.map((lang: string, idx: number) => (
+                      <a
+                        key={lang}
+                        href={getSearchUrl(lang)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                        style={{ background: `linear-gradient(${180 + idx * 30}deg, #353535, #284b63)` }}>
                         {lang}
                       </a>
                     ))}
@@ -728,16 +644,16 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-2">Data Analysis</p>
+                  <p className="text-sm font-medium mb-2">Orchestration</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.ml_ai.specialized?.data_analysis?.map((tool: string, idx: number) => (
+                    {profileData.technical_skills.frameworks.ml_ai.specialized?.orchestration?.map((tool: string, idx: number) => (
                       <a
                         key={tool}
                         href={getSearchUrl(tool)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${45 + idx * 40}deg, #3c6e71, #284b63)` }}>
+                        style={{ background: `linear-gradient(${30 + idx * 35}deg, #284b63, #3c6e71)` }}>
                         {tool}
                       </a>
                     ))}
@@ -866,15 +782,15 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.backend}</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.web.backend.apis.map((api: string, idx: number) => (
+                    {profileData.technical_skills.frameworks.web.backend.backend_frameworks?.map((fw: string, idx: number) => (
                       <a
-                        key={api}
-                        href={getSearchUrl(api)}
+                        key={fw}
+                        href={getSearchUrl(fw)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${45 + idx * 60}deg, #284b63, #353535)` }}>
-                        {api}
+                        style={{ background: `linear-gradient(${45 + idx * 40}deg, #284b63, #353535)` }}>
+                        {fw}
                       </a>
                     ))}
                     {profileData.technical_skills.frameworks.web.backend.authentication?.map((auth: string, idx: number) => (
@@ -934,7 +850,7 @@ export default function Home() {
                 {/* All other full_stack_development categories */}
                 {Object.entries(profileData.technical_skills.full_stack_development).map(([category, tools]: [string, any]) => (
                   <div key={category}>
-                    <p className="text-sm font-medium mb-2 capitalize">{category.replace(/_/g, ' ')}</p>
+                    <p className="text-sm font-medium mb-2 capitalize">{category === 'api' ? 'API' : category.replace(/_/g, ' ')}</p>
                     <div className="flex flex-wrap gap-2">
                       {(tools as string[]).map((tool: string, idx: number) => (
                         <a
@@ -1026,15 +942,15 @@ export default function Home() {
             <div className="text-center">
               <div className="flex justify-center gap-4 mb-6">
                 <a
-                  href="https://www.instagram.com/b3hr0uz/"
+                  href={profileData.personal.contact.social.instagram.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all"
                 >
-                  <Instagram className="w-6 h-6" />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
                 </a>
                 <a
-                  href="https://x.com/b3hr0uz_"
+                  href={profileData.personal.contact.social.x.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all"
@@ -1042,7 +958,7 @@ export default function Home() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
                 </a>
                 <a
-                  href="https://open.spotify.com/user/12100413470?si=f0f77136f72f4cef"
+                  href={profileData.personal.contact.social.spotify.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-transparent border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all"
@@ -1050,7 +966,7 @@ export default function Home() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
                 </a>
               </div>
-              <p className="text-sm">© 2026 {profileData.personal.name.display}</p>
+              <p className="text-sm">&copy; {profileData.copyright_year} {profileData.personal.name.display}</p>
             </div>
             </div>
           </div>

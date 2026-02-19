@@ -25,6 +25,21 @@
           "username": "behrouz-barati",
           "url": "https://www.linkedin.com/in/behrouz-barati/",
           "type": "professional"
+        },
+        "instagram": {
+          "username": "b3hr0uz",
+          "url": "https://www.instagram.com/b3hr0uz/",
+          "type": "personal"
+        },
+        "x": {
+          "username": "b3hr0uz_",
+          "url": "https://x.com/b3hr0uz_",
+          "type": "personal"
+        },
+        "spotify": {
+          "username": "12100413470",
+          "url": "https://open.spotify.com/user/12100413470?si=f0f77136f72f4cef",
+          "type": "personal"
         }
       },
       "academic": {
@@ -45,6 +60,11 @@
     }
   },
   "education": {
+    "summary": [
+      "B.S. Computer Science, Math Minor, 2026 Class",
+      "Associate's Degree in Software Engineering"
+    ],
+    "enrollment_term": "Spring 2026",
     "current": {
       "degree": "Bachelor of Science",
       "major": {
@@ -65,56 +85,84 @@
     "courses_taken": {
       "current_enrollment": [
         {
-          "code": "COMP 542",
-          "name": "Machine Learning",
-          "credits": 3,
-          "status": "In Progress",
-          "term": "25FA"
-        },
-        {
-          "code": "COMP 541",
-          "name": "Data Mining",
-          "credits": 3,
-          "status": "In Progress",
-          "term": "25FA"
-        },
-        {
-          "code": "COMP 490",
-          "name": "Senior Project I",
+          "code": "COMP 491",
+          "name": "Senior Project II",
           "credits": 2,
           "status": "In Progress",
-          "term": "25FA"
+          "term": "26SP"
         },
         {
-          "code": "COMP 490L",
-          "name": "Senior Project Lab I",
+          "code": "COMP 491L",
+          "name": "Senior Project II Lab",
           "credits": 1,
           "status": "In Progress",
-          "term": "25FA"
+          "term": "26SP"
         },
         {
-          "code": "MATH 326",
-          "name": "Discrete Mathematics",
+          "code": "COMP 485",
+          "name": "Human-Computer Interaction",
           "credits": 3,
           "status": "In Progress",
-          "term": "25FA"
+          "term": "26SP"
+        },
+        {
+          "code": "COMP 440",
+          "name": "Database Design",
+          "credits": 3,
+          "status": "In Progress",
+          "term": "26SP"
+        },
+        {
+          "code": "COMP 333",
+          "name": "Concepts of Programming Languages",
+          "credits": 3,
+          "status": "In Progress",
+          "term": "26SP"
         },
         {
           "code": "MATH 482",
           "name": "Combinatorial Algorithms",
           "credits": 3,
           "status": "In Progress",
-          "term": "25FA"
+          "term": "26SP"
         },
         {
-          "code": "PHYS 220B",
-          "name": "Electricity and Magnetism",
-          "credits": 0,
+          "code": "MATH 481A",
+          "name": "Numerical Analysis",
+          "credits": 3,
           "status": "In Progress",
-          "term": "25FA"
+          "term": "26SP"
+        },
+        {
+          "code": "PHYS 220BL",
+          "name": "Electricity and Magnetism Lab",
+          "credits": 1,
+          "status": "In Progress",
+          "term": "26SP"
         }
       ],
       "computer_science": [
+        {
+          "code": "COMP 542",
+          "name": "Machine Learning",
+          "grade": "A",
+          "credits": 3,
+          "term": "25FA"
+        },
+        {
+          "code": "COMP 490",
+          "name": "Senior Project I",
+          "grade": "A",
+          "credits": 2,
+          "term": "25FA"
+        },
+        {
+          "code": "COMP 490L",
+          "name": "Senior Project Lab I",
+          "grade": "A",
+          "credits": 1,
+          "term": "25FA"
+        },
         {
           "code": "COMP 442",
           "name": "Machine Learning",
@@ -512,50 +560,42 @@
         "vision": "Modeling problems as multi-agent games on geometric spaces with co-evolving dynamics"
       }
     },
-    "projects": {
-      "active": {
-        "multi_agent_geometric": {
-          "title": "Multi-Agent Learning on Geometric Spaces",
-          "description": "Modeling problems as multi-agent games where memory-equipped agents debate on smooth geometric spaces",
-          "components": {
-            "theoretical": ["Existence/Uniqueness of Equilibria", "Convergence Analysis", "Algebraic Constraints"],
-            "computational": ["Policy Optimization", "Manifold Learning", "Dynamic Geometry"]
-          },
-          "status": "active"
-        }
+    "publications": [
+      {
+        "title": "ELORA: Embodied Learning for the Optimal-Robust-Adaptive Alignment",
+        "authors": "Behrouz Barati B, Qiuyuan Huang",
+        "status": "Submitted",
+        "tags": ["Multi-Agent Systems", "Game Theory", "Robust Optimization", "Tensors"],
+        "links": []
       },
-      "publications": {
-        "medical_ai": {
-          "alzheimers": {
-            "title": "Task-Optimized Approach for High-Accuracy Alzheimer’s Diagnosis from Handwriting Data",
-            "venue": "medRxiv",
-            "url": "https://www.medrxiv.org/content/10.1101/2024.12.17.24319146v2",
-            "dataset": "UCI Darwin Handwriting Dataset",
-            "methods": {
-              "models": ["Random Forest", "XGBoost", "kNN", "MLP", "Gradient Boosting"],
-              "validation": "Leave-One-Out Cross-Validation",
-              "metrics": ["Accuracy", "Recall", "F1-Score"]
-            },
-            "status": "in_revision"
-          },
-          "parkinsons": {
-            "title": "Parkinson's Disease Voice Analysis",
-            "approach": "Time-series analysis using Echo State Networks",
-            "status": "in_progress"
-          },
-          "genomics": {
-            "title": "Missing-Value Imputation in Gene Sequencing",
-            "methods": ["LLM-based", "Transformer-based NLP"],
-            "status": "exploratory"
-          }
-        }
+      {
+        "title": "Multi-Agent Learning on Geometric Spaces",
+        "status": "In Preparation",
+        "tags": ["Game Theory", "Manifold Learning", "Policy Optimization", "Algebraic Geometry"],
+        "links": []
+      },
+      {
+        "title": "Task-Optimized Approach for High-Accuracy Alzheimer’s Diagnosis from Handwriting Data",
+        "status": "In Review",
+        "tags": ["Medical Diagnosis", "Machine Learning", "Handwriting Analysis"],
+        "links": [
+          { "label": "View Preprint", "url": "https://www.medrxiv.org/content/10.1101/2024.12.17.24319146v2" },
+          { "label": "View Dataset", "url": "https://archive.ics.uci.edu/dataset/732/darwin" }
+        ]
+      },
+      {
+        "title": "Document Tags/Keywords with Hierarchical Clustered Embedding",
+        "status": "In Preparation",
+        "tags": ["NLP", "Embeddings", "Clustering", "Document Classification"],
+        "links": []
       }
-    }
+    ]
   },
   "entrepreneurship": {
     "company": {
       "name": "Entelligent",
       "role": "Co-Founder",
+      "hero_description": "Co-Founder; Software Development, System Design",
       "description": "Knowledge base platform for angel investors and financial firms",
       "mission": "Transform trusted data into actionable insights, analytics, and patterns",
       "deployments": {
@@ -576,24 +616,26 @@
   "technical_skills": {
     "languages": {
       "programming": {
-        "primary": ["Python", "TypeScript", "JavaScript", "C", "C++", "Java"],
-        "scripting": ["Bash", "Shell", "SQL", "Cypher"],
+        "primary": ["Python", "TypeScript", "JavaScript"],
+        "secondary": ["C", "C++", "Java"],
+        "scripting": ["Bash"],
+        "query": ["SQL", "Cypher"],
         "web": ["HTML", "CSS"]
       }
     },
     "frameworks": {
       "ml_ai": {
-        "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "XGBoost"],
+        "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "Pandas","XGBoost"],
         "specialized": {
-          "nlp": ["NLTK", "LangChain", "Hugging Face"],
+          "nlp": ["NLTK", "Hugging Face Transformers", "spaCy"],
           "graph": ["PyTorch Geometric"],
           "visualization": ["Matplotlib", "Seaborn"],
-          "data_analysis": ["Pandas", "Jupyter Lab"]
+          "orchestration": ["LangChain", "CrewAI"]
         }
       },
       "web": {
         "backend": {
-          "apis": ["FastAPI"],
+          "backend_frameworks": ["FastAPI", "SQLAlchemy"],
           "authentication": ["JWT", "OAuth 2.0", "Session-based Auth"]
         },
         "frontend": {
@@ -620,20 +662,22 @@
         "techniques": ["Graph Neural Networks", "Knowledge-Graph Transformers", "Message Passing"]
       },
       "ml_pipelines": {
-        "classical": ["Linear/Logistic Regression", "Naive Bayes", "SVMs", "Random Forest", "Gradient Boosting"],
-        "deep_learning": ["MLPs", "CNNs", "RNNs", "Transformers", "GNNs"],
-        "reinforcement": ["Policy Gradient", "Q-Learning", "Experience Replay", "Actor-Critic"]
+        "classical": ["Linear Regression", "Logistic Regression", "Naive Bayes", "SVM", "Random Forest", "Gradient Boosting"],
+        "deep_learning": ["MLP", "CNN", "RNN", "Transformer", "GNN"],
+        "reinforcement": ["Policy Gradient", "Q-Learning", "Experience Replay", "Actor-Critic", "Proximal Policy Optimization"]
       }
     },
     "full_stack_development": {
-      "documentation": ["LaTeX", "Markdown", "Jupyter"],
-      "version_control": ["Git", "GitHub", "GitLab"],
-      "development": ["VS Code", "Vim", "Neovim", "Cursor", "Claude Code", "MCP", "Gemini"],
+      "documentation": ["LaTeX", "Overleaf", "Markdown"],
+      "version_control": ["Git", "GitHub"],
+      "development": ["VS Code", "Neovim", "JupyterLab", "Cursor", "Google Antigravity"],
+      "agentic_coding": ["Claude Code", "Gemini", "Codex", "MCP", "Prompt Engineering"],
+      "api": ["OpenAI", "Claude", "Exa", "Hugging Face", "Ollama"],
       "monitoring": ["Prometheus", "Grafana"],
-      "package_managers": ["npm", "pip", "conda"],
-      "collaboration": ["Overleaf", "Slack", "Discord", "Microsoft Teams", "Zoom"],
+      "package_managers": ["bun", "npm", "pip", "conda", "apt", "homebrew"],
+      "collaboration": ["Slack", "Discord", "Microsoft Teams", "TeamSpeak","Zoom"],
       "design": ["Figma", "Build.io", "Draw.io"],
-      "scraping": ["BeautifulSoup", "Requests", "Selenium", "Playwright", "html.parser", "regex", "XPath"]
+      "scraping": ["BeautifulSoup", "Selenium", "Playwright", "Firecrawl"]
     }
   },
   "academic_service": {
@@ -656,10 +700,32 @@
       "interdisciplinary": ["Consciousness Studies", "Computational Neuroscience", "Philosophy of Mind"]
     }
   },
+  "copyright_year": "2026",
   "section_titles": {
     "interests_passions": "Interests & Passions",
     "visions": "Visions of the Future Past"
   },
+  "research_interest_priority": [
+    "Applied Machine Learning",
+    "NLP (Natural Language Processing)",
+    "LLMs (Large Language Models)",
+    "Knowledge Graphs",
+    "Game Theory",
+    "Robust Optimization",
+    "Algebraic Geometry",
+    "MAS (Multi-Agent Systems)",
+    "Multimodal Agents",
+    "Knowledge Base Systems",
+    "Tensors",
+    "RAG (Retrieval-Augmented Generation)",
+    "Embedding Models",
+    "Formal Systems",
+    "Formal Methods",
+    "ZSL (Zero-Shot Learning)",
+    "Computational Neuroscience",
+    "Consciousness",
+    "Cosmology"
+  ],
   "experiences": {
     "items": [
       {
@@ -929,10 +995,51 @@
     "Space Rock": "Space_rock",
     "Symphonic Metal": "Symphonic_metal",
     "Turing's Halting Problem": "Halting_problem",
-    "Time Complexities": "Time_complexity"
+    "Time Complexities": "Time_complexity",
 
+    "C": "C_(programming_language)",
+    "MLP": "Multilayer_perceptron",
+    "CNN": "Convolutional_neural_network",
+    "RNN": "Recurrent_neural_network",
+    "GNN": "Graph_neural_network",
+    "SVM": "Support-vector_machine",
+    "Transformer": "Transformer_(deep_learning_architecture)",
+    "Policy Gradient": "Policy_gradient_method",
+    "Gemini": "Gemini_(chatbot)",
+    "Codex": "OpenAI_Codex",
+    "Claude": "Claude_(language_model)",
+    "MCP": "Model_Context_Protocol",
+    "Prometheus": "Prometheus_(software)",
+    "Selenium": "Selenium_(software)",
+    "Playwright": "Playwright_(software)",
+    "Slack": "Slack_(software)",
+    "Zoom": "Zoom_(software)",
+    "Cypher": "Cypher_(query_language)",
+    "bun": "Bun_(software)",
+    "pip": "Pip_(package_manager)",
+    "conda": "Conda_(package_manager)",
+    "apt": "APT_(software)",
+    "homebrew": "Homebrew_(package_manager)"
   },
   "google_search_only": [
+    "Hugging Face Transformers",
+    "PyTorch Geometric",
+    "CrewAI",
+    "Dense Vector Embeddings",
+    "Hybrid Retrieval",
+    "Session-based Auth",
+    "Framer Motion",
+    "ChromaDB",
+    "Knowledge-Graph Transformers",
+    "Experience Replay",
+    "Actor-Critic",
+    "Ollama",
+    "Build.io",
+    "Firecrawl",
+    "Cursor",
+    "Axios",
+    "Exa",
+    "Fetch API"
   ],
   "metadata": {
     "last_updated": "2025-09-13",
