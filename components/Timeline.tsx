@@ -161,6 +161,21 @@ export default function Timeline() {
   const giants = giantsWithImages.length > 0 ? giantsWithImages : (giantsData as GiantWithImage[])
   const sortedGiants = [...giants].sort((a, b) => a.birth_year - b.birth_year)
 
+  // Compute legend fields from actual data, sorted by frequency
+  const usedFields = useMemo(() => {
+    const freq: Record<string, number> = {}
+    for (const g of sortedGiants) {
+      for (const f of g.fields) {
+        const key = f.toLowerCase()
+        freq[key] = (freq[key] || 0) + 1
+      }
+    }
+    return Object.entries(freq)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 12)
+      .map(([field]) => field)
+  }, [sortedGiants])
+
   const getYPosition = (year: number) => {
     // Non-linear scale: give more space to crowded modern eras
     // Cap year to not exceed maxYear
@@ -435,7 +450,7 @@ export default function Timeline() {
         />
         {/* Fixed header */}
         <div className="sticky top-0 z-[100] pb-4 flex justify-center pointer-events-none" ref={containerRef}>
-          <div className="w-fit px-6 rounded-lg pointer-events-auto" style={{
+          <div className="w-fit px-6 rounded-lg pointer-events-auto" onTouchEnd={(e) => e.stopPropagation()} style={{
             background: 'radial-gradient(ellipse at center, transparent 0%, #20262B 33%, #20262B 100%)'
           }}>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-white font-lmodern">
@@ -491,12 +506,15 @@ export default function Timeline() {
 
           {/* Legend with field colors */}
           <div className="flex flex-wrap gap-3 text-xs text-white/70 justify-center mb-4">
-            {Object.entries(fieldColors).slice(0, 8).map(([field, color]) => (
-              <div key={field} className="flex items-center gap-2">
-                <div className="w-8 h-1" style={{ backgroundColor: color }}></div>
-                <span className="capitalize">{field}</span>
-              </div>
-            ))}
+            {usedFields.map(field => {
+              const color = fieldColors[field] || '#808080'
+              return (
+                <div key={field} className="flex items-center gap-2">
+                  <div className="w-8 h-1" style={{ backgroundColor: color }}></div>
+                  <span className="capitalize">{field}</span>
+                </div>
+              )
+            })}
           </div>
 
           {/* Tooltip display area - seamless within header */}

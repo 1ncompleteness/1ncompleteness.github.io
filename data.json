@@ -670,7 +670,7 @@
       "documentation": ["LaTeX", "Overleaf", "Markdown"],
       "version_control": ["Git", "GitHub"],
       "development": ["VS Code", "Neovim", "JupyterLab", "Cursor", "Google Antigravity"],
-      "agentic_coding": ["Claude Code", "Gemini", "Codex", "MCP", "Prompt Engineering"],
+      "agentic_workflow": ["Prompt Engineering", "MCP", "Opencode","Claude Code", "Gemini", "Codex"],
       "api": ["OpenAI", "Claude", "Exa", "Hugging Face", "Ollama"],
       "monitoring": ["Prometheus", "Grafana"],
       "package_managers": ["bun", "npm", "pip", "conda", "apt", "homebrew"],
@@ -728,16 +728,16 @@
   "experiences": {
     "items": [
       {
-        "title": "SaaS and R&D",
-        "tags": ["Entrepreneurship", "Software Development", "System Design"]
+        "title": "Startup and Entrepreneurship",
+        "tags": ["SaaS", "R&D", "Software Development", "System Design"]
       },
       {
         "title": "Academic Research",
         "tags": ["Multi-Agent Systems", "Robust Optimization", "NLP & Embeddings", "Medical AI Diagnostics"]
       },
       {
-        "title": "Network and Security Systems Administrator",
-        "tags": ["Infrastructure Management", "Network Security", "System Administration"]
+        "title": "Industry",
+        "tags": ["Infrastructure Management", "Network and Security", "Computer Systems", "IT Administration"]
       }
     ],
     "section_titles": {
@@ -901,7 +901,7 @@
     "Analytic Continuation": "Analytic_continuation",
     "Abstract Algebra": "Abstract_algebra",
     "Differentiable Manifolds": "Differentiable_manifold",
-    "Tensor Calculus": "Tensor_calculus",
+    "Tensor Calculus": "Ricci_calculus",
     "Nash Equilibria": "Nash_equilibrium",
     "Saddle Points": "Saddle_point",
     "Robustness": "Robust_statistics",
@@ -937,7 +937,7 @@
     "Health": "Health",
     "Diagnostics": "Medical_diagnosis",
     "Neuroimaging": "Neuroimaging",
-    "Neurodegenerative Diseases": "Neurodegeneration",
+    "Neurodegenerative Diseases": "Neurodegenerative_disease",
     "Autoimmune": "Autoimmune_disease",
     "Neoplastic": "Neoplasm",
     "Pathology": "Pathology",
@@ -1001,10 +1001,10 @@
     "CNN": "Convolutional_neural_network",
     "RNN": "Recurrent_neural_network",
     "GNN": "Graph_neural_network",
-    "SVM": "Support-vector_machine",
-    "Transformer": "Transformer_(deep_learning_architecture)",
+    "SVM": "Support_vector_machine",
+    "Transformer": "Transformer_(deep_learning)",
     "Policy Gradient": "Policy_gradient_method",
-    "Gemini": "Gemini_(chatbot)",
+    "Gemini": "Google_Gemini",
     "Codex": "OpenAI_Codex",
     "Claude": "Claude_(language_model)",
     "MCP": "Model_Context_Protocol",
@@ -1018,7 +1018,9 @@
     "pip": "Pip_(package_manager)",
     "conda": "Conda_(package_manager)",
     "apt": "APT_(software)",
-    "homebrew": "Homebrew_(package_manager)"
+    "homebrew": "Homebrew_(package_manager)",
+    "JWT": "JSON_Web_Token",
+    "Cursor": "Cursor_(code_editor)"
   },
   "google_search_only": [
     "Hugging Face Transformers",
@@ -1035,7 +1037,6 @@
     "Ollama",
     "Build.io",
     "Firecrawl",
-    "Cursor",
     "Axios",
     "Exa",
     "Fetch API"
