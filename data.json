@@ -625,10 +625,9 @@
     },
     "frameworks": {
       "ml_ai": {
-        "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "Pandas","XGBoost"],
+        "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "Pandas", "XGBoost", "PyTorch Geometric"],
         "specialized": {
           "nlp": ["NLTK", "Hugging Face Transformers", "spaCy"],
-          "graph": ["PyTorch Geometric"],
           "visualization": ["Matplotlib", "Seaborn"],
           "orchestration": ["LangChain", "CrewAI"]
         }
@@ -729,16 +728,16 @@
   "experiences": {
     "items": [
       {
-        "title": "Research and Development (R&D)",
-        "description": "Multi-Agent Geometric Learning • Medical AI Diagnostics"
+        "title": "SaaS and R&D",
+        "tags": ["Entrepreneurship", "Software Development", "System Design"]
       },
       {
-        "title": "Software as a Service (SaaS)",
-        "description": "Entelligent Co-Founder • Software Development & System Design"
+        "title": "Academic Research",
+        "tags": ["Multi-Agent Systems", "Robust Optimization", "NLP & Embeddings", "Medical AI Diagnostics"]
       },
       {
-        "title": "Network & Security Systems Administrator",
-        "description": "Infrastructure Management • Network and Security Maintenance"
+        "title": "Network and Security Systems Administrator",
+        "tags": ["Infrastructure Management", "Network Security", "System Administration"]
       }
     ],
     "section_titles": {

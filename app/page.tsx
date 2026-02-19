@@ -408,9 +408,17 @@ export default function Home() {
                 </h3>
                 <div className="space-y-3">
                   {profileData.experiences.items.map((exp: any, index: number) => (
-                    <div key={`exp-${exp.title}-${exp.organization}-${index}`}>
+                    <div key={`exp-${exp.title}-${index}`}>
                       <p className="text-sm sm:text-base font-semibold">{exp.title}</p>
-                      <p className="text-xs sm:text-sm text-primary">{exp.description}</p>
+                      {exp.tags && exp.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-1">
+                          {exp.tags.map((tag: string, i: number) => (
+                            <span key={i} className="px-2 py-0.5 text-xs rounded-full bg-primary/20 text-white/70">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -531,10 +539,18 @@ export default function Home() {
 
             {/* Machine Learning section */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+              <h3 className="text-base sm:text-lg font-semibold text-primary flex items-center gap-2 mb-0">
                 <Brain className="w-5 h-5" />
                 {profileData.experiences.section_titles.ml_ai}
               </h3>
+
+              {/* Tree structure - vertical line with horizontal branches */}
+              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5 pt-2 space-y-4">
+              {/* Methodologies */}
+              <div className="relative">
+                <div className="absolute -left-[25px] top-1/2 -translate-y-1/2 w-5 h-0 border-t-2 border-primary/40"></div>
+                <p className="text-sm font-semibold text-primary/80 mb-2">Methodologies</p>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <div>
                   <p className="text-sm font-medium mb-2">Classical</p>
@@ -584,6 +600,14 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+              </div>
+
+              {/* Libraries & Frameworks */}
+              <div className="relative">
+                <div className="absolute -left-[25px] top-1/2 -translate-y-1/2 w-5 h-0 border-t-2 border-primary/40"></div>
+                <p className="text-sm font-semibold text-primary/80 mb-2">Libraries & Frameworks</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                 <div>
                   <p className="text-sm font-medium mb-2">Core</p>
                   <div className="flex flex-wrap gap-2">
@@ -617,19 +641,8 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-2">Graph & Visualization</p>
+                  <p className="text-sm font-medium mb-2">Visualization</p>
                   <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.ml_ai.specialized?.graph?.map((graph: string, idx: number) => (
-                      <a
-                        key={graph}
-                        href={getSearchUrl(graph)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${100 + idx * 60}deg, #353535, #3c6e71)` }}>
-                        {graph}
-                      </a>
-                    ))}
                     {profileData.technical_skills.frameworks.ml_ai.specialized?.visualization?.map((viz: string, idx: number) => (
                       <a
                         key={viz}
@@ -659,6 +672,7 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+              </div>
               </div>
             </div>
 
