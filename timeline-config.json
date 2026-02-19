@@ -51,6 +51,13 @@
     "primatology": "#228B22",
     "ethology": "#00CED1",
     "conservation": "#3CB371",
-    "environmental science": "#00FF00"
+    "environmental science": "#00FF00",
+    "medicine": "#E74C3C",
+    "geography": "#2ECC71",
+    "philosophy of science": "#1ABC9C",
+    "art": "#F39C12",
+    "geology": "#CD853F",
+    "optics": "#00CED1",
+    "anatomy": "#E67E22"
   }
 }

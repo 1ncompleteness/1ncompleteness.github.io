@@ -31,6 +31,13 @@ export default function Timeline() {
   const containerRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
   const tooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const isTouchDeviceRef = useRef(false)
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const isScrollingRef = useRef(false)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const lastTooltipChangeRef = useRef(0)
+  const TOUCH_MOVE_THRESHOLD = 10   // px — beyond this = scroll, not tap
+  const TOOLTIP_DEBOUNCE_MS = 150   // minimum ms between tooltip changes
 
   // Timeline range starting from -900
   const minYear = -900
@@ -54,6 +61,13 @@ export default function Timeline() {
       setCurrentTime(new Date())
     }, 1000)
     return () => clearInterval(timer)
+  }, [])
+
+  // Cleanup tooltip timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (tooltipTimeoutRef.current) clearTimeout(tooltipTimeoutRef.current)
+    }
   }, [])
 
   // Get field colors from configuration
@@ -102,6 +116,13 @@ export default function Timeline() {
     const handleScroll = () => {
       if (!timelineRef.current) return
 
+      // Flag scrolling to suppress touch tooltips
+      isScrollingRef.current = true
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+      scrollTimeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false
+      }, 150)
+
       const scrollTop = timelineRef.current.scrollTop
       const scrollHeight = timelineRef.current.scrollHeight - timelineRef.current.clientHeight
       const scrollPercentage = scrollTop / scrollHeight
@@ -132,6 +153,7 @@ export default function Timeline() {
       if (container) {
         container.removeEventListener('scroll', handleScroll)
       }
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
     }
   }, [minYear, yearRange, timePeriods])
 
@@ -169,16 +191,25 @@ export default function Timeline() {
   }
 
   const handleMouseEnter = (giant: GiantWithImage) => {
+    // Suppress synthetic mouse events on touch devices
+    if (isTouchDeviceRef.current) return
+
+    const now = Date.now()
+    if (now - lastTooltipChangeRef.current < TOOLTIP_DEBOUNCE_MS) return
+
     // Clear any existing timeout
     if (tooltipTimeoutRef.current) {
       clearTimeout(tooltipTimeoutRef.current)
       tooltipTimeoutRef.current = null
     }
 
+    lastTooltipChangeRef.current = now
     setHoveredGiant(giant)
   }
 
   const handleMouseLeave = () => {
+    if (isTouchDeviceRef.current) return
+
     if (tooltipTimeoutRef.current) {
       clearTimeout(tooltipTimeoutRef.current)
       tooltipTimeoutRef.current = null
@@ -186,6 +217,34 @@ export default function Timeline() {
     tooltipTimeoutRef.current = setTimeout(() => {
       setHoveredGiant(null)
     }, 5000)
+  }
+
+  const handleTouchSelect = (giant: GiantWithImage) => {
+    if (isScrollingRef.current) return
+
+    const now = Date.now()
+    if (now - lastTooltipChangeRef.current < TOOLTIP_DEBOUNCE_MS) return
+
+    if (tooltipTimeoutRef.current) {
+      clearTimeout(tooltipTimeoutRef.current)
+      tooltipTimeoutRef.current = null
+    }
+
+    lastTooltipChangeRef.current = now
+
+    // Toggle: tap same giant = dismiss, tap different = switch
+    if (hoveredGiant?.name === giant.name) {
+      setHoveredGiant(null)
+      setHoveredLine(null)
+    } else {
+      setHoveredGiant(giant)
+      setHoveredLine(giant.name)
+    }
+  }
+
+  const formatYear = (year: number) => {
+    if (year <= 0) return `${Math.abs(year)} BCE`
+    return `${year} CE`
   }
 
   const openWikipedia = (wikipedia: string) => {
@@ -238,8 +297,8 @@ export default function Timeline() {
       // Calculate graph area position (below title and legend)
       const graphTop = 100 // Space for title and legend
       const graphBottom = canvas.height - 50
-      const graphLeft = 60  // Reduced for tighter left spacing
-      const graphRight = canvas.width - 30  // Reduced for tighter right spacing
+      const graphLeft = 52
+      const graphRight = canvas.width - 20
 
       // Draw Y-axis (Time)
       ctx.beginPath()
@@ -281,7 +340,9 @@ export default function Timeline() {
         const y = graphTop + yPercent * (graphBottom - graphTop)
 
 
-        ctx.fillText(year.toString(), graphLeft - 45, y + 3)
+        const yearLabel = year <= 0 ? `${Math.abs(year)} BCE` : `${year} CE`
+        const labelWidth = ctx.measureText(yearLabel).width
+        ctx.fillText(yearLabel, graphLeft - labelWidth - 8, y + 3)
 
         // Draw tick marks
         ctx.beginPath()
@@ -346,7 +407,26 @@ export default function Timeline() {
   return (
     <div className="w-full h-full relative">
       {/* Timeline content */}
-      <div className="relative z-10 px-8 py-4 h-full overflow-y-auto bg-transparent" ref={timelineRef}>
+      <div
+        className="relative z-10 px-8 py-4 h-full overflow-y-auto bg-transparent"
+        ref={timelineRef}
+        onTouchStart={(e) => {
+          isTouchDeviceRef.current = true
+          touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+        }}
+        onTouchEnd={(e) => {
+          if (!touchStartRef.current) return
+          const dx = e.changedTouches[0].clientX - touchStartRef.current.x
+          const dy = e.changedTouches[0].clientY - touchStartRef.current.y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+          if (distance < TOUCH_MOVE_THRESHOLD) {
+            // Tap on background — dismiss tooltip
+            setHoveredGiant(null)
+            setHoveredLine(null)
+          }
+          touchStartRef.current = null
+        }}
+      >
         {/* Canvas for Euclidean space background - now inside scrollable area */}
         <canvas
           ref={canvasRef}
@@ -488,7 +568,7 @@ export default function Timeline() {
                             {hoveredGiant.name}
                             <ExternalLink className="w-3 h-3 text-white/30" />
                           </a>
-                          <span className="text-white/40 text-xs">{hoveredGiant.birth_year} &ndash; {hoveredGiant.death_year || 'Present'}</span>
+                          <span className="text-white/40 text-xs">{formatYear(hoveredGiant.birth_year)} to {hoveredGiant.death_year ? formatYear(hoveredGiant.death_year) : 'Present'}</span>
                         </div>
 
                         {/* Field tags */}
@@ -525,7 +605,7 @@ export default function Timeline() {
         </div>
 
         {/* Container that matches canvas coordinate system exactly */}
-        <div className="absolute" style={{ top: '100px', height: '9850px', left: '60px', width: 'calc(100% - 90px)' }}>
+        <div className="absolute" style={{ top: '100px', height: '9850px', left: '52px', width: 'calc(100% - 72px)', touchAction: 'manipulation' }}>
           {/* Timeline with vertical lines for each giant */}
           <div className="relative w-full h-full">
             {sortedGiants.map((giant, index) => {
@@ -560,11 +640,27 @@ export default function Timeline() {
                   }}
                   onMouseEnter={() => {
                     handleMouseEnter(giant)
-                    setHoveredLine(giant.name)
+                    if (!isTouchDeviceRef.current) setHoveredLine(giant.name)
                   }}
                   onMouseLeave={() => {
                     handleMouseLeave()
-                    setHoveredLine(null)
+                    if (!isTouchDeviceRef.current) setHoveredLine(null)
+                  }}
+                  onTouchStart={(e) => {
+                    isTouchDeviceRef.current = true
+                    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+                  }}
+                  onTouchEnd={(e) => {
+                    if (!touchStartRef.current) return
+                    const dx = e.changedTouches[0].clientX - touchStartRef.current.x
+                    const dy = e.changedTouches[0].clientY - touchStartRef.current.y
+                    const distance = Math.sqrt(dx * dx + dy * dy)
+                    if (distance < TOUCH_MOVE_THRESHOLD) {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      handleTouchSelect(giant)
+                    }
+                    touchStartRef.current = null
                   }}
                 >
                   {/* Profile picture at birth year position */}
