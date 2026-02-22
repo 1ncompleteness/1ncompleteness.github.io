@@ -625,7 +625,7 @@
     },
     "frameworks": {
       "ml_ai": {
-        "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "Pandas", "XGBoost", "PyTorch Geometric"],
+        "core": ["NumPy", "SciPy", "scikit-learn", "PyTorch", "TensorFlow", "Pandas", "XGBoost", "PyG"],
         "specialized": {
           "nlp": ["NLTK", "Hugging Face Transformers", "spaCy"],
           "visualization": ["Matplotlib", "Seaborn"],
@@ -1020,11 +1020,12 @@
     "apt": "APT_(software)",
     "homebrew": "Homebrew_(package_manager)",
     "JWT": "JSON_Web_Token",
-    "Cursor": "Cursor_(code_editor)"
+    "Cursor": "Cursor_(code_editor)",
+    "Actor-Critic": "Actor-critic_algorithm"
   },
   "google_search_only": [
     "Hugging Face Transformers",
-    "PyTorch Geometric",
+    "PyG",
     "CrewAI",
     "Dense Vector Embeddings",
     "Hybrid Retrieval",
@@ -1033,7 +1034,6 @@
     "ChromaDB",
     "Knowledge-Graph Transformers",
     "Experience Replay",
-    "Actor-Critic",
     "Ollama",
     "Build.io",
     "Firecrawl",

@@ -449,437 +449,432 @@ export default function Home() {
 
             {/* Skills section - Languages */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+              <h3 className="text-base sm:text-lg font-semibold mb-0 text-primary flex items-center gap-2">
                 <Code className="w-5 h-5" />
                 {profileData.experiences.section_titles.languages}
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
-                <div>
-                  <p className="text-sm font-medium mb-2">Primary</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.primary.map((lang: string, idx: number) => (
-                      <a
-                        key={lang}
-                        href={getSearchUrl(lang)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${45 + idx * 30}deg, #3c6e71, #284b63)` }}>
-                        {lang}
-                      </a>
-                    ))}
+              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5">
+                <div className="absolute left-0 top-[12px] w-6 h-0 border-t-2 border-primary/40"></div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-0 gap-y-0">
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Primary</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.languages.programming.primary.map((lang: string, idx: number) => (
+                          <a
+                            key={lang}
+                            href={getSearchUrl(lang)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${45 + idx * 30}deg, #3c6e71, #284b63)` }}>
+                            {lang}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Secondary</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.languages.programming.secondary?.map((lang: string, idx: number) => (
+                          <a
+                            key={lang}
+                            href={getSearchUrl(lang)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${90 + idx * 30}deg, #284b63, #3c6e71)` }}>
+                            {lang}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Scripting</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.languages.programming.scripting?.map((lang: string, idx: number) => (
+                          <a
+                            key={lang}
+                            href={getSearchUrl(lang)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${135 + idx * 30}deg, #353535, #3c6e71)` }}>
+                            {lang}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Query</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.languages.programming.query?.map((lang: string, idx: number) => (
+                          <a
+                            key={lang}
+                            href={getSearchUrl(lang)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${180 + idx * 30}deg, #353535, #284b63)` }}>
+                            {lang}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Web</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.languages.programming.web?.map((lang: string, idx: number) => (
+                          <a
+                            key={lang}
+                            href={getSearchUrl(lang)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${90 + idx * 30}deg, #284b63, #353535)` }}>
+                            {lang}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">Secondary</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.secondary?.map((lang: string, idx: number) => (
-                      <a
-                        key={lang}
-                        href={getSearchUrl(lang)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${90 + idx * 30}deg, #284b63, #3c6e71)` }}>
-                        {lang}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">Scripting</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.scripting?.map((lang: string, idx: number) => (
-                      <a
-                        key={lang}
-                        href={getSearchUrl(lang)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${135 + idx * 30}deg, #353535, #3c6e71)` }}>
-                        {lang}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">Query</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.query?.map((lang: string, idx: number) => (
-                      <a
-                        key={lang}
-                        href={getSearchUrl(lang)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${180 + idx * 30}deg, #353535, #284b63)` }}>
-                        {lang}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">Web</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.languages.programming.web?.map((lang: string, idx: number) => (
-                      <a
-                        key={lang}
-                        href={getSearchUrl(lang)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${90 + idx * 30}deg, #284b63, #353535)` }}>
-                        {lang}
-                      </a>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
 
             {/* Machine Learning section */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold text-primary flex items-center gap-2 mb-0">
+              <h3 className="text-base sm:text-lg font-semibold mb-0 text-primary flex items-center gap-2">
                 <Brain className="w-5 h-5" />
                 {profileData.experiences.section_titles.ml_ai}
               </h3>
-
-              {/* Tree structure - vertical line with horizontal branches */}
-              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5 pt-2 space-y-4">
-              {/* Methodologies */}
-              <div className="relative">
-                <div className="absolute -left-[25px] top-1/2 -translate-y-1/2 w-5 h-0 border-t-2 border-primary/40"></div>
-                <p className="text-sm font-semibold text-primary/80 mb-2">Methodologies</p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                <div>
-                  <p className="text-sm font-medium mb-2">Classical</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.architectures.ml_pipelines?.classical?.map((arch: string, idx: number) => (
-                      <a
-                        key={arch}
-                        href={getSearchUrl(arch)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${30 + idx * 35}deg, #284b63, #353535)` }}>
-                        {arch}
-                      </a>
-                    ))}
+              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5">
+                <div className="absolute left-0 top-[12px] w-6 h-0 border-t-2 border-primary/40"></div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-x-0 gap-y-0">
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Classical</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.architectures.ml_pipelines?.classical?.map((arch: string, idx: number) => (
+                          <a
+                            key={arch}
+                            href={getSearchUrl(arch)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${30 + idx * 35}deg, #284b63, #353535)` }}>
+                            {arch}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Deep Learning</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.architectures.ml_pipelines?.deep_learning?.map((arch: string, idx: number) => (
+                          <a
+                            key={arch}
+                            href={getSearchUrl(arch)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${80 + idx * 45}deg, #3c6e71, #284b63)` }}>
+                            {arch}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Reinforcement</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.architectures.ml_pipelines?.reinforcement?.map((arch: string, idx: number) => (
+                          <a
+                            key={arch}
+                            href={getSearchUrl(arch)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${120 + idx * 50}deg, #353535, #3c6e71)` }}>
+                            {arch}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Core</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.ml_ai.core?.map((fw: string, idx: number) => (
+                          <a
+                            key={fw}
+                            href={getSearchUrl(fw)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${20 + idx * 25}deg, #3c6e71, #284b63)` }}>
+                            {fw}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">NLP</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.ml_ai.specialized?.nlp?.map((nlp: string, idx: number) => (
+                          <a
+                            key={nlp}
+                            href={getSearchUrl(nlp)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${60 + idx * 40}deg, #284b63, #353535)` }}>
+                            {nlp}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Visualization</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.ml_ai.specialized?.visualization?.map((viz: string, idx: number) => (
+                          <a
+                            key={viz}
+                            href={getSearchUrl(viz)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${160 + idx * 60}deg, #353535, #3c6e71)` }}>
+                            {viz}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Orchestration</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.ml_ai.specialized?.orchestration?.map((tool: string, idx: number) => (
+                          <a
+                            key={tool}
+                            href={getSearchUrl(tool)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${30 + idx * 35}deg, #284b63, #3c6e71)` }}>
+                            {tool}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">Deep Learning</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.architectures.ml_pipelines?.deep_learning?.map((arch: string, idx: number) => (
-                      <a
-                        key={arch}
-                        href={getSearchUrl(arch)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${80 + idx * 45}deg, #3c6e71, #284b63)` }}>
-                        {arch}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">Reinforcement Learning</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.architectures.ml_pipelines?.reinforcement?.map((arch: string, idx: number) => (
-                      <a
-                        key={arch}
-                        href={getSearchUrl(arch)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${120 + idx * 50}deg, #353535, #3c6e71)` }}>
-                        {arch}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Libraries & Frameworks */}
-              <div className="relative">
-                <div className="absolute -left-[25px] top-1/2 -translate-y-1/2 w-5 h-0 border-t-2 border-primary/40"></div>
-                <p className="text-sm font-semibold text-primary/80 mb-2">Libraries & Frameworks</p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-                <div>
-                  <p className="text-sm font-medium mb-2">Core</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.ml_ai.core?.map((fw: string, idx: number) => (
-                      <a
-                        key={fw}
-                        href={getSearchUrl(fw)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${20 + idx * 25}deg, #3c6e71, #284b63)` }}>
-                        {fw}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">NLP</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.ml_ai.specialized?.nlp?.map((nlp: string, idx: number) => (
-                      <a
-                        key={nlp}
-                        href={getSearchUrl(nlp)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${60 + idx * 40}deg, #284b63, #353535)` }}>
-                        {nlp}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">Visualization</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.ml_ai.specialized?.visualization?.map((viz: string, idx: number) => (
-                      <a
-                        key={viz}
-                        href={getSearchUrl(viz)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${160 + idx * 60}deg, #353535, #3c6e71)` }}>
-                        {viz}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">Orchestration</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.ml_ai.specialized?.orchestration?.map((tool: string, idx: number) => (
-                      <a
-                        key={tool}
-                        href={getSearchUrl(tool)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${30 + idx * 35}deg, #284b63, #3c6e71)` }}>
-                        {tool}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
               </div>
             </div>
 
             {/* Databases section */}
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+              <h3 className="text-base sm:text-lg font-semibold mb-0 text-primary flex items-center gap-2">
                 <Database className="w-5 h-5" />
                 {profileData.experiences.section_titles.databases}
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                <div>
-                  <p className="text-sm font-medium mb-2">Relational</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.databases.relational?.map((db: string, idx: number) => (
-                      <a
-                        key={db}
-                        href={getSearchUrl(db)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${30 + idx * 35}deg, #3c6e71, #284b63)` }}>
-                        {db}
-                      </a>
-                    ))}
+              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5">
+                <div className="absolute left-0 top-[12px] w-6 h-0 border-t-2 border-primary/40"></div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 gap-y-0">
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Relational</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.databases.relational?.map((db: string, idx: number) => (
+                          <a
+                            key={db}
+                            href={getSearchUrl(db)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${30 + idx * 35}deg, #3c6e71, #284b63)` }}>
+                            {db}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">Graph & Vector</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.databases.graph?.map((db: string, idx: number) => (
+                          <a
+                            key={db}
+                            href={getSearchUrl(db)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${80 + idx * 50}deg, #284b63, #353535)` }}>
+                            {db}
+                          </a>
+                        ))}
+                        {profileData.technical_skills.frameworks.databases.vector?.map((db: string, idx: number) => (
+                          <a
+                            key={db}
+                            href={getSearchUrl(db)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${130 + idx * 50}deg, #284b63, #353535)` }}>
+                            {db}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">NoSQL</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.databases.nosql?.map((db: string, idx: number) => (
+                          <a
+                            key={db}
+                            href={getSearchUrl(db)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${180 + idx * 45}deg, #353535, #3c6e71)` }}>
+                            {db}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">Graph & Vector</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.databases.graph?.map((db: string, idx: number) => (
-                      <a
-                        key={db}
-                        href={getSearchUrl(db)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${80 + idx * 50}deg, #284b63, #353535)` }}>
-                        {db}
-                      </a>
-                    ))}
-                    {profileData.technical_skills.frameworks.databases.vector?.map((db: string, idx: number) => (
-                      <a
-                        key={db}
-                        href={getSearchUrl(db)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${130 + idx * 50}deg, #284b63, #353535)` }}>
-                        {db}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-2">NoSQL</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.databases.nosql?.map((db: string, idx: number) => (
-                      <a
-                        key={db}
-                        href={getSearchUrl(db)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${180 + idx * 45}deg, #353535, #3c6e71)` }}>
-                        {db}
-                      </a>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
 
 
             <div className="bg-transparent p-4 sm:p-6 rounded-xl border-2 border-primary">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-primary flex items-center gap-2">
+              <h3 className="text-base sm:text-lg font-semibold mb-0 text-primary flex items-center gap-2">
                 <Layers className="w-5 h-5" />
                 {profileData.experiences.section_titles.full_stack}
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                {/* Frontend */}
-                <div>
-                  <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.frontend}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.web.frontend.frameworks.map((fw: string, idx: number) => (
-                      <a
-                        key={fw}
-                        href={getSearchUrl(fw)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${15 + idx * 45}deg, #3c6e71, #284b63)` }}>
-                        {fw}
-                      </a>
-                    ))}
-                    {profileData.technical_skills.frameworks.web.frontend.http_clients?.map((client: string, idx: number) => (
-                      <a
-                        key={client}
-                        href={getSearchUrl(client)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${60 + idx * 30}deg, #284b63, #3c6e71)` }}>
-                        {client}
-                      </a>
-                    ))}
-                    {profileData.technical_skills.frameworks.web.frontend.ui?.map((ui: string, idx: number) => (
-                      <a
-                        key={ui}
-                        href={getSearchUrl(ui)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${120 + idx * 25}deg, #3c6e71, #353535)` }}>
-                        {ui}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Backend */}
-                <div>
-                  <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.backend}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.web.backend.backend_frameworks?.map((fw: string, idx: number) => (
-                      <a
-                        key={fw}
-                        href={getSearchUrl(fw)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${45 + idx * 40}deg, #284b63, #353535)` }}>
-                        {fw}
-                      </a>
-                    ))}
-                    {profileData.technical_skills.frameworks.web.backend.authentication?.map((auth: string, idx: number) => (
-                      <a
-                        key={auth}
-                        href={getSearchUrl(auth)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${120 + idx * 40}deg, #3c6e71, #353535)` }}>
-                        {auth}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                {/* DevOps */}
-                <div>
-                  <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.devops}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {profileData.technical_skills.frameworks.devops?.containerization?.map((container: string, idx: number) => (
-                      <a
-                        key={container}
-                        href={getSearchUrl(container)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${25 + idx * 50}deg, #353535, #3c6e71)` }}>
-                        {container}
-                      </a>
-                    ))}
-                    {profileData.technical_skills.frameworks.devops?.orchestration?.map((orch: string, idx: number) => (
-                      <a
-                        key={orch}
-                        href={getSearchUrl(orch)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${50 + idx * 50}deg, #284b63, #3c6e71)` }}>
-                        {orch}
-                      </a>
-                    ))}
-                    {profileData.technical_skills.frameworks.devops?.cloud?.map((cloud: string, idx: number) => (
-                      <a
-                        key={cloud}
-                        href={getSearchUrl(cloud)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                        style={{ background: `linear-gradient(${75 + idx * 35}deg, #3c6e71, #284b63)` }}>
-                        {cloud}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                {/* All other full_stack_development categories */}
-                {Object.entries(profileData.technical_skills.full_stack_development).map(([category, tools]: [string, any]) => (
-                  <div key={category}>
-                    <p className="text-sm font-medium mb-2 capitalize">{category === 'api' ? 'API' : category.replace(/_/g, ' ')}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {(tools as string[]).map((tool: string, idx: number) => (
-                        <a
-                          key={tool}
-                          href={getSearchUrl(tool)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
-                          style={{ background: `linear-gradient(${45 + idx * 30}deg, #3c6e71, #284b63)` }}>
-                          {tool}
-                        </a>
-                      ))}
+              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5">
+                <div className="absolute left-0 top-[12px] w-6 h-0 border-t-2 border-primary/40"></div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 gap-y-0">
+                    {/* Frontend */}
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.frontend}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.web.frontend.frameworks.map((fw: string, idx: number) => (
+                          <a
+                            key={fw}
+                            href={getSearchUrl(fw)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${15 + idx * 45}deg, #3c6e71, #284b63)` }}>
+                            {fw}
+                          </a>
+                        ))}
+                        {profileData.technical_skills.frameworks.web.frontend.http_clients?.map((client: string, idx: number) => (
+                          <a
+                            key={client}
+                            href={getSearchUrl(client)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${60 + idx * 30}deg, #284b63, #3c6e71)` }}>
+                            {client}
+                          </a>
+                        ))}
+                        {profileData.technical_skills.frameworks.web.frontend.ui?.map((ui: string, idx: number) => (
+                          <a
+                            key={ui}
+                            href={getSearchUrl(ui)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${120 + idx * 25}deg, #3c6e71, #353535)` }}>
+                            {ui}
+                          </a>
+                        ))}
+                      </div>
                     </div>
+
+                    {/* Backend */}
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.backend}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.web.backend.backend_frameworks?.map((fw: string, idx: number) => (
+                          <a
+                            key={fw}
+                            href={getSearchUrl(fw)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${45 + idx * 40}deg, #284b63, #353535)` }}>
+                            {fw}
+                          </a>
+                        ))}
+                        {profileData.technical_skills.frameworks.web.backend.authentication?.map((auth: string, idx: number) => (
+                          <a
+                            key={auth}
+                            href={getSearchUrl(auth)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${120 + idx * 40}deg, #3c6e71, #353535)` }}>
+                            {auth}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* DevOps */}
+                    <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                      <p className="text-sm font-medium mb-2">{profileData.experiences.section_titles.devops}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {profileData.technical_skills.frameworks.devops?.containerization?.map((container: string, idx: number) => (
+                          <a
+                            key={container}
+                            href={getSearchUrl(container)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${25 + idx * 50}deg, #353535, #3c6e71)` }}>
+                            {container}
+                          </a>
+                        ))}
+                        {profileData.technical_skills.frameworks.devops?.orchestration?.map((orch: string, idx: number) => (
+                          <a
+                            key={orch}
+                            href={getSearchUrl(orch)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${50 + idx * 50}deg, #284b63, #3c6e71)` }}>
+                            {orch}
+                          </a>
+                        ))}
+                        {profileData.technical_skills.frameworks.devops?.cloud?.map((cloud: string, idx: number) => (
+                          <a
+                            key={cloud}
+                            href={getSearchUrl(cloud)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                            style={{ background: `linear-gradient(${75 + idx * 35}deg, #3c6e71, #284b63)` }}>
+                            {cloud}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* All other full_stack_development categories */}
+                    {Object.entries(profileData.technical_skills.full_stack_development).map(([category, tools]: [string, any]) => (
+                      <div key={category} className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
+                        <p className="text-sm font-medium mb-2 capitalize">{category === 'api' ? 'API' : category.replace(/_/g, ' ')}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {(tools as string[]).map((tool: string, idx: number) => (
+                            <a
+                              key={tool}
+                              href={getSearchUrl(tool)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-3 py-1 text-white rounded-full text-xs hover:opacity-80 transition-opacity"
+                              style={{ background: `linear-gradient(${45 + idx * 30}deg, #3c6e71, #284b63)` }}>
+                              {tool}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
               </div>
             </div>
             </div>
