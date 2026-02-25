@@ -453,7 +453,8 @@ export default function Home() {
                 <Code className="w-5 h-5" />
                 {profileData.experiences.section_titles.languages}
               </h3>
-              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5">
+              <div className="relative pl-6 ml-[9px] mt-0.5">
+                <div className="absolute left-0 top-0 h-[14px] w-0 border-l-2 border-primary/40"></div>
                 <div className="absolute left-0 top-[12px] w-6 h-0 border-t-2 border-primary/40"></div>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-0 gap-y-0">
                     <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
@@ -546,7 +547,8 @@ export default function Home() {
                 <Brain className="w-5 h-5" />
                 {profileData.experiences.section_titles.ml_ai}
               </h3>
-              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5">
+              <div className="relative pl-6 ml-[9px] mt-0.5">
+                <div className="absolute left-0 top-0 h-[14px] w-0 border-l-2 border-primary/40"></div>
                 <div className="absolute left-0 top-[12px] w-6 h-0 border-t-2 border-primary/40"></div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-x-0 gap-y-0">
                     <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
@@ -671,7 +673,8 @@ export default function Home() {
                 <Database className="w-5 h-5" />
                 {profileData.experiences.section_titles.databases}
               </h3>
-              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5">
+              <div className="relative pl-6 ml-[9px] mt-0.5">
+                <div className="absolute left-0 top-0 h-[14px] w-0 border-l-2 border-primary/40"></div>
                 <div className="absolute left-0 top-[12px] w-6 h-0 border-t-2 border-primary/40"></div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 gap-y-0">
                     <div className="border-t-2 border-l-2 border-primary/40 pl-3 pt-2 pr-4 pb-3">
@@ -743,7 +746,8 @@ export default function Home() {
                 <Layers className="w-5 h-5" />
                 {profileData.experiences.section_titles.full_stack}
               </h3>
-              <div className="relative pl-6 border-l-2 border-primary/40 ml-[9px] mt-0.5">
+              <div className="relative pl-6 ml-[9px] mt-0.5">
+                <div className="absolute left-0 top-0 h-[14px] w-0 border-l-2 border-primary/40"></div>
                 <div className="absolute left-0 top-[12px] w-6 h-0 border-t-2 border-primary/40"></div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 gap-y-0">
                     {/* Frontend */}
