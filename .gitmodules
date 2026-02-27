@@ -1,0 +1,3 @@
+[submodule "applydocs"]
+	path = applydocs
+	url = https://github.com/1ncompleteness/applydocs.git
