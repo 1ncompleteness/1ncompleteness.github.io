@@ -505,7 +505,7 @@ export default function Timeline() {
           </div>
 
           {/* Legend with field colors */}
-          <div className="flex flex-wrap gap-3 text-[10px] text-white/70 justify-center mb-4">
+          <div className="flex flex-wrap gap-3 text-[8px] text-white/70 justify-center mb-4">
             {usedFields.map(field => {
               const color = fieldColors[field] || '#808080'
               return (
